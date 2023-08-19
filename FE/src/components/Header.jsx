@@ -3,19 +3,40 @@ import "../assets/style/header.css";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 const Header = () => {
+  const url = "http://localhost:3000/imgSlide";
+  const [backgroundImgs, setBackGroundImg] = useState([]);
   const isHomePath = useLocation();
-  const [background, setBackGround] = useState([]);
+  const fetchBackground = async () => {
+    return axios.get(url).then((res) => {
+      setBackGroundImg(res.data);
+    });
+  };
+  useEffect(() => {
+    fetchBackground();
+  }, []);
 
-  // useEffect(() =>{ const res = await fetch("http://localhost:3000/imgSlide");
-  // const data = res.json()}, []);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const length = backgroundImgs.length;
 
+  const prevSlide = () => {
+    setCurrentSlide(currentSlide === 0 ? length - 1 : currentSlide - 1);
+  };
+  const nextSlide = () => {
+    setCurrentSlide(currentSlide === length - 1 ? 0 : currentSlide + 1);
+  };
+  const getBackground = backgroundImgs.map((item) => item.img);
+
+  // useEffect(() => {
+  //   const slideInterval = setInterval(() => nextSlide(), 5000);
+  //   const slideClearInterval = () => clearInterval(slideClearInterval);
+  // }, [currentSlide]);
   return (
     <section
       className="header"
       style={
         isHomePath.pathname === "/"
           ? {
-              backgroundImage: `url(${background})`,
+              backgroundImage: `url(${getBackground[currentSlide]})`,
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
               backgroundSize: "cover",
@@ -27,10 +48,14 @@ const Header = () => {
       }
     >
       {isHomePath.pathname === "/" ? (
-        <button className="slide-left slide-btn">&lt;</button>
+        <button className="slide-left slide-btn" onClick={prevSlide}>
+          &lt;
+        </button>
       ) : null}
       {isHomePath.pathname === "/" ? (
-        <button className="slide-right slide-btn">&gt;</button>
+        <button className="slide-right slide-btn" onClick={nextSlide}>
+          &gt;
+        </button>
       ) : null}
       <header className="header-container">
         <div className="top-bar-container">
@@ -91,12 +116,20 @@ const Header = () => {
             </ul>
           </div>
           <div className="nav-bar-right col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12">
-            <i className="uil uil-search"></i>
-            <i className="uil uil-user"></i>
-            <i className="uil uil-star"></i>
-            <i className="uil uil-shopping-cart">
-              <span className="cart-quantity">{/* quantity here */}10</span>
-            </i>
+            <button>
+              <i className="uil uil-search"></i>
+            </button>
+            <button>
+              <i className="uil uil-user"></i>
+            </button>
+            <button>
+              <i className="uil uil-star"></i>
+            </button>
+            <button>
+              <i className="uil uil-shopping-cart">
+                <span className="cart-quantity">{/* quantity here */}10</span>
+              </i>
+            </button>
           </div>
         </div>
       </header>
