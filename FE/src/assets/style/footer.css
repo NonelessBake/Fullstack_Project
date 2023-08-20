@@ -1,0 +1,135 @@
+footer {
+  margin: 0 auto;
+  max-width: 1600px;
+}
+.container {
+  padding: 15px !important;
+}
+ul,
+li {
+  padding: 0;
+  margin: 0;
+}
+/* banner */
+.banner {
+  border-top: 1px solid red;
+
+  margin-bottom: 15px;
+}
+.banner-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.banner-image {
+  width: 12%;
+}
+.banner-image img:hover {
+  transform: scale(150%);
+}
+.banner-image img {
+  transition: transform 0.5s ease;
+  width: 100%;
+}
+/* social link */
+.social-link-container {
+  border-top: 1px solid red;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo-container {
+  width: 10%;
+}
+.logo {
+  width: 100%;
+}
+.social-link {
+  display: flex;
+  gap: 15px;
+}
+.social-link li {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #868686;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.link a {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.link a:hover {
+  background-color: black;
+}
+.link a:hover .uil-twitter,
+.link a:hover .uil-facebook-f,
+.link a:hover .uil-instagram,
+.link a:hover .uil-youtube {
+  color: white;
+}
+/* fast link */
+.link-container {
+  border-top: 1px solid red;
+  padding: 15px;
+  font-size: 15px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  font-weight: 500;
+}
+h2 {
+  font-size: 12px !important;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.fast-link li a {
+  color: #868686;
+}
+.fast-link li a:hover {
+  color: black;
+}
+/* privacy & payment */
+.privacy-payment {
+  border-top: 1px solid red;
+  font-size: 14px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  padding: 15px;
+}
+.privacy {
+  display: flex;
+  justify-content: space-between;
+}
+
+.privacy-link {
+  display: flex;
+  gap: 20px;
+}
+.privacy-link li a {
+  text-decoration-color: transparent;
+  transition: 0.4s;
+}
+.privacy-link li a:hover {
+  text-decoration: underline;
+}
+.privacy-link li a:hover {
+  color: black;
+}
+.privacy-link li:last-child a {
+  font-size: 12px;
+}
+.payment {
+  display: flex;
+  justify-content: flex-end;
+}
