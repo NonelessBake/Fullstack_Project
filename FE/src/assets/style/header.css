@@ -57,18 +57,20 @@
 .uil-envelope {
   margin-right: 5px;
 }
-.support-email::before {
-  content: "|";
-  margin-right: 10px;
-}
+
 .top-bar-left,
 .top-bar-right {
   display: flex;
   gap: 10px;
 }
-
+.support-email::before {
+  content: "|";
+  color: silver;
+  margin-right: 10px;
+}
 .faqs::before {
   content: "|";
+  color: silver;
   margin-right: 10px;
 }
 
@@ -77,6 +79,7 @@
   padding: 15px;
   align-items: center;
 }
+
 .logo-container {
   width: 80px;
   margin-right: 60px;
@@ -84,6 +87,8 @@
 .funio-logo {
   width: 100%;
 }
+/* nav left */
+
 .nav-bar-left {
   display: flex;
   height: 100%;
@@ -94,16 +99,65 @@
   justify-content: center;
   gap: 30px;
   margin: 0;
+  font-size: 13px;
 }
-.nav-link-item a {
-  text-decoration: underline;
-  text-decoration-color: transparent;
+.nav-link-item li {
+  position: relative;
   transition: 0.5s;
-}
-.nav-link-item a:hover {
-  text-decoration: underline;
+  cursor: pointer;
+  transition: 0.7s ease;
+  border-bottom: transparent;
 }
 
+.dropdown-entity {
+  font-size: 10px;
+  font-weight: 700;
+}
+.direct-link {
+  position: relative;
+}
+
+.dropdown-direct-link {
+  display: none;
+  position: absolute;
+  background-color: white;
+  padding: 5px 15px;
+  min-width: 150px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+.dropdown-direct-link a {
+  font-size: 14px;
+  color: #868686;
+  display: block;
+  transition: color 0.3s ease;
+  line-height: 2rem;
+}
+.dropdown-direct-link a:hover {
+  color: black;
+}
+.direct-link:hover .dropdown-direct-link {
+  display: block;
+}
+.active-item {
+  border-bottom: 2px solid black;
+}
+.highlight::after {
+  content: "";
+  position: absolute;
+  width: 0px;
+  top: 16px;
+  height: 1.5px;
+  left: 50%;
+  bottom: 0;
+  background-color: black;
+  transition: all ease-in-out 0.2s;
+}
+.highlight:hover::after {
+  width: 100%;
+  left: 0;
+}
+/* nav-right */
 .nav-bar-right {
   display: flex;
   justify-content: flex-end;

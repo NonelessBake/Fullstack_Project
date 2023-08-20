@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import "../assets/style/header.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import axios from "axios";
+const activeClass = (params) => {
+  return params.isActive ? "active-item" : "";
+};
 const Header = () => {
   const url = "http://localhost:3000/imgSlide";
   const [backgroundImgs, setBackGroundImg] = useState([]);
@@ -26,10 +29,6 @@ const Header = () => {
   };
   const getBackground = backgroundImgs.map((item) => item.img);
 
-  // useEffect(() => {
-  //   const slideInterval = setInterval(() => nextSlide(), 5000);
-  //   const slideClearInterval = () => clearInterval(slideClearInterval);
-  // }, [currentSlide]);
   return (
     <section
       className="header"
@@ -62,18 +61,14 @@ const Header = () => {
           <div className="top-bar-left">
             <div className="store-location">
               <Link to="/contact">
-                <div className="">
-                  <i className="uil uil-location-point"></i>
-                  <span>Store Location</span>
-                </div>
+                <i className="uil uil-location-point"></i>
+                <span>Store Location</span>
               </Link>
             </div>
             <div className="support-email">
               <Link to="/contact">
-                <div>
-                  <i className="uil uil-envelope"></i>
-                  <span>support@funio.com</span>
-                </div>
+                <i className="uil uil-envelope"></i>
+                <span>support@funio.com</span>
               </Link>
             </div>
           </div>
@@ -99,19 +94,44 @@ const Header = () => {
             </div>
             <ul className="nav-link-item">
               <li>
-                <Link to="/">Home</Link>
+                <span className="highlight">
+                  <NavLink to="/" className={activeClass}>
+                    HOME
+                  </NavLink>
+                </span>
               </li>
               <li>
-                <Link to="/">Shop</Link>
+                <span className="highlight">
+                  <NavLink to="/shop" className={activeClass}>
+                    SHOP
+                  </NavLink>
+                </span>
               </li>
               <li>
-                <Link to="/">Product</Link>
+                <span className="highlight">
+                  <NavLink to="/shop/" className={activeClass}>
+                    PRODUCT
+                  </NavLink>
+                </span>
               </li>
               <li>
-                <Link to="/">Blog</Link>
+                <span className="highlight">
+                  <NavLink to="/blog" className={activeClass}>
+                    BLOG
+                  </NavLink>
+                </span>
               </li>
-              <li>
-                <Link to="/">Page</Link>
+              <li className="direct-link">
+                <span className="highlight">
+                  <Link>
+                    PAGE <span className="dropdown-entity">&#5167;</span>
+                  </Link>
+                </span>
+                <div className="dropdown-direct-link">
+                  <Link to="/about">About Us</Link>
+                  <Link to="/contact">Contact</Link>
+                  <Link to="/faqs">FAQs</Link>
+                </div>
               </li>
             </ul>
           </div>
