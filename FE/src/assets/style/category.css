@@ -1,0 +1,60 @@
+.category {
+  width: 100%;
+  display: flex;
+  padding: 0 15px;
+  gap: 15px;
+  position: relative;
+}
+.slide-image {
+  border: none;
+  width: 20%;
+  box-shadow: 0px 0px 0.3px #666;
+}
+.slide {
+  width: 100%;
+  transition: 0.5s all ease-in-out;
+}
+.slide-image:hover .slide {
+  transform: scale(1.1);
+}
+h6 {
+  text-align: center;
+  margin-top: 17px;
+  font-weight: 500;
+  opacity: 0.8;
+}
+h6 a:hover {
+  font-weight: 700;
+  opacity: 1;
+  color: black;
+  border-bottom: 1px solid black;
+}
+.slide-btn {
+  position: absolute;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  box-shadow: 0 0 0 0.3px #666;
+  border: 1px solid whitesmoke;
+  color: black;
+  background-color: white;
+  z-index: 1000;
+  opacity: 0;
+  transition: 0.3s;
+}
+.category:hover .slide-btn {
+  opacity: 1;
+}
+.slide-btn:hover {
+  background: black;
+  color: white;
+  box-shadow: none;
+}
+.carousel-slide-prev {
+  top: 40%;
+  left: 15px;
+}
+.carousel-slide-next {
+  top: 40%;
+  right: 15px;
+}

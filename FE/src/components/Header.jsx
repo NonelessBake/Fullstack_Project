@@ -87,7 +87,11 @@ const Header = () => {
               <Link to="/">
                 <img
                   className="funio-logo"
-                  src="https://wpbingosite.com/wordpress/funio/wp-content/uploads/2020/12/logo2.png"
+                  src={
+                    isHomePath.pathname === "/"
+                      ? "https://wpbingosite.com/wordpress/funio/wp-content/uploads/2020/12/logo2.png"
+                      : "https://wpbingosite.com/wordpress/funio/wp-content/webp-express/webp-images/uploads/2020/12/logo.png.webp"
+                  }
                   alt=""
                 />
               </Link>

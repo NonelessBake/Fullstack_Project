@@ -3,7 +3,7 @@ import Category from "../components/Category";
 const Home = () => {
   return (
     <section className="home">
-      <h3>Top Categories</h3>
+      <h1>Top Categories</h1>
       <Category />
     </section>
   );
