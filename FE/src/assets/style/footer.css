@@ -80,6 +80,7 @@ li {
 }
 /* fast link */
 .link-container {
+  line-height: 2rem;
   border-top: 1px solid red;
   padding: 30px 15px;
   font-size: 15px;
@@ -112,7 +113,9 @@ li {
   display: flex;
   justify-content: space-between;
 }
-
+.name {
+  color: #868686;
+}
 .privacy-link {
   display: flex;
   align-items: center;
