@@ -40,7 +40,7 @@ const Category = () => {
 
   return (
     <div className="category">
-      <button className="carousel-slide-prev slide-btn">&lt;</button>
+      <button className="carousel-slide-prev carousel-slide-btn">&lt;</button>
       {slideCategory.map((item, index) => (
         <div key={index} className="slide-image">
           <Link to="/">
@@ -51,7 +51,7 @@ const Category = () => {
           </h6>
         </div>
       ))}
-      <button className="carousel-slide-next slide-btn">&gt;</button>
+      <button className="carousel-slide-next carousel-slide-btn">&gt;</button>
     </div>
   );
 };
