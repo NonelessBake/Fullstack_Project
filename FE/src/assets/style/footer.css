@@ -87,7 +87,7 @@ li {
   grid-template-columns: repeat(4, 1fr);
   font-weight: 500;
 }
-h2 {
+.link-container h2 {
   font-size: 12px !important;
   font-weight: 500;
   margin-bottom: 15px;
