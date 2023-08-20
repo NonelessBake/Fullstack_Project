@@ -14,7 +14,6 @@ const Footer = () => {
     fetchBanner();
   }, []);
   const bannerImages = banner.map((item) => item.img);
-  console.log(bannerImages);
 
   return (
     <footer className="footer">
@@ -147,10 +146,10 @@ const Footer = () => {
           <div className="name">© 2021 Funio Furniture Store</div>
           <ul className="privacy-link">
             <li>
-              <Link>Privacy</Link>
+              <Link>PRIVACY</Link>
             </li>
             <li>
-              <Link>Terms</Link>
+              <Link>TERMS</Link>
             </li>
             <li>
               <Link>*PROMO T&CS APPLY (VIEW HERE)</Link>

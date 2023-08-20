@@ -31,10 +31,11 @@ li {
   transition: transform 0.5s ease;
   width: 100%;
 }
+
 /* social link */
 .social-link-container {
   border-top: 1px solid red;
-  padding: 15px;
+  padding: 25px 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -80,7 +81,7 @@ li {
 /* fast link */
 .link-container {
   border-top: 1px solid red;
-  padding: 15px;
+  padding: 30px 15px;
   font-size: 15px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -114,7 +115,8 @@ h2 {
 
 .privacy-link {
   display: flex;
-  gap: 20px;
+  align-items: center;
+  gap: 40px;
 }
 .privacy-link li a {
   text-decoration-color: transparent;
@@ -126,7 +128,7 @@ h2 {
 .privacy-link li a:hover {
   color: black;
 }
-.privacy-link li:last-child a {
+.privacy-link li {
   font-size: 12px;
 }
 .payment {

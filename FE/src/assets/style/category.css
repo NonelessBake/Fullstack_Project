@@ -4,6 +4,7 @@
   padding: 0 15px;
   gap: 15px;
   position: relative;
+  margin-bottom: 60px;
 }
 .slide-image {
   border: none;
@@ -11,10 +12,11 @@
   box-shadow: 0px 0px 0.3px #666;
 }
 .slide {
+  border-radius: 0.5rem;
   width: 100%;
   transition: 0.5s all ease-in-out;
 }
-.slide-image:hover .slide {
+.slide:hover {
   transform: scale(1.1);
 }
 h6 {
