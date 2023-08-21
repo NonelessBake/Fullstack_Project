@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 const HomeProducts = () => {
   const [homeProducts, setHomeProducts] = useState([]);
-  const [isActive, setIsActive] = useState(false);
+
   const [showList, setShowList] = useState("Latest Products");
   const fetchProducts = async () => {
     return axios
