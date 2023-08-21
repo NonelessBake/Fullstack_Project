@@ -14,15 +14,9 @@ const Footer = () => {
     fetchBanner();
   }, []);
   const bannerImages = banner.map((item) => item.img);
-  const isHomePath = useLocation();
 
   return (
-    <footer
-      className="footer"
-      style={{
-        backgroundColor: isHomePath.pathname === "/" ? "white" : "#f5f2f2",
-      }}
-    >
+    <footer className="footer">
       <section className="banner">
         <div className="banner-container">
           {bannerImages.map((item, index) => (
