@@ -3,18 +3,8 @@ import "../assets/style/home.css";
 import axios from "axios";
 import Category from "../components/Category";
 import { Link, NavLink } from "react-router-dom";
+import HomeProducts from "../components/HomeProducts";
 const Home = () => {
-  const [banner, setBanner] = useState([]);
-  const fetchBanner = async () => {
-    return axios.get("http://localhost:3000/imagesBanner").then((res) => {
-      setBanner(res.data);
-    });
-  };
-  useEffect(() => {
-    fetchBanner();
-  }, []);
-  const imagesBanner = banner.map((item) => item.img);
-
   const shopStyleImgs = [
     {
       content: "Classic Traditional",
@@ -29,6 +19,16 @@ const Home = () => {
       src: "https://wpbingosite.com/wordpress/funio/wp-content/webp-express/webp-images/uploads/2020/12/img5-8.jpg.webp",
     },
   ];
+  const [banner, setBanner] = useState([]);
+  const fetchBanner = async () => {
+    return axios.get("http://localhost:3000/imagesBanner").then((res) => {
+      setBanner(res.data);
+    });
+  };
+  useEffect(() => {
+    fetchBanner();
+  }, []);
+  const imagesBanner = banner.map((item) => item.img);
 
   return (
     <section className="home">
@@ -81,6 +81,9 @@ const Home = () => {
             </div>
           ))}
         </div>
+      </section>
+      <section>
+        <HomeProducts />
       </section>
     </section>
   );

@@ -17,9 +17,15 @@ const Header = () => {
   useEffect(() => {
     fetchBackground();
   }, []);
-
   const [currentSlide, setCurrentSlide] = useState(0);
   const length = backgroundImgs.length;
+  useEffect(() => {
+    const timer = setTimeout(
+      () => setCurrentSlide(currentSlide === length - 1 ? 0 : currentSlide + 1),
+      5000
+    );
+    return () => clearTimeout(timer);
+  }, [currentSlide, length]);
 
   const prevSlide = () => {
     setCurrentSlide(currentSlide === 0 ? length - 1 : currentSlide - 1);

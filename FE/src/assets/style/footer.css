@@ -20,12 +20,13 @@ li {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  overflow: hidden;
 }
 .banner-image {
   width: 12%;
 }
 .banner-image img:hover {
-  transform: scale(150%);
+  transform: scale(120%);
 }
 .banner-image img {
   transition: transform 0.5s ease;

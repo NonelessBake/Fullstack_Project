@@ -32,7 +32,7 @@
     {
       "id": 3,
       "img": [
-        "https://wpbingosite.com/wordpress/funio/wp-content/webp-express/webp-images/uploads/2020/12/Image-41.jpg",
+        "https://wpbingosite.com/wordpress/funio/wp-content/uploads/2020/12/Image-41.jpg",
         "https://wpbingosite.com/wordpress/funio/wp-content/uploads/2020/12/Image-43.jpg",
         "https://wpbingosite.com/wordpress/funio/wp-content/uploads/2020/12/Image-42.jpg",
         "https://wpbingosite.com/wordpress/funio/wp-content/uploads/2020/12/Image-41-1020x1020.jpg"
@@ -231,7 +231,7 @@
       ],
       "name": "Onyx Winter Vase",
       "price": 200,
-      "discoun": "0",
+      "discount": 0,
       "discription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
       "category": "Dining Room",
       "tags": "Trend",

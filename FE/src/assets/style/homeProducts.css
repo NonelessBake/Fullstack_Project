@@ -1,0 +1,134 @@
+.product-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.show-change {
+  margin-bottom: 50px;
+  display: flex;
+  gap: 30px;
+  position: relative;
+}
+.show-btn {
+  display: block;
+  border: none;
+  background: transparent;
+  font-size: 23px;
+  position: relative;
+}
+.show-btn:hover {
+  color: black;
+}
+.highlight-show::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  top: 30px;
+  height: 3px;
+  left: 50%;
+  bottom: 0;
+  background-color: black;
+  transition: all ease-in-out 0.2s;
+}
+.active-btn::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  top: 30px;
+  height: 3px;
+  left: 0;
+  bottom: 0;
+  background-color: black;
+}
+.deactive-btn {
+  color: #868686;
+}
+.show-btn:hover .highlight-show::after {
+  width: 100%;
+  left: 0;
+}
+.show-home-products {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  max-width: 1600px;
+  gap: 30px;
+}
+.product-home {
+  text-align: center;
+  font-size: 15px;
+  color: #868686;
+}
+.product-home h5 a {
+  color: #868686;
+  font-size: 16px;
+}
+.product-home a:hover {
+  color: black;
+}
+.product-home-container {
+  width: 240px;
+}
+.product-home-img {
+  width: 100%;
+  margin-bottom: 20px;
+  position: relative;
+}
+.product-home-img img {
+  width: 100%;
+  transition: opacity 1s ease-in-out;
+}
+
+.fade-in {
+  opacity: 1;
+  transition: opacity 1s ease-in;
+}
+
+.fade-out {
+  opacity: 0.7;
+  transition: opacity 1s ease-out;
+}
+.price-before {
+  margin-right: 10px;
+  font-size: 12px;
+  text-decoration: line-through;
+}
+.new-price {
+  color: red;
+  font-size: 16px;
+}
+.on-sale {
+  position: absolute;
+  color: red;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  box-shadow: 0 0 4px 1px rgb(131, 127, 127);
+  border-radius: 20px;
+  pad: 50px 25px;
+  width: 50px;
+  height: 25px;
+  top: 10px;
+  left: 20px;
+  opacity: 1;
+  z-index: 10;
+}
+.tags {
+  position: absolute;
+  color: #d26c12;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  box-shadow: 0 0 4px 1px rgb(131, 127, 127);
+  border-radius: 20px;
+  pad: 50px 25px;
+  width: 50px;
+  height: 22px;
+  top: 10px;
+  right: 20px;
+  opacity: 1;
+  z-index: 10;
+}
