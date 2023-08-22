@@ -119,7 +119,7 @@ const Header = () => {
               </li>
               <li>
                 <span className="highlight">
-                  <NavLink to="/shop/" className={activeClass}>
+                  <NavLink to="/" className={activeClass}>
                     PRODUCT
                   </NavLink>
                 </span>
