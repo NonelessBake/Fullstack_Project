@@ -119,6 +119,7 @@ const ContextProvider = ({ children }) => {
   useEffect(() => {
     fetchCollection();
   }, []);
+
   // Collection Component
 
   // Footer Component

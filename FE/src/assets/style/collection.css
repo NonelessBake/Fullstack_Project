@@ -1,10 +1,102 @@
-.collection-container {
+.collection {
   width: 100%;
-  height: 150vh;
+  margin-bottom: 50px;
+  background-color: #272727;
+  background-image: url("https://wpbingosite.com/wordpress/funio/wp-content/uploads/2021/01/img5-9.jpg");
+  color: white;
+  vertical-align: center;
+  padding: 15vh 0;
 }
-.collection-image-container {
+.collection h2 {
+  text-align: center;
+  font-size: 50px;
+  margin-bottom: 30px;
+}
+.collection .collection-container {
   width: 100%;
 }
-.collection-image {
+
+.collection .collection-image-container {
+  position: relative;
   width: 100%;
+  filter: brightness(100%);
+  transition: all 0.3s ease;
+}
+.collection .collection-image-container:hover {
+  filter: brightness(70%);
+}
+.collection .collection-image {
+  width: 100%;
+}
+.collection .carousel-item-padding-20-px {
+  padding: 0 20px 70px 0;
+}
+.collection .collection-item {
+  position: relative;
+}
+.collection .collection-title-container {
+  width: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  bottom: -70px;
+}
+.collection .collection-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 85%;
+  padding: 30px;
+}
+
+.collection .prev-button {
+  position: absolute;
+  left: 13%;
+  top: 40%;
+}
+.collection .next-button {
+  position: absolute;
+  right: 13%;
+  top: 40%;
+}
+.collection .shop-collection-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+  padding: 5px 15px;
+  background: transparent;
+  border: 2px solid black;
+  transition: all 0.15s;
+}
+.collection .shop-collection-btn p {
+  margin: 0;
+}
+.collection .shop-collection-btn:hover {
+  background-color: black;
+  color: white;
+}
+.collection .change-slide-btn {
+  display: flex;
+  font-size: 20px;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 20px;
+  background: white;
+  border: none;
+  border-radius: 15px;
+  transition: all 0.2s;
+  box-shadow: 0 0 3px black;
+}
+.collection .uil-left-arrow-to-left,
+.collection .uil-arrow-to-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.change-slide-btn:hover {
+  background-color: black;
+  color: white;
 }

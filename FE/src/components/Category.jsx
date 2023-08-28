@@ -48,7 +48,9 @@ const Category = () => {
                   </div>
                 </div>
                 <h6>
-                  <Link to={`/category/${item.link}`}>{item.alt}</Link>
+                  <Link to={`/category/${item.link}`}>
+                    {item.alt.toUpperCase()}
+                  </Link>
                 </h6>
               </div>
             </div>
