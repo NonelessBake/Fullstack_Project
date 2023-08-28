@@ -6,10 +6,15 @@ const UserMenu = () => {
   const { activeClass, isHomePath } = useContext(Context);
   let checked;
   isHomePath.pathname === "/" ? (checked = true) : (checked = false);
+  const colorHome = checked ? "white-color-text" : null;
   return (
-    <section className={`header-container ${checked ? "header-home" : null}`}>
+    <section
+      className={`header-container ${
+        checked ? "header-home" : null
+      } ${colorHome}`}
+    >
       <div className="top-bar-container">
-        <div className="top-bar-left">
+        <div className={`top-bar-left `}>
           <div className="store-location">
             <Link to="/contact">
               <i className="uil uil-location-point"></i>
