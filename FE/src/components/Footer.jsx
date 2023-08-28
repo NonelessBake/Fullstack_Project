@@ -4,13 +4,13 @@ import { useContext } from "react";
 import { Context } from "../contexts/ContextProvider";
 
 const Footer = () => {
-  const { bannerImages } = useContext(Context);
+  const { brandImages } = useContext(Context);
   return (
     <footer className="footer">
-      <section className="banner">
-        <div className="banner-container">
-          {bannerImages.map((item, index) => (
-            <div key={index} className="banner-image">
+      <section className="brand">
+        <div className="brand-container">
+          {brandImages.map((item, index) => (
+            <div key={index} className="brand-image">
               <Link>
                 <img src={item}></img>
               </Link>

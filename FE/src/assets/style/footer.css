@@ -13,24 +13,23 @@ li {
   margin: 0;
 }
 /* banner */
-.banner {
+.brand {
   border-top: 1px solid rgb(219, 219, 219);
-
   margin-bottom: 15px;
 }
-.banner-container {
+.brand-container {
   display: flex;
   justify-content: space-around;
   align-items: center;
   overflow: hidden;
 }
-.banner-image {
+.brand-image {
   width: 12%;
 }
-.banner-image img:hover {
+.brand-image img:hover {
   transform: scale(120%);
 }
-.banner-image img {
+.brand-image img {
   transition: transform 0.5s ease;
   width: 100%;
 }

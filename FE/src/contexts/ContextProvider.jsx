@@ -21,6 +21,20 @@ const ContextProvider = ({ children }) => {
   }, []);
 
   // Header Component
+
+  // Bannner
+  const [banner, setBanner] = useState([]);
+  const fetchBanner = async () => {
+    return axios.get("http://localhost:3000/imagesBanner").then((res) => {
+      setBanner(res.data);
+    });
+  };
+  useEffect(() => {
+    fetchBanner();
+  }, []);
+  const bannerImages = banner.map((item) => item.img);
+  // Banner
+
   // Category Component
   const slideCategory = [
     {
@@ -95,16 +109,16 @@ const ContextProvider = ({ children }) => {
   // HomeProduct Component
 
   // Footer Component
-  const [banner, setBanner] = useState([]);
-  const fetchBanner = async () => {
+  const [brand, setBrand] = useState([]);
+  const fetchBrand = async () => {
     return axios.get("http://localhost:3000/brand").then((res) => {
-      setBanner(res.data);
+      setBrand(res.data);
     });
   };
   useEffect(() => {
-    fetchBanner();
+    fetchBrand();
   }, []);
-  const bannerImages = banner.map((item) => item.img);
+  const brandImages = brand.map((item) => item.img);
   // Footer Component
   return (
     <Context.Provider
@@ -112,6 +126,7 @@ const ContextProvider = ({ children }) => {
         activeClass,
         isHomePath,
         backgroundImgs,
+        brandImages,
         bannerImages,
         showList,
         onShowHomeProducts,
