@@ -89,6 +89,17 @@ const ContextProvider = ({ children }) => {
     setIsHovered(isHovered);
   };
 
+  const url = "http://localhost:3000/products";
+  const [productItem, setProductItem] = useState([]);
+  const fetchProductItem = async () => {
+    return axios.get(url).then((res) => {
+      setProductItem(res.data);
+    });
+  };
+  useEffect(() => {
+    fetchProductItem();
+  }, []);
+
   const formatLink = (string) => {
     return string.toLowerCase().replaceAll(" ", "-");
   };
@@ -117,6 +128,7 @@ const ContextProvider = ({ children }) => {
         showList,
         onShowHomeProducts,
         newList,
+        productItem,
         formatLink,
         formatNumber,
         onHover,

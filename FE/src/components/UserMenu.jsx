@@ -64,7 +64,7 @@ const UserMenu = () => {
             </li>
             <li>
               <span className="highlight">
-                <NavLink to="/shop/" className={activeClass}>
+                <NavLink to="/product" className={activeClass}>
                   PRODUCT
                 </NavLink>
               </span>
