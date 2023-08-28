@@ -101,25 +101,23 @@
 .direct-link {
   position: relative;
 }
-
 .dropdown-direct-link {
   display: none;
   position: absolute;
   background-color: white;
   padding: 5px 15px;
-
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
 }
 .dropdown-direct-link a {
   font-size: 14px;
-  color: #868686;
+  color: #868686 !important;
   display: block;
   transition: color 0.3s ease;
   line-height: 2rem;
+  width: 80px;
 }
 .dropdown-direct-link a:hover {
-  color: black;
+  color: black !important;
 }
 .direct-link:hover .dropdown-direct-link {
   display: block;
