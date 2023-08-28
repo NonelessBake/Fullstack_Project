@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useContext, useState } from "react";
 import { Context } from "../contexts/ContextProvider";
 import "../assets/style/collection.css";
@@ -64,7 +65,7 @@ const Collection = () => {
   };
   return (
     <section className="collection">
-      <h1>Collection</h1>
+      <h2>Collection</h2>
       <div className="collection-container">
         <Carousel
           autoPlay={false}
@@ -95,7 +96,7 @@ const Collection = () => {
                     <h3>{item.title}</h3>
                     <Link>
                       <button className="shop-collection-btn">
-                        <p>SHOP COLLECTION</p>
+                        SHOP COLLECTION
                       </button>
                     </Link>
                   </div>

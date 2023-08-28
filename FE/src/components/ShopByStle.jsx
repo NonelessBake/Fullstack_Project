@@ -18,7 +18,7 @@ const ShopByStle = () => {
 
   return (
     <section className="shop-style">
-      <h1>Shop by style</h1>
+      <h2>Shop by style</h2>
       <div className="shop-by-style ">
         {shopStyleImgs.map((item, index) => (
           <div key={index} className="shop-by-style-cotainer">

@@ -1,3 +1,8 @@
+.category {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 80px;
+}
 .category .scale-hover img {
   border-radius: 0.5rem;
   width: 100%;
@@ -21,11 +26,6 @@
   opacity: 1;
   color: black;
   border-bottom: 1px solid black;
-}
-
-.category {
-  width: 100%;
-  margin-bottom: 50px;
 }
 
 .category .react-multi-carousel-track {

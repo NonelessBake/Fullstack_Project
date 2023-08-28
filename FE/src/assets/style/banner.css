@@ -1,7 +1,11 @@
-h1 {
+.banner-direct {
+  margin-bottom: 100px;
+}
+.banner-direct h1 {
   text-align: center;
   margin-bottom: 30px;
 }
+
 .banner-direct-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

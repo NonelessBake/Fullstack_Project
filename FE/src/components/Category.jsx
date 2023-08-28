@@ -26,8 +26,8 @@ const Category = () => {
   const { slideCategory } = useContext(Context);
   return (
     <>
-      <h1>Top Categories</h1>
       <div className="category">
+        <h2>Top Categories</h2>
         <Carousel
           responsive={responsive}
           infinite={true}

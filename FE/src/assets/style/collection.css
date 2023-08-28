@@ -1,16 +1,19 @@
 .collection {
   width: 100%;
-  margin-bottom: 50px;
+  margin-bottom: 120px;
   background-color: #272727;
   background-image: url("https://wpbingosite.com/wordpress/funio/wp-content/uploads/2021/01/img5-9.jpg");
   color: white;
   vertical-align: center;
   padding: 15vh 0;
 }
+.collection {
+  text-align: center;
+}
 .collection h2 {
   text-align: center;
-  font-size: 50px;
-  margin-bottom: 30px;
+  font-size: 45px;
+  margin-bottom: 50px;
 }
 .collection .collection-container {
   width: 100%;
@@ -62,36 +65,28 @@
   top: 40%;
 }
 .collection .shop-collection-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 13px;
-  padding: 5px 15px;
+  padding: 6px 15px;
   background: transparent;
   border: 2px solid black;
   transition: all 0.15s;
+  position: relative;
 }
-.collection .shop-collection-btn p {
-  margin: 0;
-}
+
 .collection .shop-collection-btn:hover {
   background-color: black;
   color: white;
 }
 .collection .change-slide-btn {
-  display: flex;
   font-size: 20px;
-  justify-content: center;
-  align-items: center;
-  padding: 5px 20px;
-  background: white;
+  padding: 6px 20px;
+  background: rgb(255, 255, 255);
   border: none;
   border-radius: 15px;
   transition: all 0.2s;
-  box-shadow: 0 0 3px black;
+  box-shadow: 0 0 1px black;
 }
-.collection .uil-left-arrow-to-left,
-.collection .uil-arrow-to-right {
+.collection .uil {
   display: flex;
   justify-content: center;
   align-items: center;
