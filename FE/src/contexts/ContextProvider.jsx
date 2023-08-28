@@ -5,6 +5,13 @@ import { useLocation } from "react-router-dom";
 export const Context = createContext();
 
 const ContextProvider = ({ children }) => {
+  // format
+  const formatLink = (string) => {
+    return string.toLowerCase().replaceAll(" ", "-");
+  };
+  const formatNumber = (price) => price.toFixed(2);
+  // format
+
   // Header Component
   const activeClass = (params) => {
     return params.isActive ? "active-item" : "";
@@ -19,7 +26,6 @@ const ContextProvider = ({ children }) => {
   useEffect(() => {
     fetchBackground();
   }, []);
-
   // Header Component
 
   // Bannner
@@ -102,10 +108,6 @@ const ContextProvider = ({ children }) => {
     setIsHovered(isHovered);
   };
 
-  const formatLink = (string) => {
-    return string.toLowerCase().replaceAll(" ", "-");
-  };
-  const formatNumber = (price) => price.toFixed(2);
   // HomeProduct Component
 
   // Footer Component

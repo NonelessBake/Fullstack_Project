@@ -445,27 +445,18 @@
   "imgSlide": [
     {
       "id": 1,
-      "img": "https://wpbingosite.com/wordpress/funio/wp-content/webp-express/webp-images/uploads/2020/12/img5-4.jpg.webp"
+      "img": "https://wpbingosite.com/wordpress/funio/wp-content/webp-express/webp-images/uploads/2020/12/img5-4.jpg.webp",
+      "title": "Hanging Lamp Sonsists"
     },
     {
       "id": 2,
-      "img": "https://wpbingosite.com/wordpress/funio/wp-content/webp-express/webp-images/uploads/2020/12/img5-5.jpg.webp"
+      "img": "https://wpbingosite.com/wordpress/funio/wp-content/webp-express/webp-images/uploads/2020/12/img5-5.jpg.webp",
+      "title": "Cristalplant Bathtub"
     },
     {
       "id": 3,
-      "img": "https://wpbingosite.com/wordpress/funio/wp-content/webp-express/webp-images/uploads/2021/01/img5-3.jpg.webp"
-    },
-    {
-      "id": 4,
-      "img": "https://wpbingosite.com/wordpress/funio/wp-content/webp-express/webp-images/uploads/2020/12/img5-6.jpg.webp"
-    },
-    {
-      "id": 5,
-      "img": "https://wpbingosite.com/wordpress/funio/wp-content/webp-express/webp-images/uploads/2020/12/img5-7.jpg.webp"
-    },
-    {
-      "id": 6,
-      "img": "https://wpbingosite.com/wordpress/funio/wp-content/webp-express/webp-images/uploads/2020/12/img5-8.jpg.webp"
+      "img": "https://wpbingosite.com/wordpress/funio/wp-content/webp-express/webp-images/uploads/2021/01/img5-3.jpg.webp",
+      "title": "Fall Collection From Hightower"
     }
   ],
   "brand": [
