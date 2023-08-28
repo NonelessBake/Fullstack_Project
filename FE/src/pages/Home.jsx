@@ -9,9 +9,9 @@ const Home = () => {
     <section className="home">
       <Category />
       <Banner />
-      <ShopByStle />
       <HomeProducts />
       <Collection />
+      <ShopByStle />
     </section>
   );
 };
