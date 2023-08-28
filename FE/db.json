@@ -422,6 +422,26 @@
       "img": "https://wpbingosite.com/wordpress/funio/wp-content/webp-express/webp-images/uploads/2021/01/img5-2.jpg.webp"
     }
   ],
+  "headerSlide": [
+    {
+      "id": 1,
+      "img": "https://wpbingosite.com/wordpress/funio/wp-content/uploads/2020/12/slider5-1-1.jpg",
+      "content": "10% of all items",
+      "title": "Hanging lamp consists"
+    },
+    {
+      "id": 2,
+      "img": "https://wpbingosite.com/wordpress/funio/wp-content/uploads/2020/12/slider5-2-1.jpg",
+      "content": "Sofas & armchairs",
+      "title": "Armchair with armrests"
+    },
+    {
+      "id": 3,
+      "img": "https://wpbingosite.com/wordpress/funio/wp-content/uploads/2020/12/slider5-3-1.jpg",
+      "content": "New arrivals",
+      "title": "Cristalplant bathtub"
+    }
+  ],
   "imgSlide": [
     {
       "id": 1,

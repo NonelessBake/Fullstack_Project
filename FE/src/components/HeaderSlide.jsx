@@ -24,7 +24,7 @@ const responsive = {
 };
 
 const HeaderSlide = () => {
-  const { getBackground } = useContext(Context);
+  const { backgroundImgs } = useContext(Context);
 
   return (
     <Carousel
@@ -33,9 +33,9 @@ const HeaderSlide = () => {
       autoPlaySpeed={4000}
       autoPlay={true}
     >
-      {getBackground.map((src, index) => (
+      {backgroundImgs.map((item, index) => (
         <div key={index}>
-          <img src={src} alt={index} className="image-header-slide" />
+          <img src={item.img} alt={index} className="image-header-slide" />
         </div>
       ))}
     </Carousel>

@@ -12,7 +12,7 @@ const ContextProvider = ({ children }) => {
   const [backgroundImgs, setBackGroundImg] = useState([]);
   const isHomePath = useLocation();
   const fetchBackground = async () => {
-    return axios.get("http://localhost:3000/imgSlide").then((res) => {
+    return axios.get("http://localhost:3000/headerSlide").then((res) => {
       setBackGroundImg(res.data);
     });
   };
@@ -20,7 +20,6 @@ const ContextProvider = ({ children }) => {
     fetchBackground();
   }, []);
 
-  const getBackground = backgroundImgs.map((item) => item.img);
   // Header Component
   // Category Component
   const slideCategory = [
@@ -112,7 +111,7 @@ const ContextProvider = ({ children }) => {
       value={{
         activeClass,
         isHomePath,
-        getBackground,
+        backgroundImgs,
         bannerImages,
         showList,
         onShowHomeProducts,
