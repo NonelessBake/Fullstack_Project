@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Context } from "../contexts/ContextProvider";
 import { Link, NavLink } from "react-router-dom";
-
+import "../assets/style/banner.css";
 const Banner = () => {
   const { bannerImages } = useContext(Context);
   return (

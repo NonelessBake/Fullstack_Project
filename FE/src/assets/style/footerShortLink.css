@@ -1,0 +1,21 @@
+.link-container {
+  line-height: 2rem;
+  border-top: 1px solid rgb(219, 219, 219);
+  padding: 30px 15px;
+  font-size: 15px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  font-weight: 500;
+}
+.link-container h2 {
+  font-size: 12px !important;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.fast-link li a {
+  color: #868686;
+}
+.fast-link li a:hover {
+  color: black;
+}

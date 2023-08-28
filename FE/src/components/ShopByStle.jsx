@@ -1,6 +1,5 @@
-import React from "react";
 import { Link } from "react-router-dom";
-
+import "../assets/style/shopByStyle.css";
 const ShopByStle = () => {
   const shopStyleImgs = [
     {
