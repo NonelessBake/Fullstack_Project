@@ -74,8 +74,8 @@ const ContextProvider = ({ children }) => {
       src: "https://wpbingosite.com/wordpress/funio/wp-content/webp-express/webp-images/uploads/2020/12/cate-img-4.jpg.webp",
     },
   ];
-
   // Category Component
+
   // ButtonAddTo Component
   /* Logic here */
   // ButtonAddTo Component
@@ -107,8 +107,19 @@ const ContextProvider = ({ children }) => {
     setImgShow(id);
     setIsHovered(isHovered);
   };
-
   // HomeProduct Component
+
+  // Collection Component
+  const [collection, setCollection] = useState([]);
+  const fetchCollection = async () => {
+    return await axios.get("http://localhost:3000/imgSlide").then((res) => {
+      setCollection(res.data);
+    });
+  };
+  useEffect(() => {
+    fetchCollection();
+  }, []);
+  // Collection Component
 
   // Footer Component
   const [brand, setBrand] = useState([]);
@@ -139,6 +150,7 @@ const ContextProvider = ({ children }) => {
         imgShow,
         isHovered,
         slideCategory,
+        collection,
       }}
     >
       {children}

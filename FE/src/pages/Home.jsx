@@ -3,6 +3,7 @@ import Category from "../components/Category";
 import HomeProducts from "../components/HomeProducts";
 import Banner from "../components/Banner";
 import ShopByStle from "../components/ShopByStle";
+import Collection from "../components/Collection";
 const Home = () => {
   return (
     <section className="home">
@@ -10,7 +11,7 @@ const Home = () => {
       <Banner />
       <ShopByStle />
       <HomeProducts />
-      <section></section>
+      <Collection />
     </section>
   );
 };
