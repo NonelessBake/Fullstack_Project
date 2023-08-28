@@ -1,20 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../assets/style/footer.css";
-import axios from "axios";
-const Footer = () => {
-  const url = "http://localhost:3000/brand";
-  const [banner, setBanner] = useState([]);
-  const fetchBanner = async () => {
-    return axios.get(url).then((res) => {
-      setBanner(res.data);
-    });
-  };
-  useEffect(() => {
-    fetchBanner();
-  }, []);
-  const bannerImages = banner.map((item) => item.img);
+import { useContext } from "react";
+import { Context } from "../contexts/ContextProvider";
 
+const Footer = () => {
+  const { bannerImages } = useContext(Context);
   return (
     <footer className="footer">
       <section className="banner">

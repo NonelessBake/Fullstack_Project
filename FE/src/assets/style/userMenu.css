@@ -1,0 +1,176 @@
+.header-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 1600px;
+  margin: 0 auto;
+  z-index: 100;
+  color: black;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(247, 247, 247, 0.4);
+}
+.header-container a {
+  color: black;
+}
+.header-home {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+/* top-bar */
+
+.top-bar-container {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid wheat;
+  padding: 15px;
+}
+.store-location,
+.support-email {
+  display: flex;
+}
+.store-location .uil-location-point,
+.support-email .uil-envelope {
+  margin-right: 5px;
+}
+
+.top-bar-left,
+.top-bar-right {
+  display: flex;
+  gap: 10px;
+}
+.support-email::before {
+  content: "|";
+  color: silver;
+  margin-right: 10px;
+}
+.faqs::before {
+  content: "|";
+  color: silver;
+  margin-right: 10px;
+}
+
+/* nav-bar */
+.nav-bar-container {
+  display: flex;
+  padding: 15px 20px 15px 15px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-container {
+  width: 80px;
+  margin-right: 60px;
+}
+.funio-logo {
+  width: 100%;
+}
+/* nav left */
+
+.nav-bar-left {
+  display: flex;
+  height: 100%;
+}
+.nav-link-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin: 0;
+  font-size: 13px;
+}
+.nav-link-item li {
+  position: relative;
+  transition: 0.5s;
+  cursor: pointer;
+  transition: 0.7s ease;
+  border-bottom: transparent;
+}
+
+.dropdown-entity {
+  font-size: 10px;
+  font-weight: 700;
+}
+.direct-link {
+  position: relative;
+}
+
+.dropdown-direct-link {
+  display: none;
+  position: absolute;
+  background-color: white;
+  padding: 5px 15px;
+  min-width: 150px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+.dropdown-direct-link a {
+  font-size: 14px;
+  color: #868686;
+  display: block;
+  transition: color 0.3s ease;
+  line-height: 2rem;
+}
+.dropdown-direct-link a:hover {
+  color: black;
+}
+.direct-link:hover .dropdown-direct-link {
+  display: block;
+}
+.active-item {
+  border-bottom: 2px solid black;
+}
+.highlight::after {
+  content: "";
+  position: absolute;
+  width: 0px;
+  top: 16px;
+  height: 1.5px;
+  left: 50%;
+  bottom: 0;
+  background-color: black;
+  transition: all ease-in-out 0.2s;
+}
+.highlight:hover::after {
+  width: 100%;
+  left: 0;
+}
+/* nav-right */
+.nav-bar-right {
+  display: flex;
+  justify-content: flex-end;
+  gap: 30px;
+}
+.nav-bar-right i {
+  display: block;
+  font-size: 25px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.nav-bar-right i:hover {
+  transform: translate(0, -5px);
+}
+
+.cart-header-btn .uil-shopping-cart {
+  position: relative;
+}
+.cart-quantity {
+  font-style: normal;
+  text-align: center;
+  top: -2px;
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  font-size: 10px;
+  border-radius: 50%;
+}
+.nav-bar-right button {
+  background: transparent;
+  border: none;
+}

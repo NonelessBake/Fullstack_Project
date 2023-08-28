@@ -82,9 +82,8 @@ const Home = () => {
           ))}
         </div>
       </section>
-      <section>
-        <HomeProducts />
-      </section>
+      <HomeProducts />
+      <section></section>
     </section>
   );
 };

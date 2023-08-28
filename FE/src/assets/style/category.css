@@ -1,24 +1,15 @@
-.category {
-  width: 100%;
-  display: flex;
-  padding: 0 15px;
-  gap: 15px;
-  position: relative;
-  margin-bottom: 60px;
-}
-.slide-image {
-  border: none;
-  width: 20%;
-  box-shadow: 0px 0px 0.3px #666;
-}
-.slide {
+.scale-hover img {
   border-radius: 0.5rem;
   width: 100%;
   transition: 0.5s all ease-in-out;
 }
-.slide:hover {
-  transform: scale(1.1);
+.scale-hover:hover img {
+  transform: scale3d(1.1, 1.1, 1.1);
 }
+.scale-container {
+  overflow: hidden;
+}
+
 h6 {
   text-align: center;
   margin-top: 17px;
@@ -31,32 +22,38 @@ h6 a:hover {
   color: black;
   border-bottom: 1px solid black;
 }
-.carousel-slide-btn {
-  position: absolute;
-  border-radius: 50%;
-  height: 30px;
-  width: 30px;
-  box-shadow: 0 0 0 0.3px #666;
-  border: 1px solid whitesmoke;
-  color: black;
-  background-color: white;
-  z-index: 1000;
-  opacity: 0;
-  transition: 0.3s;
+
+.category {
+  width: 100%;
+  margin-bottom: 50px;
 }
-.category:hover .carousel-slide-btn {
+
+.react-multi-carousel-track {
+  justify-content: center;
+}
+.category .react-multiple-carousel__arrow--left {
+  top: 40%;
+  left: 10px;
+}
+.category .react-multiple-carousel__arrow--right {
+  top: 40%;
+  right: 10px;
+}
+.category .react-multiple-carousel__arrow {
+  opacity: 0;
+  transition: all 0.2s;
+}
+.category:hover .react-multiple-carousel__arrow {
   opacity: 1;
 }
-.carousel-slide-btn:hover {
-  background: black;
-  color: white;
-  box-shadow: none;
+.slide-category-container {
+  overflow: hidden;
 }
-.carousel-slide-prev {
-  top: 40%;
-  left: 15px;
+.slide-image {
+  overflow: hidden;
 }
-.carousel-slide-next {
-  top: 40%;
-  right: 15px;
+.react-multi-carousel-track {
+}
+.carousel-item-padding-15-px {
+  padding: 20px;
 }

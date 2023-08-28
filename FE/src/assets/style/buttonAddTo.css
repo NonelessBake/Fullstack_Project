@@ -1,0 +1,31 @@
+.btn-add-to {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  gap: 5px;
+  z-index: 1000;
+}
+.btn-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: white;
+  box-shadow: 0 0 5px 1px rgb(196, 188, 188);
+  padding: 25px;
+  width: 0;
+  height: 0;
+  z-index: 100;
+  transition: all 0.3s;
+}
+.btn-add:hover {
+  background: black;
+  color: white;
+}
+.btn-add i {
+  font-size: 20px;
+}

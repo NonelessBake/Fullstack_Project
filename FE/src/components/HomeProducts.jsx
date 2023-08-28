@@ -1,39 +1,21 @@
-import { useEffect, useState } from "react";
 import "../assets/style/homeProducts.css";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { useContext } from "react";
+import { Context } from "../contexts/ContextProvider";
+import ButtonAddto from "./ButtonAddTo";
 const HomeProducts = () => {
-  const [homeProducts, setHomeProducts] = useState([]);
-
-  const [showList, setShowList] = useState("Latest Products");
-  const fetchProducts = async () => {
-    return axios
-      .get(`http://localhost:3000/products`)
-      .then((res) => setHomeProducts(res.data));
-  };
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  const onShowHomeProducts = (show) => {
-    setShowList(show);
-  };
-  const newList =
-    showList !== "Latest Products"
-      ? showList === "Best Sellers"
-        ? homeProducts.slice(10, 17).map((item) => item)
-        : homeProducts.slice(20, 26).map((item) => item)
-      : homeProducts.slice(0, 10).map((item) => item);
-  const formatLink = (string) => {
-    return string.toLowerCase().replaceAll(" ", "-");
-  };
-  const [showImg, setShowImg] = useState(0);
-  const imgOnMouseEvent = (id) => {
-    setShowImg(id);
-  };
-
+  const {
+    showList,
+    onShowHomeProducts,
+    newList,
+    formatLink,
+    formatNumber,
+    onHover,
+    imgShow,
+    isHovered,
+  } = useContext(Context);
   return (
-    <div className="product-section">
+    <section className="product-section">
       <div className="show-change">
         <button
           className={`show-btn ${
@@ -63,48 +45,70 @@ const HomeProducts = () => {
       <div className="show-home-products">
         {newList.map((item) => (
           <div key={item.id} className="product-home-container">
-            <div className="product-home">
-              <div className="product-home-img">
-                {item.discount != 0 ? (
-                  <span className="on-sale">
-                    <span>-{item.discount != 0 ? item.discount : null}%</span>
-                  </span>
-                ) : null}
-                {item.tags.includes("Hot") ? (
-                  <span className="tags">
-                    <span>{item.tags.includes("Hot") ? "Hot" : null}</span>
-                  </span>
-                ) : null}
-
-                <Link to={`/shop/${formatLink(item.name)}`}>
-                  <img
-                    className={showImg === item.id ? "fade-out" : "fade-in"}
-                    onMouseOver={() => imgOnMouseEvent(item.id)}
-                    onMouseOut={() => imgOnMouseEvent(0)}
-                    src={item.img[showImg === item.id ? 1 : 0]}
-                    alt={item.name}
-                  />
-                </Link>
+            {item.img.length === 0 ? (
+              <div>Loading...</div>
+            ) : (
+              <div className="product-home">
+                <div className="product-home-img">
+                  <Link to={`/shop/${formatLink(item.name)}`}>
+                    <div
+                      className="img-swap-container"
+                      onMouseOver={() => onHover(item.id, true)}
+                      onMouseOut={() => onHover(item.id, false)}
+                    >
+                      {imgShow === item.id ? (
+                        isHovered ? (
+                          <ButtonAddto />
+                        ) : null
+                      ) : null}
+                      <img
+                        src={item.img[0]}
+                        alt={item.name}
+                        className="img-swap-1"
+                      />
+                      <img
+                        src={item.img[1]}
+                        alt={item.name}
+                        className="img-swap-2"
+                      />
+                      {item.discount != 0 ? (
+                        <span className="on-sale">
+                          <span>
+                            -{item.discount != 0 ? item.discount : null}%
+                          </span>
+                        </span>
+                      ) : null}
+                      {item.tags.includes("Hot") ? (
+                        <span className="tags">
+                          <span>
+                            {item.tags.includes("Hot") ? "Hot" : null}
+                          </span>
+                        </span>
+                      ) : null}
+                    </div>
+                  </Link>
+                </div>
+                <div className="product-home-detail">
+                  <h5>
+                    <Link to={`/shop/${formatLink(item.name)}`}>
+                      {item.name}
+                    </Link>
+                  </h5>
+                  <p>
+                    <span className="price-before">
+                      ${item.price.toFixed(2)}
+                    </span>
+                    <span className="new-price">
+                      ${formatNumber(item.price * (1 - item.discount / 100))}
+                    </span>
+                  </p>
+                </div>
               </div>
-              <div className="product-home-detail">
-                <h5>
-                  <Link to={`/shop/${formatLink(item.name)}`}>{item.name}</Link>
-                </h5>
-                <p>
-                  <span className="price-before">${item.price.toFixed(2)}</span>
-                  <span className="new-price">
-                    $
-                    {Math.round(item.price * (1 - item.discount / 100)).toFixed(
-                      2
-                    )}
-                  </span>
-                </p>
-              </div>
-            </div>
+            )}
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
