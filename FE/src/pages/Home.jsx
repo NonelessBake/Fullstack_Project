@@ -4,6 +4,7 @@ import HomeProducts from "../components/HomeProducts";
 import Banner from "../components/Banner";
 import ShopByStle from "../components/ShopByStle";
 import Collection from "../components/Collection";
+import SubcribeForm from "../components/SubcribeForm";
 const Home = () => {
   return (
     <section className="home">
@@ -12,6 +13,7 @@ const Home = () => {
       <HomeProducts />
       <Collection />
       <ShopByStle />
+      <SubcribeForm />
     </section>
   );
 };
