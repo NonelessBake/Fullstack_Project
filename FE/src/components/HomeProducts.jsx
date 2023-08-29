@@ -73,9 +73,7 @@ const HomeProducts = () => {
                       />
                       {item.discount != 0 ? (
                         <span className="on-sale">
-                          <span>
-                            -{item.discount != 0 ? item.discount : null}%
-                          </span>
+                          -{item.discount != 0 ? item.discount : null}%
                         </span>
                       ) : null}
                       {item.tags.includes("Hot") ? (
