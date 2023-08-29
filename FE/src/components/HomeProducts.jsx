@@ -79,11 +79,11 @@ const HomeProducts = () => {
                         </span>
                       ) : null}
                       {item.tags.includes("Hot") ? (
-                        <span className="tags">
+                        <div className="tags">
                           <span>
                             {item.tags.includes("Hot") ? "Hot" : null}
                           </span>
-                        </span>
+                        </div>
                       ) : null}
                     </div>
                   </Link>
