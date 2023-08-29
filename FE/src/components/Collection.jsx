@@ -4,7 +4,7 @@ import "../assets/style/collection.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Link } from "react-router-dom";
-
+import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 const responsiveCollection = {
   superLargeDesktop: {
     breakpoint: { max: 4000, min: 3000 },
@@ -49,7 +49,7 @@ const Collection = () => {
             onPrevSlide();
           }}
         >
-          <i className="uil uil-left-arrow-to-left" />
+          <BsArrowLeft />
         </button>
         <button
           onClick={() => {
@@ -57,7 +57,7 @@ const Collection = () => {
           }}
           className="change-slide-btn next-button"
         >
-          <i className="uil uil-arrow-to-right"></i>
+          <BsArrowRight />
         </button>
       </div>
     );
