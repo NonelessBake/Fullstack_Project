@@ -120,6 +120,23 @@ const ContextProvider = ({ children }) => {
     fetchCollection();
   }, []);
 
+  function getWindowSize() {
+    const { innerWidth, innerHeight } = window;
+    return { innerWidth, innerHeight };
+  }
+  const [windowSize, setWindowSize] = useState(getWindowSize());
+
+  useEffect(() => {
+    function handleWindowResize() {
+      setWindowSize(getWindowSize());
+    }
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
   // Collection Component
 
   // Footer Component
@@ -152,6 +169,7 @@ const ContextProvider = ({ children }) => {
         isHovered,
         slideCategory,
         collection,
+        windowSize,
       }}
     >
       {children}
