@@ -80,32 +80,42 @@ const ContextProvider = ({ children }) => {
   /* Logic here */
   // ButtonAddTo Component
 
-  // HomeProduct Component
-  const [homeProducts, setHomeProducts] = useState([]);
-  const [showList, setShowList] = useState("Latest Products");
+  // Products Fetch API
+  const [productList, setProductList] = useState([]);
+
   const fetchProducts = async () => {
     return axios
       .get(`http://localhost:3000/products`)
-      .then((res) => setHomeProducts(res.data));
+      .then((res) => setProductList(res.data));
   };
+
   useEffect(() => {
     fetchProducts();
   }, []);
-  const onShowHomeProducts = (show) => {
-    setShowList(show);
-  };
-  const newList =
+
+  // Products Fetch API
+
+  // HomeProduct Component
+  const [showList, setShowList] = useState("Latest Products");
+
+  const homeProductList =
     showList !== "Latest Products"
       ? showList === "Best Sellers"
-        ? homeProducts.slice(10, 17).map((item) => item)
-        : homeProducts.slice(20, 26).map((item) => item)
-      : homeProducts.slice(0, 10).map((item) => item);
+        ? productList.slice(10, 17).map((item) => item)
+        : productList.slice(20, 26).map((item) => item)
+      : productList.slice(0, 10).map((item) => item);
 
   const [imgShow, setImgShow] = useState(false);
+
   const [isHovered, setIsHovered] = useState(false);
+
   const onHover = (id, isHovered) => {
     setImgShow(id);
     setIsHovered(isHovered);
+  };
+
+  const onShowHomeProducts = (show) => {
+    setShowList(show);
   };
   // HomeProduct Component
 
@@ -154,6 +164,7 @@ const ContextProvider = ({ children }) => {
   return (
     <Context.Provider
       value={{
+        productList,
         activeClass,
         isHomePath,
         backgroundImgs,
@@ -161,7 +172,7 @@ const ContextProvider = ({ children }) => {
         bannerImages,
         showList,
         onShowHomeProducts,
-        newList,
+        homeProductList,
         formatLink,
         formatNumber,
         onHover,
