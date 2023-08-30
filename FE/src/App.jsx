@@ -4,7 +4,6 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import ContextProvider from "./contexts/ContextProvider";
-import ProductList from "./components/ProductList";
 import ProductDetail from "./components/ProductDetail";
 import Shop from "./pages/Shop";
 
