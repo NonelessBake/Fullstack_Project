@@ -244,6 +244,7 @@ const ContextProvider = ({ children }) => {
         onRemoveCartItem,
         totalCartPrice,
         totalCartQuantity,
+        cart,
       }}
     >
       {children}
