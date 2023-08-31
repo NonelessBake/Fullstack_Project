@@ -138,6 +138,14 @@ const ContextProvider = ({ children }) => {
     setCart(updatedCart);
     setCartLocalStorage();
   };
+  let totalCartQuantity = null;
+  cart.forEach((cartItem) => (totalCartQuantity += cartItem.quantity));
+  let totalCartPrice = null;
+  cart.forEach(
+    (cartItem) =>
+      (totalCartPrice += cartItem.price * (1 - cartItem.discount / 100))
+  );
+  totalCartPrice.toFixed(2);
   // const [inputQuantity, setInputQuantity] = useState();
   // const handleChangeQuantity = (e) =>{
   //   setInputQuantity()
