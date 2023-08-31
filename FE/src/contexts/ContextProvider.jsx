@@ -90,7 +90,6 @@ const ContextProvider = ({ children }) => {
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("cart")) || []
   );
-
   const setCartLocalStorage = () => {
     localStorage.setItem("cart", JSON.stringify(cart));
     console.log("local");
@@ -104,7 +103,6 @@ const ContextProvider = ({ children }) => {
       product.quantity = 1;
       setCart((prev) => [...prev, product]);
     }
-    return setCartLocalStorage();
   };
 
   const onIncreaseQuantityItem = (cartItem) => {
@@ -115,7 +113,6 @@ const ContextProvider = ({ children }) => {
       return item;
     });
     setCart(updatedCart);
-    setCartLocalStorage();
   };
 
   const onDecreaseQuantityItem = (cartItem) => {
@@ -126,13 +123,11 @@ const ContextProvider = ({ children }) => {
       return item;
     });
     setCart(updatedCart.filter((item) => item.quantity > 0));
-    setCartLocalStorage();
   };
 
   const onRemoveCartItem = (cartItem) => {
     const updatedCart = cart.filter((item) => item.id !== cartItem.id);
     setCart(updatedCart);
-    setCartLocalStorage();
   };
 
   let totalCartQuantity = null;
@@ -189,13 +184,7 @@ const ContextProvider = ({ children }) => {
     return { innerWidth, innerHeight };
   }
   const [windowSize, setWindowSize] = useState(getWindowSize());
-  function handleWindowResize() {
-    setWindowSize(getWindowSize());
-  }
 
-  useEffect(() => {
-    setCartLocalStorage();
-  }, [cart]);
   // Collection Component
 
   // Footer Component
@@ -211,12 +200,17 @@ const ContextProvider = ({ children }) => {
     fetchBanner(), fetchProducts();
     fetchCollection();
     fetchBrand();
+    function handleWindowResize() {
+      setWindowSize(getWindowSize());
+    }
     window.addEventListener("resize", handleWindowResize);
     return () => {
       window.removeEventListener("resize", handleWindowResize);
     };
   }, []);
-
+  useEffect(() => {
+    setCartLocalStorage();
+  }, [cart]);
   // Footer Component
   return (
     <Context.Provider
