@@ -95,6 +95,56 @@ const ContextProvider = ({ children }) => {
 
   // Products Fetch API
 
+  // Shoping Cart
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("cart")) || []
+  );
+  const setCartLocalStorage = () => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  };
+  const onAddToCart = (product) => {
+    const existingProduct = cart.find((item) => item.id === product.id);
+    if (existingProduct) {
+      existingProduct.quantity++;
+      setCartLocalStorage();
+    } else {
+      product.quantity = 1;
+      setCart((prev) => [...prev, product]);
+      setCartLocalStorage();
+    }
+  };
+  const onIncreaseQuantityItem = (cartItem) => {
+    const updatedCart = cart.map((item) => {
+      if (item.id === cartItem.id) {
+        return { ...item, quantity: item.quantity + 1 };
+      }
+      return item;
+    });
+    setCart(updatedCart);
+    setCartLocalStorage();
+  };
+  const onDecreaseQuantityItem = (cartItem) => {
+    const updatedCart = cart.map((item) => {
+      if (item.id === cartItem.id) {
+        return { ...item, quantity: item.quantity - 1 };
+      }
+      return item;
+    });
+    setCart(updatedCart.filter((item) => item.quantity > 0));
+    setCartLocalStorage();
+  };
+  const onRemoveCartItem = (cartItem) => {
+    const updatedCart = cart.filter((item) => item.id !== cartItem.id);
+    setCart(updatedCart);
+    setCartLocalStorage();
+  };
+  // const [inputQuantity, setInputQuantity] = useState();
+  // const handleChangeQuantity = (e) =>{
+  //   setInputQuantity()
+  // }
+
+  // Shoping Cart
+
   // HomeProduct Component
   const [showList, setShowList] = useState("Latest Products");
 

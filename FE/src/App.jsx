@@ -6,18 +6,25 @@ import Home from "./pages/Home";
 import ContextProvider from "./contexts/ContextProvider";
 import ProductDetail from "./components/ProductDetail";
 import Shop from "./pages/Shop";
+import Checkout from "./pages/Checkout";
+import OrderTracking from "./pages/OrderTracking";
+import Cart from "./pages/Cart";
+import Layout from "./layout/Layout";
 
 function App() {
   return (
     <Router>
       <ContextProvider>
-        <Header />
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/shop" element={<Shop />}></Route>
-          <Route path="/product/:productId" element={<ProductDetail />}></Route>
+          <Route path="/" element={<Layout />}>
+            <Route path="shop" element={<Shop />} />
+            <Route index element={<Home />} />
+            <Route path="product/:productId" element={<ProductDetail />} />
+            <Route path="cart" element={<Cart />} />
+            <Route path="checkout" element={<Checkout />} />
+            <Route path="order-tracking" element={<OrderTracking />} />
+          </Route>
         </Routes>
-        <Footer />
       </ContextProvider>
     </Router>
   );
