@@ -91,48 +91,43 @@ const ContextProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("cart")) || []
   );
 
-  const setCartLocalStorage = () => {
-    localStorage.setItem("cart", JSON.stringify(cart));
+  const setCartLocalStorage = (cartList) => {
+    localStorage.setItem("cart", JSON.stringify(cartList));
     console.log("local");
   };
 
   const onAddToCart = (product) => {
-    const existingProduct = cart.find((item) => item.id === product.id);
-    if (existingProduct) {
-      existingProduct.quantity++;
-    } else {
+    if (!cart.includes(product)) {
       product.quantity = 1;
       setCart((prev) => [...prev, product]);
+      setCartLocalStorage([...cart, product]);
+    } else {
+      product.quantity++;
+      setCartLocalStorage([...cart]);
     }
-    return setCartLocalStorage();
   };
 
   const onIncreaseQuantityItem = (cartItem) => {
-    const updatedCart = cart.map((item) => {
-      if (item.id === cartItem.id) {
-        return { ...item, quantity: item.quantity + 1 };
-      }
-      return item;
-    });
-    setCart(updatedCart);
-    setCartLocalStorage();
+    cartItem.quantity++;
+    setCart((prev) => [...prev]);
+    setCartLocalStorage([...cart]);
   };
 
   const onDecreaseQuantityItem = (cartItem) => {
-    const updatedCart = cart.map((item) => {
-      if (item.id === cartItem.id) {
-        return { ...item, quantity: item.quantity - 1 };
-      }
-      return item;
-    });
-    setCart(updatedCart.filter((item) => item.quantity > 0));
-    setCartLocalStorage();
+    // if (cartItem.quantity === 0) {
+    //   setCart((prev) => prev.filter((item) => item.id !== cartItem.id));
+    //   setCartLocalStorage([...cart]);
+    // } else {
+    //   cartItem.quantity--;
+    //   setCart((prev) => [...prev]);
+    // }
+    // return setCartLocalStorage([...cart]);
   };
 
   const onRemoveCartItem = (cartItem) => {
     const updatedCart = cart.filter((item) => item.id !== cartItem.id);
     setCart(updatedCart);
-    setCartLocalStorage();
+    setCartLocalStorage([...updatedCart]);
   };
 
   let totalCartQuantity = null;
@@ -213,9 +208,7 @@ const ContextProvider = ({ children }) => {
       window.removeEventListener("resize", handleWindowResize);
     };
   }, []);
-  useEffect(() => {
-    setCartLocalStorage();
-  }, [cart]);
+
   // Footer Component
   return (
     <Context.Provider

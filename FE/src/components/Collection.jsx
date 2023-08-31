@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { Context } from "../contexts/ContextProvider";
 import "../assets/style/collection.css";
 import Carousel from "react-multi-carousel";
