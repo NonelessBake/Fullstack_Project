@@ -24,6 +24,9 @@ const CartItem = (newProps) => {
       <td>
         <span>${(newPrice * quantity).toFixed(2)}</span>
       </td>
+      <td>
+        <button onClick={() => onRemoveCartItem(carItem)}>X</button>
+      </td>
     </tr>
   );
 };

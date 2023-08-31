@@ -124,9 +124,8 @@ const ContextProvider = ({ children }) => {
   };
 
   const onRemoveCartItem = (cartItem) => {
-    const updatedCart = cart.filter((item) => item.id !== cartItem.id);
-    setCart(updatedCart);
-    setCartLocalStorage([...updatedCart]);
+    setCart((prev) => prev.filter((item) => item !== cartItem));
+    setCartLocalStorage(cart.filter((item) => item !== cartItem));
   };
 
   let totalCartQuantity = null;
