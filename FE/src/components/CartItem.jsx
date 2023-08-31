@@ -10,7 +10,7 @@ const CartItem = (newProps) => {
   const newPrice = price * (1 - discount / 100);
 
   return (
-    <>
+    <tr>
       <td>
         <img src={img[0]} style={{ maxWidth: 200 }} alt="name" />
         <div className="cart-item-name">{name}</div>
@@ -24,7 +24,7 @@ const CartItem = (newProps) => {
       <td>
         <span>${(newPrice * quantity).toFixed(2)}</span>
       </td>
-    </>
+    </tr>
   );
 };
 

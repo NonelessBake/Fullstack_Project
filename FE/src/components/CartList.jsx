@@ -16,9 +16,7 @@ const CartList = () => {
       </thead>
       <tbody>
         {cart.map((carItem) => (
-          <tr key={carItem.id}>
-            <CartItem carItem={carItem} />
-          </tr>
+          <CartItem carItem={carItem} key={carItem.id} />
         ))}
       </tbody>
     </table>

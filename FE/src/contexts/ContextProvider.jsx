@@ -113,13 +113,14 @@ const ContextProvider = ({ children }) => {
   };
 
   const onDecreaseQuantityItem = (cartItem) => {
-    // if (cartItem.quantity === 0) {
-    //   setCart((prev) => prev.filter((item) => item.id !== cartItem.id));
-    // } else {
-    //   cartItem.quantity--;
-    //   setCart((prev) => [...prev]);
-    // }
-    // return setCartLocalStorage([...cart]);
+    if (cartItem.quantity < 2) {
+      setCart((prev) => prev.filter((item) => item.id !== cartItem.id));
+      setCartLocalStorage(cart.filter((item) => item !== cartItem));
+    } else {
+      cartItem.quantity--;
+      setCart((prev) => [...prev]);
+      setCartLocalStorage([...cart]);
+    }
   };
 
   const onRemoveCartItem = (cartItem) => {
