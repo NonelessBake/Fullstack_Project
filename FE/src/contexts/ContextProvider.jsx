@@ -93,7 +93,6 @@ const ContextProvider = ({ children }) => {
 
   const setCartLocalStorage = (cartList) => {
     localStorage.setItem("cart", JSON.stringify(cartList));
-    console.log("local");
   };
 
   const onAddToCart = (product) => {
@@ -116,7 +115,6 @@ const ContextProvider = ({ children }) => {
   const onDecreaseQuantityItem = (cartItem) => {
     // if (cartItem.quantity === 0) {
     //   setCart((prev) => prev.filter((item) => item.id !== cartItem.id));
-    //   setCartLocalStorage([...cart]);
     // } else {
     //   cartItem.quantity--;
     //   setCart((prev) => [...prev]);
