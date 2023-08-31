@@ -145,7 +145,7 @@ const ContextProvider = ({ children }) => {
     (cartItem) =>
       (totalCartPrice += cartItem.price * (1 - cartItem.discount / 100))
   );
-  totalCartPrice.toFixed(2);
+  totalCartQuantity = totalCartPrice?.toFixed(2);
   // const [inputQuantity, setInputQuantity] = useState();
   // const handleChangeQuantity = (e) =>{
   //   setInputQuantity()
@@ -239,6 +239,12 @@ const ContextProvider = ({ children }) => {
         slideCategory,
         collection,
         windowSize,
+        onAddToCart,
+        onIncreaseQuantityItem,
+        onDecreaseQuantityItem,
+        onRemoveCartItem,
+        totalCartPrice,
+        totalCartQuantity,
       }}
     >
       {children}
