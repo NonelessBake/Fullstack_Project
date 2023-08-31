@@ -90,6 +90,7 @@ const ContextProvider = ({ children }) => {
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("cart")) || []
   );
+
   const setCartLocalStorage = () => {
     localStorage.setItem("cart", JSON.stringify(cart));
     console.log("local");
@@ -103,6 +104,7 @@ const ContextProvider = ({ children }) => {
       product.quantity = 1;
       setCart((prev) => [...prev, product]);
     }
+    return setCartLocalStorage();
   };
 
   const onIncreaseQuantityItem = (cartItem) => {
@@ -113,6 +115,7 @@ const ContextProvider = ({ children }) => {
       return item;
     });
     setCart(updatedCart);
+    setCartLocalStorage();
   };
 
   const onDecreaseQuantityItem = (cartItem) => {
@@ -123,11 +126,13 @@ const ContextProvider = ({ children }) => {
       return item;
     });
     setCart(updatedCart.filter((item) => item.quantity > 0));
+    setCartLocalStorage();
   };
 
   const onRemoveCartItem = (cartItem) => {
     const updatedCart = cart.filter((item) => item.id !== cartItem.id);
     setCart(updatedCart);
+    setCartLocalStorage();
   };
 
   let totalCartQuantity = null;
