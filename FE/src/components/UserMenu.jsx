@@ -3,7 +3,7 @@ import { Context } from "../contexts/ContextProvider";
 import { Link, NavLink } from "react-router-dom";
 import "../assets/style/userMenu.css";
 const UserMenu = () => {
-  const { activeClass, isHomePath } = useContext(Context);
+  const { activeClass, isHomePath, totalCartQuantity } = useContext(Context);
   let checked;
   isHomePath.pathname === "/" ? (checked = true) : (checked = false);
   const colorHome = checked ? "white-color-text" : null;
@@ -107,7 +107,9 @@ const UserMenu = () => {
           </button>
           <button className="cart-header-btn">
             <i className="uil uil-shopping-cart">
-              <span className="cart-quantity">{/* quantity here */}10</span>
+              {totalCartQuantity && (
+                <span className="cart-quantity">{totalCartQuantity}</span>
+              )}
             </i>
           </button>
         </div>

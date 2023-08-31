@@ -3,14 +3,14 @@ import { Context } from "../contexts/ContextProvider";
 import { Link } from "react-router-dom";
 import "../assets/style/brand.css";
 const Brand = () => {
-  const { brandImages } = useContext(Context);
+  const { brand } = useContext(Context);
   return (
     <section className="brand">
       <div className="brand-container">
-        {brandImages.map((item, index) => (
+        {brand.map((item, index) => (
           <div key={index} className="brand-image">
             <Link>
-              <img src={item}></img>
+              <img src={item.img}></img>
             </Link>
           </div>
         ))}

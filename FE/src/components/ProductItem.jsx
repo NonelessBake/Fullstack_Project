@@ -8,21 +8,22 @@ const ProductItem = (newProps) => {
     useContext(Context);
   const { product } = newProps;
   const { discount, id, img, name, price, tags } = product;
-  console.log(product);
+
   return (
     <div className="product-item-container">
-      {/* {img.length === 0 ? (
-        <div>Loading...</div>
-      ) : ( */}
       <div className="product-item">
         <div className="product-item-img">
-          <Link to={`/shop/${formatLink(name)}`}>
-            <div
-              className="img-swap-container"
-              onMouseOver={() => onHover(id, true)}
-              onMouseOut={() => onHover(id, false)}
-            >
-              {imgShow === id ? isHovered ? <ButtonAddTo /> : null : null}
+          <div
+            className="img-swap-container"
+            onMouseOver={() => onHover(id, true)}
+            onMouseOut={() => onHover(id, false)}
+          >
+            {imgShow === id ? (
+              isHovered ? (
+                <ButtonAddTo product={product} />
+              ) : null
+            ) : null}
+            <Link to={`/shop/${formatLink(name)}`}>
               <img src={img[0]} alt={name} className="img-swap-1" />
               <img src={img[1]} alt={name} className="img-swap-2" />
               {discount != 0 ? (
@@ -35,8 +36,8 @@ const ProductItem = (newProps) => {
                   <span>{tags.includes("Hot") ? "Hot" : null}</span>
                 </div>
               ) : null}
-            </div>
-          </Link>
+            </Link>
+          </div>
         </div>
         <div className="product-item-detail">
           <h5>
@@ -50,7 +51,6 @@ const ProductItem = (newProps) => {
           </p>
         </div>
       </div>
-      {/* )} */}
     </div>
   );
 };

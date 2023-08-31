@@ -5,27 +5,25 @@ import { useLocation } from "react-router-dom";
 export const Context = createContext();
 
 const ContextProvider = ({ children }) => {
-  // format
+  // Format Function
   const formatLink = (string) => {
     return string.toLowerCase().replaceAll(" ", "-");
   };
   const formatNumber = (price) => price.toFixed(2);
-  // format
+  // Format Function
 
   // Header Component
+  const isHomePath = useLocation();
   const activeClass = (params) => {
     return params.isActive ? "active-item" : "";
   };
   const [backgroundImgs, setBackGroundImg] = useState([]);
-  const isHomePath = useLocation();
   const fetchBackground = async () => {
     return axios.get("http://localhost:3000/headerSlide").then((res) => {
       setBackGroundImg(res.data);
     });
   };
-  useEffect(() => {
-    fetchBackground();
-  }, []);
+
   // Header Component
 
   // Bannner
@@ -35,9 +33,7 @@ const ContextProvider = ({ children }) => {
       setBanner(res.data);
     });
   };
-  useEffect(() => {
-    fetchBanner();
-  }, []);
+
   const bannerImages = banner.map((item) => item.img);
   // Banner
 
@@ -82,16 +78,11 @@ const ContextProvider = ({ children }) => {
 
   // Products Fetch API
   const [productList, setProductList] = useState([]);
-
   const fetchProducts = async () => {
     return axios
       .get(`http://localhost:3000/products`)
       .then((res) => setProductList(res.data));
   };
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
 
   // Products Fetch API
 
@@ -99,20 +90,23 @@ const ContextProvider = ({ children }) => {
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("cart")) || []
   );
+
   const setCartLocalStorage = () => {
     localStorage.setItem("cart", JSON.stringify(cart));
+    console.log("local");
   };
+
   const onAddToCart = (product) => {
     const existingProduct = cart.find((item) => item.id === product.id);
     if (existingProduct) {
       existingProduct.quantity++;
-      setCartLocalStorage();
     } else {
       product.quantity = 1;
       setCart((prev) => [...prev, product]);
-      setCartLocalStorage();
     }
+    return setCartLocalStorage();
   };
+
   const onIncreaseQuantityItem = (cartItem) => {
     const updatedCart = cart.map((item) => {
       if (item.id === cartItem.id) {
@@ -123,6 +117,7 @@ const ContextProvider = ({ children }) => {
     setCart(updatedCart);
     setCartLocalStorage();
   };
+
   const onDecreaseQuantityItem = (cartItem) => {
     const updatedCart = cart.map((item) => {
       if (item.id === cartItem.id) {
@@ -133,19 +128,23 @@ const ContextProvider = ({ children }) => {
     setCart(updatedCart.filter((item) => item.quantity > 0));
     setCartLocalStorage();
   };
+
   const onRemoveCartItem = (cartItem) => {
     const updatedCart = cart.filter((item) => item.id !== cartItem.id);
     setCart(updatedCart);
     setCartLocalStorage();
   };
+
   let totalCartQuantity = null;
-  cart.forEach((cartItem) => (totalCartQuantity += cartItem.quantity));
   let totalCartPrice = null;
-  cart.forEach(
-    (cartItem) =>
-      (totalCartPrice += cartItem.price * (1 - cartItem.discount / 100))
-  );
-  totalCartQuantity = totalCartPrice?.toFixed(2);
+
+  cart.forEach((cartItem) => {
+    totalCartPrice += cartItem.price * (1 - cartItem.discount / 100);
+    totalCartQuantity += cartItem.quantity;
+  });
+
+  totalCartPrice = totalCartPrice?.toFixed(2);
+
   // const [inputQuantity, setInputQuantity] = useState();
   // const handleChangeQuantity = (e) =>{
   //   setInputQuantity()
@@ -184,27 +183,19 @@ const ContextProvider = ({ children }) => {
       setCollection(res.data);
     });
   };
-  useEffect(() => {
-    fetchCollection();
-  }, []);
 
   function getWindowSize() {
     const { innerWidth, innerHeight } = window;
     return { innerWidth, innerHeight };
   }
   const [windowSize, setWindowSize] = useState(getWindowSize());
+  function handleWindowResize() {
+    setWindowSize(getWindowSize());
+  }
 
   useEffect(() => {
-    function handleWindowResize() {
-      setWindowSize(getWindowSize());
-    }
-
-    window.addEventListener("resize", handleWindowResize);
-
-    return () => {
-      window.removeEventListener("resize", handleWindowResize);
-    };
-  }, []);
+    setCartLocalStorage();
+  }, [cart]);
   // Collection Component
 
   // Footer Component
@@ -214,10 +205,18 @@ const ContextProvider = ({ children }) => {
       setBrand(res.data);
     });
   };
+
   useEffect(() => {
+    fetchBackground();
+    fetchBanner(), fetchProducts();
+    fetchCollection();
     fetchBrand();
+    window.addEventListener("resize", handleWindowResize);
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
   }, []);
-  const brandImages = brand.map((item) => item.img);
+
   // Footer Component
   return (
     <Context.Provider
@@ -226,7 +225,7 @@ const ContextProvider = ({ children }) => {
         activeClass,
         isHomePath,
         backgroundImgs,
-        brandImages,
+        brand,
         bannerImages,
         showList,
         onShowHomeProducts,
