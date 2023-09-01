@@ -5,10 +5,10 @@ import { useContext } from "react";
 import { Context } from "../contexts/ContextProvider";
 
 function Cart() {
-  const { cart } = useContext(Context);
+  const { isCartEmpty } = useContext(Context);
   return (
     <div className="cart">
-      {!cart.length ? (
+      {isCartEmpty ? (
         <div>Your Cart Is Currently Empty.</div>
       ) : (
         <>

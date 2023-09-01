@@ -138,19 +138,16 @@ const ContextProvider = ({ children }) => {
   });
   totalCartPrice = totalCartPrice?.toFixed(2);
 
-  let isShowingCart = false;
-  let isCartEmpty = false;
-  const onOpenCart = () => {
-    !isShowingCart;
-  };
-  !cart.length ? isCartEmpty === true : isCartEmpty === false;
+  let isCartEmpty = true;
+  cart.length === 0 ? (isCartEmpty = true) : (isCartEmpty = false);
 
-  console.log("isShowingCart", isShowingCart);
-  console.log("isCartEmpty", isCartEmpty);
-  // const [inputQuantity, setInputQuantity] = useState();
-  // const handleChangeQuantity = (e) => {
-  //   setInputQuantity();
-  // };
+  const [isShowingCart, setIsShowingCart] = useState(false);
+  const onOpenCart = () => {
+    setIsShowingCart((prev) => !prev);
+  };
+
+  // console.log("isShowingCart", isShowingCart);
+  // console.log("isCartEmpty", isCartEmpty);
 
   // Shoping Cart
 
