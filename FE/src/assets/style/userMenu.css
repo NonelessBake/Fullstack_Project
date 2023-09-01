@@ -144,6 +144,7 @@
 .nav-bar-right {
   display: flex;
   justify-content: flex-end;
+  position: relative;
   gap: 30px;
 }
 .nav-bar-right i {
@@ -156,7 +157,9 @@
 .nav-bar-right i:hover {
   transform: translate(0, -5px);
 }
-
+.cart-header-btn {
+  position: relative;
+}
 .cart-header-btn .uil-shopping-cart {
   position: relative;
 }

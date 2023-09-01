@@ -1,12 +1,21 @@
 import CartList from "../components/CartList";
 import CartTotals from "../components/CartTotals";
 import "../assets/style/cart.css";
+import { useContext } from "react";
+import { Context } from "../contexts/ContextProvider";
 
 function Cart() {
+  const { cart } = useContext(Context);
   return (
     <div className="cart">
-      <CartList />
-      <CartTotals />
+      {!cart.length ? (
+        <div>Your Cart Is Currently Empty.</div>
+      ) : (
+        <>
+          <CartList />
+          <CartTotals />
+        </>
+      )}
     </div>
   );
 }

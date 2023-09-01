@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 export const Context = createContext();
@@ -102,6 +102,7 @@ const ContextProvider = ({ children }) => {
       setCartLocalStorage([...cart, product]);
     } else {
       product.quantity++;
+      setCart((prev) => [...prev]);
       setCartLocalStorage([...cart]);
     }
   };
@@ -135,13 +136,21 @@ const ContextProvider = ({ children }) => {
     totalCartPrice += cartItem.price * (1 - cartItem.discount / 100);
     totalCartQuantity += cartItem.quantity;
   });
-
   totalCartPrice = totalCartPrice?.toFixed(2);
 
+  let isShowingCart = false;
+  let isCartEmpty = false;
+  const onOpenCart = () => {
+    !isShowingCart;
+  };
+  !cart.length ? isCartEmpty === true : isCartEmpty === false;
+
+  console.log("isShowingCart", isShowingCart);
+  console.log("isCartEmpty", isCartEmpty);
   // const [inputQuantity, setInputQuantity] = useState();
-  // const handleChangeQuantity = (e) =>{
-  //   setInputQuantity()
-  // }
+  // const handleChangeQuantity = (e) => {
+  //   setInputQuantity();
+  // };
 
   // Shoping Cart
 
@@ -154,15 +163,6 @@ const ContextProvider = ({ children }) => {
         ? productList.slice(10, 17).map((item) => item)
         : productList.slice(20, 26).map((item) => item)
       : productList.slice(0, 10).map((item) => item);
-
-  const [imgShow, setImgShow] = useState(false);
-
-  const [isHovered, setIsHovered] = useState(false);
-
-  const onHover = (id, isHovered) => {
-    setImgShow(id);
-    setIsHovered(isHovered);
-  };
 
   const onShowHomeProducts = (show) => {
     setShowList(show);
@@ -222,9 +222,6 @@ const ContextProvider = ({ children }) => {
         homeProductList,
         formatLink,
         formatNumber,
-        onHover,
-        imgShow,
-        isHovered,
         slideCategory,
         collection,
         windowSize,
@@ -235,6 +232,9 @@ const ContextProvider = ({ children }) => {
         totalCartPrice,
         totalCartQuantity,
         cart,
+        isShowingCart,
+        isCartEmpty,
+        onOpenCart,
       }}
     >
       {children}

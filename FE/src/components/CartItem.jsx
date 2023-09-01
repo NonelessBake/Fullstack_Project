@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import "../assets/style/cartItem.css";
 import { Context } from "../contexts/ContextProvider";
 
@@ -8,7 +8,7 @@ const CartItem = (newProps) => {
   const { onIncreaseQuantityItem, onDecreaseQuantityItem, onRemoveCartItem } =
     useContext(Context);
   const newPrice = price * (1 - discount / 100);
-
+  const refQuantity = useRef();
   return (
     <tr>
       <td>
@@ -18,7 +18,7 @@ const CartItem = (newProps) => {
       <td>{newPrice.toFixed(2)}</td>
       <td>
         <button onClick={() => onIncreaseQuantityItem(carItem)}>+</button>
-        <div>{quantity}</div>
+        <input ref={refQuantity} value={quantity}></input>
         <button onClick={() => onDecreaseQuantityItem(carItem)}>-</button>
       </td>
       <td>

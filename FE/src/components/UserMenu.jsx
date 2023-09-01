@@ -3,10 +3,18 @@ import { Context } from "../contexts/ContextProvider";
 import { Link, NavLink } from "react-router-dom";
 import "../assets/style/userMenu.css";
 const UserMenu = () => {
-  const { activeClass, isHomePath, totalCartQuantity } = useContext(Context);
+  const {
+    activeClass,
+    isHomePath,
+    totalCartQuantity,
+    onOpenCart,
+    isShowingCart,
+    isCartEmpty,
+  } = useContext(Context);
   let checked;
   isHomePath.pathname === "/" ? (checked = true) : (checked = false);
   const colorHome = checked ? "white-color-text" : null;
+  // console.log(isShowingCart);
   return (
     <section
       className={`header-container ${
@@ -106,12 +114,13 @@ const UserMenu = () => {
             <i className="uil uil-star"></i>
           </button>
           <button className="cart-header-btn">
-            <i className="uil uil-shopping-cart">
+            <i className="uil uil-shopping-cart" onClick={onOpenCart}>
               {totalCartQuantity && (
                 <span className="cart-quantity">{totalCartQuantity}</span>
               )}
             </i>
           </button>
+          {isShowingCart ? <div>isShowingCart</div> : null}
         </div>
       </div>
     </section>

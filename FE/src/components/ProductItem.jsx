@@ -4,8 +4,7 @@ import "../assets/style/productItem.css";
 import { Context } from "../contexts/ContextProvider";
 import ButtonAddTo from "./ButtonAddTo";
 const ProductItem = (newProps) => {
-  const { formatLink, formatNumber, onHover, imgShow, isHovered } =
-    useContext(Context);
+  const { formatLink, formatNumber } = useContext(Context);
   const { product } = newProps;
   const { discount, id, img, name, price, tags } = product;
 
@@ -13,16 +12,11 @@ const ProductItem = (newProps) => {
     <div className="product-item-container">
       <div className="product-item">
         <div className="product-item-img">
-          <div
-            className="img-swap-container"
-            onMouseOver={() => onHover(id, true)}
-            onMouseOut={() => onHover(id, false)}
-          >
-            {imgShow === id ? (
-              isHovered ? (
-                <ButtonAddTo product={product} />
-              ) : null
-            ) : null}
+          <div className="img-swap-container">
+            <div className="btn-container">
+              <ButtonAddTo product={product} />
+            </div>
+
             <Link to={`/shop/${formatLink(name)}`}>
               <img src={img[0]} alt={name} className="img-swap-1" />
               <img src={img[1]} alt={name} className="img-swap-2" />

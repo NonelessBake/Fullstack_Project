@@ -4,6 +4,7 @@ import { Context } from "../contexts/ContextProvider";
 import CartItem from "./CartItem";
 const CartList = () => {
   const { cart } = useContext(Context);
+
   return (
     <table>
       <thead>
