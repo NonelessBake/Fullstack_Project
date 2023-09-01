@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Context } from "../contexts/ContextProvider";
 import { Link, NavLink } from "react-router-dom";
 import "../assets/style/userMenu.css";
+import CartPopup from "./CartPopup";
 const UserMenu = () => {
   const {
     activeClass,
@@ -9,7 +10,6 @@ const UserMenu = () => {
     totalCartQuantity,
     onOpenCart,
     isShowingCart,
-    isCartEmpty,
   } = useContext(Context);
   let checked;
   isHomePath.pathname === "/" ? (checked = true) : (checked = false);
@@ -120,7 +120,7 @@ const UserMenu = () => {
               )}
             </i>
           </button>
-          {isShowingCart ? <div>isShowingCart</div> : null}
+          {isShowingCart ? <CartPopup /> : null}
         </div>
       </div>
     </section>

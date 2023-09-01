@@ -94,7 +94,7 @@ const ContextProvider = ({ children }) => {
   const setCartLocalStorage = (cartList) => {
     localStorage.setItem("cart", JSON.stringify(cartList));
   };
-
+  console.log(cart);
   const onAddToCart = (product) => {
     if (!cart.includes(product)) {
       product.quantity = 1;
@@ -145,9 +145,6 @@ const ContextProvider = ({ children }) => {
   const onOpenCart = () => {
     setIsShowingCart((prev) => !prev);
   };
-
-  // console.log("isShowingCart", isShowingCart);
-  // console.log("isCartEmpty", isCartEmpty);
 
   // Shoping Cart
 
