@@ -1,4 +1,3 @@
-import React from "react";
 import { useContext } from "react";
 import { Context } from "../contexts/ContextProvider";
 import { Link } from "react-router-dom";
@@ -26,32 +25,38 @@ const CartPopup = () => {
           {cart.map((cartItem) => (
             <div key={cartItem.id} className="cart-item-container">
               <div className="cart-item-info-container">
-                <img src={cartItem.img[0]} alt="" className="cart-item-img" />
-
+                <div className="cart-item-img-container">
+                  <img src={cartItem.img[0]} alt="" className="cart-item-img" />
+                </div>
                 <div className="cart-item-info">
-                  <p>{cartItem.name}</p>
-                  <p>Quantity: {cartItem.quantity} </p>
-                  <p>${(cartItem.price * cartItem.quantity).toFixed(2)}</p>
+                  <div>{cartItem.name}</div>
+                  <div>Quantity: {cartItem.quantity} </div>
+                  <div>${(cartItem.price * cartItem.quantity).toFixed(2)}</div>
                 </div>
               </div>
-              <div className="cart-item-remove">
-                <button onClick={() => onRemoveCartItem(cartItem)}>X</button>
+              <div className="remove-btn-container">
+                <button
+                  className="remove-item-btn"
+                  onClick={() => onRemoveCartItem(cartItem)}
+                >
+                  x
+                </button>
               </div>
             </div>
           ))}
         </div>
       )}
-      <div className="cart-total-price">
-        <p>Total:</p>
-        <p>${totalCartPrice}</p>
-      </div>
-      <div>
-        <Link to="/cart">
-          <button>VIEW CART </button>
-        </Link>
-        <Link>
-          <button>CHECK OUT</button>
-        </Link>
+      <div className="link-cart-container">
+        <div className="price-and-cart-link">
+          <div className="cart-total-price">
+            <p>Total:</p>
+            <p>${totalCartPrice}</p>
+          </div>
+          <div className="direct-cart-link">
+            <Link>VIEW CART</Link>
+            <Link>CHECKOUT</Link>
+          </div>
+        </div>
       </div>
     </div>
   );

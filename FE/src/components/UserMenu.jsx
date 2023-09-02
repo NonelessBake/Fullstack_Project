@@ -104,16 +104,19 @@ const UserMenu = () => {
           </ul>
         </div>
         <div className="nav-bar-right">
-          <button>
+          <button className="search-btn">
             <i className="uil uil-search"></i>
           </button>
-          <button>
+          <button className="user-btn">
             <i className="uil uil-user"></i>
           </button>
-          <button>
+          <button className="wishlist-btn">
             <i className="uil uil-star"></i>
           </button>
-          <button className="cart-header-btn" onClick={onOpenCart}>
+          <button
+            className="cart-header-btn open-cart-btn"
+            onClick={onOpenCart}
+          >
             <i className="uil uil-shopping-cart">
               {totalCartQuantity && (
                 <span className="cart-quantity">{totalCartQuantity}</span>
