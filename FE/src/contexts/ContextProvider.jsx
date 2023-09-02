@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 import axios from "axios";
-import { createContext, useEffect, useRef, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 export const Context = createContext();
@@ -141,9 +142,9 @@ const ContextProvider = ({ children }) => {
   let isCartEmpty = true;
   cart.length === 0 ? (isCartEmpty = true) : (isCartEmpty = false);
 
-  const [isShowingCart, setIsShowingCart] = useState(false);
+  const [isShowingCartPopup, setIsShowingCartPopup] = useState(false);
   const onOpenCart = () => {
-    setIsShowingCart((prev) => !prev);
+    setIsShowingCartPopup((prev) => !prev);
   };
 
   // Shoping Cart
@@ -226,7 +227,7 @@ const ContextProvider = ({ children }) => {
         totalCartPrice,
         totalCartQuantity,
         cart,
-        isShowingCart,
+        isShowingCartPopup,
         isCartEmpty,
         onOpenCart,
       }}

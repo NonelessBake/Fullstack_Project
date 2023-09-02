@@ -6,6 +6,10 @@
   height: 70vh;
   background-color: white;
   padding: 20px 15px;
+  color: black;
+}
+.cart-popup-container a {
+  color: black;
 }
 .cart-popup {
   position: relative;

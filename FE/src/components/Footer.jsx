@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import "../assets/style/footer.css";
 import Brand from "./Brand";
 import SocialLink from "./SocialLink";

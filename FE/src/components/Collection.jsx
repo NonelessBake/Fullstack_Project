@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useContext, useState } from "react";
 import { Context } from "../contexts/ContextProvider";
 import "../assets/style/collection.css";

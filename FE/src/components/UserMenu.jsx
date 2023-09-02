@@ -9,7 +9,7 @@ const UserMenu = () => {
     isHomePath,
     totalCartQuantity,
     onOpenCart,
-    isShowingCart,
+    isShowingCartPopup,
   } = useContext(Context);
   let checked;
   isHomePath.pathname === "/" ? (checked = true) : (checked = false);
@@ -123,7 +123,7 @@ const UserMenu = () => {
               )}
             </i>
           </button>
-          {isShowingCart ? <CartPopup /> : null}
+          {isShowingCartPopup ? <CartPopup /> : null}
         </div>
       </div>
     </section>
