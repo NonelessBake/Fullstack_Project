@@ -22,42 +22,76 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 import { ActicleContext } from '../../context/ActicleContext';
-import ButtonShowDetail from '../Button/btn-show-detail/ButtonShowDetail';
 import './table.css'
+import AddDataButton from './pushData';
+function descendingComparator(a, b, orderBy) {
+  if (b[orderBy] < a[orderBy]) {
+    return -1;
+  }
+  if (b[orderBy] > a[orderBy]) {
+    return 1;
+  }
+  return 0;
+}
 
+function getComparator(order, orderBy) {
+  return order === 'desc'
+    ? (a, b) => descendingComparator(a, b, orderBy)
+    : (a, b) => -descendingComparator(a, b, orderBy);
+}
 
-
+// Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
+// stableSort() brings sort stability to non-modern browsers (notably IE11). If you
+// only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
+// with exampleArray.slice().sort(exampleComparator)
+function stableSort(array, comparator) {
+  const stabilizedThis = array.map((el, index) => [el, index]);
+  stabilizedThis.sort((a, b) => {
+    const order = comparator(a[0], b[0]);
+    if (order !== 0) {
+      return order;
+    }
+    return a[1] - b[1];
+  });
+  return stabilizedThis.map((el) => el[0]);
+}
 
 const headCells = [
   {
     id: 'name',
     numeric: false,
     disablePadding: true,
-    label: 'Dessert (100g serving)',
+    label: 'Name product',
   },
   {
-    id: 'calories',
-    numeric: true,
-    disablePadding: false,
-    label: 'Calories',
-  },
-  {
-    id: 'fat',
+    id: 'category',
     numeric: false,
-    disablePadding: true,
-    label: 'Fat (g)',
+    disablePadding: false,
+    label: 'Category',
   },
   {
-    id: 'carbs',
-    numeric: true,
+    id: 'tags',
+    numeric: false,
     disablePadding: false,
-    label: 'Carbs (g)',
+    label: 'Tags',
   },
   {
-    id: 'protein',
+    id: 'price',
     numeric: true,
     disablePadding: false,
-    label: 'Protein (g)',
+    label: 'Price($)',
+  },
+  {
+    id: 'discount',
+    numeric: true,
+    disablePadding: false,
+    label: 'Discount(%)',
+  },
+  {
+    id: 'status',
+    numeric: true,
+    disablePadding: false,
+    label: 'Quantity',
   },
 ];
 
@@ -138,7 +172,7 @@ function EnhancedTableToolbar(props) {
           variant="subtitle1"
           component="div"
         >
-          {numSelected} product item
+          {numSelected} selected
         </Typography>
       ) : (
         <Typography
@@ -147,7 +181,7 @@ function EnhancedTableToolbar(props) {
           id="tableTitle"
           component="div"
         >
-          Product
+          PRODUCT
         </Typography>
       )}
 
@@ -173,39 +207,86 @@ EnhancedTableToolbar.propTypes = {
 };
 
 export default function EnhancedTable() {
-  React.useEffect(() => {
-    getData((data) => {
-      setData(data)
-    })
-  }, [])
-  // call useStatus in AppContext
-  const { order, orderBy, selected, page, rowsPerPage, rows, setData } = React.useContext(ActicleContext);
-  //call handleTable
-  const {
-    handleRequestSort, handleSelectAllClick, handleClick,
-    handleChangePage, handleChangeRowsPerPage, isSelected,
-    stableSort, getComparator, handleClickButton, getData
-  } = React.useContext(ActicleContext)
+  const [order, setOrder] = React.useState('asc');
+  const [orderBy, setOrderBy] = React.useState('price');
+  const [selected, setSelected] = React.useState([]);
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [datarow,setRows] = React.useState([])
+  const {getData} = React.useContext(ActicleContext)
+
+  const handleRequestSort = (event, property) => {
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
+    setOrderBy(property);
+  };
+
+  const handleSelectAllClick = (event) => {
+    if (event.target.checked) {
+      const newSelected = datarow.map((n) => n.name);
+      setSelected(newSelected);
+      return;
+    }
+    setSelected([]);
+  };
+
+  const handleClick = (event, name) => {
+    const selectedIndex = selected.indexOf(name);
+    let newSelected = [];
+
+    if (selectedIndex === -1) {
+      newSelected = newSelected.concat(selected, name);
+    } else if (selectedIndex === 0) {
+      newSelected = newSelected.concat(selected.slice(1));
+    } else if (selectedIndex === selected.length - 1) {
+      newSelected = newSelected.concat(selected.slice(0, -1));
+    } else if (selectedIndex > 0) {
+      newSelected = newSelected.concat(
+        selected.slice(0, selectedIndex),
+        selected.slice(selectedIndex + 1),
+      );
+    }
+
+    setSelected(newSelected);
+  };
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  const isSelected = (name) => selected.indexOf(name) !== -1;
+
+  // Avoid a layout jump when reaching the last page with empty rows.
+  const emptyRows =
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - datarow.length) : 0;
+
   const visibleRows = React.useMemo(
     () =>
-      stableSort(rows, getComparator(order, orderBy)).slice(
+      stableSort(datarow, getComparator(order, orderBy)).slice(
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage,
       ),
     [order, orderBy, page, rowsPerPage],
   );
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-    
+  React.useEffect(() => {
+    getData((data) =>{
+      (setRows(data))
+    })
+  },[]);
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
-        <EnhancedTableToolbar numSelected={selected.length} handleClickButton={handleClickButton} />
+        <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
             aria-labelledby="tableTitle"
-
+            
           >
             <EnhancedTableHead
               numSelected={selected.length}
@@ -213,7 +294,7 @@ export default function EnhancedTable() {
               orderBy={orderBy}
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
-              rowCount={rows.length}
+              rowCount={datarow.length}
             />
             <TableBody>
               {visibleRows.map((row, index) => {
@@ -248,13 +329,11 @@ export default function EnhancedTable() {
                     >
                       {row.name}
                     </TableCell>
+                    <TableCell align="left">{row.category}</TableCell>
+                    <TableCell align="left">{row.tags}</TableCell>
                     <TableCell align="right">{row.price}</TableCell>
-                    <TableCell align="right">{row.tags}</TableCell>
-                    <TableCell align="right">{row.carbs}</TableCell>
-                    <TableCell align="right">{row.protein}</TableCell>
-                    <TableCell align="right">
-                      <ButtonShowDetail name={row.name}/>
-                    </TableCell>
+                    <TableCell align="right">{row.status}</TableCell>
+                    <TableCell align="right">{row.discount}</TableCell>
                   </TableRow>
                 );
               })}
@@ -269,38 +348,15 @@ export default function EnhancedTable() {
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={rows.length}
+          count={datarow.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
+      <AddDataButton
+      open ={false} addData = {true}/>
     </Box>
   );
 }
-
-
-
-// function getData(callback){
-//   request.get('Products')
-//     .then((res) =>{
-//       return res.data
-//     })
-//     .then(callback)
-// }
-// // let [data,setData] = React.useState([])
-// // React.useEffect(() =>{
-// //   getData((data) =>{
-// //     setData(data)
-// //   })
-// // },[])
-// // const rows = data.map((product) =>{
-// //     return {
-// //       name : product.name,
-// //       price : product.price,
-// //       discount : product.discount,
-// //       category : product.category,
-// //       tags : product.tags
-// //     }
-// // })

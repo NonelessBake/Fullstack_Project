@@ -1,16 +1,18 @@
-import React from 'react'
-
-export default function BoxModalProduct() {
+import React, { useContext, useEffect } from 'react'
+export default function BoxModalProduct(props) {
+    const handleSubmit = (event) =>{
+        console.log('from')
+    }
     return (
-        <div className="modal fade" id="#staticBackdropAlvarado Sideboard" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex={-1} aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div className="modal fade" id={"staticBackdrop" + props.id} data-bs-backdrop="static" data-bs-keyboard="false" tabIndex={-1} aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title" id="staticBackdropLabel">Modal title</h5>
+                        <h5 className="modal-title" id="staticBackdropLabel">{props.name}</h5>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
                     </div>
                     <div className="modal-body">
-                        <div>
+                        <form>
                             <div className="input-group mb-3">
                                 <span className="input-group-text" id="basic-addon1">@</span>
                                 <input type="text" className="form-control" placeholder="Nameproduct" aria-label="Username" aria-describedby="basic-addon1" />
@@ -43,11 +45,11 @@ export default function BoxModalProduct() {
                                 <span className="input-group-text">Discription</span>
                                 <textarea className="form-control" aria-label="With textarea" defaultValue={""} />
                             </div>
-                        </div>
+                        </form>
 
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary">Understood</button>
+                            <button type="button" className="btn btn-primary" onChange={ handleSubmit}>Update</button>
                         </div>
                     </div>
                 </div>
