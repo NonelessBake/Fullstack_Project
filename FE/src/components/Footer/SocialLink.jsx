@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../assets/style/socialLink.css";
+import "../../assets/style/socialLink.css";
 
 const SocialLink = () => {
   return (

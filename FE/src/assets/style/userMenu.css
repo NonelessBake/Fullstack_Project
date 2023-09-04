@@ -4,11 +4,10 @@
   flex-direction: column;
   max-width: 1600px;
   margin: 0 auto;
-  z-index: 100;
   color: black;
   background-color: rgb(0, 0, 0);
   background-color: rgba(247, 247, 247, 0.4);
-  z-index: 100000;
+  z-index: 100;
 }
 .white-color-text {
   color: white;
@@ -17,6 +16,7 @@
   color: black;
 }
 .header-home {
+  z-index: 100;
   position: absolute;
   top: 0;
   left: 0;

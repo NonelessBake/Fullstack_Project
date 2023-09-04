@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { Context } from "../contexts/ContextProvider";
+import { ContextValue } from "../../contexts/ContextProvider";
 import { Link, NavLink } from "react-router-dom";
-import "../assets/style/banner.css";
+import "../../assets/style/banner.css";
 const Banner = () => {
-  const { bannerImages } = useContext(Context);
+  const { bannerImages } = useContext(ContextValue);
   return (
     <section className="banner-direct">
       <div className="banner-direct-container">

@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import "../assets/style/productItem.css";
-import { Context } from "../contexts/ContextProvider";
+import "../../assets/style/productItem.css";
+import { ContextUpdate } from "../../contexts/ContextProvider";
 import ButtonAddTo from "./ButtonAddTo";
+
 const ProductItem = (newProps) => {
-  const { formatLink, formatNumber } = useContext(Context);
+  const { formatLink, formatNumber } = useContext(ContextUpdate);
   const { product } = newProps;
   const { discount, id, img, name, price, tags } = product;
 

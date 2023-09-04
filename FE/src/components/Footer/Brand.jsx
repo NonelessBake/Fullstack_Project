@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { Context } from "../contexts/ContextProvider";
+import { ContextValue } from "../../contexts/ContextProvider";
 import { Link } from "react-router-dom";
-import "../assets/style/brand.css";
+import "../../assets/style/brand.css";
 const Brand = () => {
-  const { brand } = useContext(Context);
+  const { brand } = useContext(ContextValue);
   return (
     <section className="brand">
       <div className="brand-container">

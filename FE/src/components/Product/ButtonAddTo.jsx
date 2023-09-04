@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import "../assets/style/buttonAddTo.css";
-import { Context } from "../contexts/ContextProvider";
+import "../../assets/style/buttonAddTo.css";
+import { ContextUpdate } from "../../contexts/ContextProvider";
 const ButtonAddTo = (newProps) => {
   const { product } = newProps;
-  const { onAddToCart } = useContext(Context);
+  const { onAddToCart } = useContext(ContextUpdate);
   return (
     <div className="btn-add-to">
       <button

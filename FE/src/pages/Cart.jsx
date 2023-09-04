@@ -1,11 +1,11 @@
-import CartList from "../components/CartList";
-import CartTotals from "../components/CartTotals";
 import "../assets/style/cart.css";
 import { useContext } from "react";
-import { Context } from "../contexts/ContextProvider";
+import { ContextValue } from "../contexts/ContextProvider";
+import CartList from "../components/Cart/CartList";
+import CartTotals from "../components/Cart/CartTotals";
 
 function Cart() {
-  const { isCartEmpty } = useContext(Context);
+  const { isCartEmpty } = useContext(ContextValue);
   return (
     <div className="cart">
       {isCartEmpty ? (

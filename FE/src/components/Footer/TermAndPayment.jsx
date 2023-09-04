@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../assets/style/termAndPayment.css";
+import "../../assets/style/termAndPayment.css";
 const TermAndPayment = () => {
   return (
     <section className="privacy-payment">

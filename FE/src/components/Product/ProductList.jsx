@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import ProductItem from "./ProductItem";
-import { Context } from "../contexts/ContextProvider";
-import "../assets/style/productList.css";
+import { ContextValue } from "../../contexts/ContextProvider";
+import "../../assets/style/productList.css";
 function ProductList() {
-  const { productList } = useContext(Context);
+  const { productList } = useContext(ContextValue);
   return (
     <div className="show-home-products">
       {productList.map((product) => (

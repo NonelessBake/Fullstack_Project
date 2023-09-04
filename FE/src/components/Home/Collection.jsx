@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useContext, useState } from "react";
-import { Context } from "../contexts/ContextProvider";
-import "../assets/style/collection.css";
+import { ContextValue } from "../../contexts/ContextProvider";
+import "../../assets/style/collection.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Link } from "react-router-dom";
@@ -53,7 +53,7 @@ const ButtonGroup = ({ next, previous, onPrevSlide, onNextSlide }) => {
   );
 };
 const Collection = () => {
-  const { collection, windowSize } = useContext(Context);
+  const { collection, windowSize } = useContext(ContextValue);
   const [activeIndex, setActiveIndex] = useState(0);
 
   const maxIndex = collection.length - 1;

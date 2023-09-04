@@ -1,6 +1,8 @@
 import { Formik } from "formik";
-import "../assets/style/subcribeForm.css";
+import "../../assets/style/subcribeForm.css";
+import { useState } from "react";
 const SubcribeForm = () => {
+  const [isSuccess, setIsSuccess] = useState(false);
   return (
     <section className="subcribe-form">
       <h2>Newsletters</h2>
@@ -19,7 +21,7 @@ const SubcribeForm = () => {
           return errors;
         }}
         onSubmit={(values) => {
-          alert("We have send mail to your email, thanks for subcribing!");
+          setIsSuccess(true);
           return (values.email = "");
         }}
       >
@@ -49,6 +51,13 @@ const SubcribeForm = () => {
               </div>
               <div className="errors-subcribe">
                 {errors.email && touched.email && errors.email}
+                {isSuccess ? (
+                  <div className="success-subcribe">
+                    Subcribe success, please check your email !
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
             </form>
           </div>

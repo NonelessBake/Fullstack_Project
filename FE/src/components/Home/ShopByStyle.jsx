@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import "../assets/style/shopByStyle.css";
-const ShopByStle = () => {
+import "../../assets/style/shopByStyle.css";
+const ShopByStyle = () => {
   const shopStyleImgs = [
     {
       content: "Classic Traditional",
@@ -42,4 +42,4 @@ const ShopByStle = () => {
   );
 };
 
-export default ShopByStle;
+export default ShopByStyle;

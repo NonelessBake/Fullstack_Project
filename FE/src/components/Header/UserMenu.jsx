@@ -1,16 +1,13 @@
 import { useContext } from "react";
-import { Context } from "../contexts/ContextProvider";
+import { ContextUpdate, ContextValue } from "../../contexts/ContextProvider";
 import { Link, NavLink } from "react-router-dom";
-import "../assets/style/userMenu.css";
-import CartPopup from "./CartPopup";
+import "../../assets/style/userMenu.css";
+import CartPopup from "../Cart/CartPopup";
+
 const UserMenu = () => {
-  const {
-    activeClass,
-    isHomePath,
-    totalCartQuantity,
-    onOpenCart,
-    isShowingCartPopup,
-  } = useContext(Context);
+  const { isHomePath, totalCartQuantity, isShowingCartPopup } =
+    useContext(ContextValue);
+  const { activeClass, onOpenCart } = useContext(ContextUpdate);
   let checked;
   isHomePath.pathname === "/" ? (checked = true) : (checked = false);
   const colorHome = checked ? "white-color-text" : null;

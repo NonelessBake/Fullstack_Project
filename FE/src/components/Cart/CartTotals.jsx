@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import "../assets/style/cartTotals.css";
-import { Context } from "../contexts/ContextProvider";
+import "../../assets/style/cartTotals.css";
+import { ContextValue } from "../../contexts/ContextProvider";
 import { Link } from "react-router-dom";
 
 const CartTotals = () => {
-  const { totalCartPrice } = useContext(Context);
+  const { totalCartPrice } = useContext(ContextValue);
   return (
     <div className="cart-total">
       <p className="title">CART TOTALS</p>

@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import "../assets/style/category.css";
+import "../../assets/style/category.css";
 import { Link } from "react-router-dom";
-import { Context } from "../contexts/ContextProvider";
+import { ContextValue } from "../../contexts/ContextProvider";
 import Carousel from "react-multi-carousel";
 const responsive = {
   superLargeDesktop: {
@@ -22,7 +22,7 @@ const responsive = {
   },
 };
 const Category = () => {
-  const { slideCategory } = useContext(Context);
+  const { slideCategory } = useContext(ContextValue);
   return (
     <>
       <div className="category">

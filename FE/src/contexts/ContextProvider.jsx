@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import axios from "axios";
-import { createContext, useEffect, useRef, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-export const Context = createContext();
-
+export const ContextValue = createContext();
+export const ContextUpdate = createContext();
 const ContextProvider = ({ children }) => {
   // Format Function
   const formatLink = (string) => {
@@ -108,27 +108,38 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-  const onChangeQuantity = (value, id) => {
-    let index = cart.findIndex((item) => item.id === id);
+  const checkMaxValue = (value, maxValue) => {
+    if (value > maxValue) return maxValue;
+    return value;
+  };
+  const onChangeQuantityItem = (value, carItem) => {
+    console.log({ value, carItem });
+    let index = cart.findIndex((item) => item.id === carItem.id);
     let newCart = [...cart];
     if (index !== -1) {
       let newItem = newCart[index];
-      newItem.quantity = value;
-      setCart(newCart);
+      newItem.quantity =
+        value?.length > 0
+          ? checkMaxValue(Number(value), Number(carItem.status))
+          : 1;
+      setCart([...newCart]);
       setCartLocalStorage([...newCart]);
     }
   };
 
   const onIncreaseQuantityItem = (cartItem) => {
-    cartItem.quantity++;
-    setCart((prev) => [...prev]);
-    setCartLocalStorage([...cart]);
+    if (cartItem.quantity === cartItem.status) return cartItem;
+    else {
+      cartItem.quantity++;
+      setCart((prev) => [...prev]);
+      setCartLocalStorage([...cart]);
+    }
   };
-
   const onDecreaseQuantityItem = (cartItem) => {
     if (cartItem.quantity < 2) {
-      setCart((prev) => prev.filter((item) => item.id !== cartItem.id));
-      setCartLocalStorage(cart.filter((item) => item !== cartItem));
+      cartItem.quantity = 1;
+      setCart((prev) => [...prev]);
+      setCartLocalStorage([...cart]);
     } else {
       cartItem.quantity--;
       setCart((prev) => [...prev]);
@@ -151,11 +162,11 @@ const ContextProvider = ({ children }) => {
   totalCartPrice = totalCartPrice?.toFixed(2);
   let isCartEmpty = true;
   cart.length === 0 ? (isCartEmpty = true) : (isCartEmpty = false);
-
   const [isShowingCartPopup, setIsShowingCartPopup] = useState(false);
   const onOpenCart = () => {
     setIsShowingCartPopup((prev) => !prev);
   };
+  console.log(cart);
 
   // Shoping Cart
 
@@ -215,37 +226,43 @@ const ContextProvider = ({ children }) => {
   // Footer Component
 
   return (
-    <Context.Provider
+    <ContextValue.Provider
       value={{
         productList,
-        activeClass,
         isHomePath,
         backgroundImgs,
         brand,
         bannerImages,
         showList,
-        onShowHomeProducts,
         homeProductList,
-        formatLink,
-        formatNumber,
         slideCategory,
         collection,
         windowSize,
-        onAddToCart,
-        onIncreaseQuantityItem,
-        onDecreaseQuantityItem,
-        onRemoveCartItem,
         totalCartPrice,
         totalCartQuantity,
         cart,
         isShowingCartPopup,
         isCartEmpty,
-        onOpenCart,
-        onChangeQuantity,
       }}
     >
-      {children}
-    </Context.Provider>
+      <ContextUpdate.Provider
+        value={{
+          activeClass,
+          onShowHomeProducts,
+          formatNumber,
+          formatLink,
+          onAddToCart,
+          onIncreaseQuantityItem,
+          onDecreaseQuantityItem,
+          onRemoveCartItem,
+          onOpenCart,
+          onChangeQuantityItem,
+        }}
+      >
+        {" "}
+        {children}
+      </ContextUpdate.Provider>
+    </ContextValue.Provider>
   );
 };
 

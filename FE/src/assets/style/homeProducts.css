@@ -6,7 +6,7 @@
   padding: 10px 15px;
 }
 .show-change {
-  margin-bottom: 50px;
+  margin-bottom: 60px;
   display: flex;
   gap: 30px;
   position: relative;
@@ -15,7 +15,7 @@
   display: block;
   border: none;
   background: transparent;
-  font-size: 23px;
+  font-size: 21px;
   position: relative;
 }
 .show-btn:hover {

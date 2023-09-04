@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../assets/style/footerShortLink.css";
+import "../../assets/style/footerShortLink.css";
 const FooterShortLink = () => {
   return (
     <section className="link-container">

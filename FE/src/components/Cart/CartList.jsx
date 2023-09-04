@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import "../assets/style/cartList.css";
-import { Context } from "../contexts/ContextProvider";
+import "../../assets/style/cartList.css";
+import { ContextValue } from "../../contexts/ContextProvider";
 import CartItem from "./CartItem";
 const CartList = () => {
-  const { cart } = useContext(Context);
+  const { cart } = useContext(ContextValue);
 
   return (
     <table className="cart-table">
@@ -17,8 +17,8 @@ const CartList = () => {
         </tr>
       </thead>
       <tbody>
-        {cart.map((carItem) => (
-          <CartItem carItem={carItem} key={carItem.id} />
+        {cart.map((cartItem) => (
+          <CartItem cartItem={cartItem} key={cartItem.id} />
         ))}
       </tbody>
     </table>
