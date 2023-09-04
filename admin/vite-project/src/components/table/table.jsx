@@ -273,6 +273,13 @@ export default function EnhancedTable() {
       ),
     [order, orderBy, page, rowsPerPage],
   );
+  const handleData = () =>{
+    return datarow.map((item) =>{
+      return item.category.map((item) =>{
+        console.log(item)
+      })
+    })
+  }
   React.useEffect(() => {
     getData((data) =>{
       (setRows(data))
@@ -329,8 +336,8 @@ export default function EnhancedTable() {
                     >
                       {row.name}
                     </TableCell>
-                    <TableCell align="left">{row.category}</TableCell>
-                    <TableCell align="left">{row.tags}</TableCell>
+                    <TableCell align="left">{row.category.toString()}</TableCell>
+                    <TableCell align="left">{row.tags.toString()}</TableCell>
                     <TableCell align="right">{row.price}</TableCell>
                     <TableCell align="right">{row.status}</TableCell>
                     <TableCell align="right">{row.discount}</TableCell>
