@@ -1,8 +1,11 @@
 .cart-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0 15px;
+  width: 70%;
+  border: 1px solid rgb(224, 220, 220);
 }
-.cart-list-container {
-  width: 100%;
+.cart-table th {
+  padding: 15px;
+}
+thead tr {
+  font-size: 14px;
+  font-weight: 300;
 }

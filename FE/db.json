@@ -11,8 +11,8 @@
       "price": 150,
       "discount": 7,
       "discription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-      "category": "Living Room",
-      "tags": "Trend",
+      "category": ["Living Room"],
+      "tags": ["Trend"],
       "status": 30
     },
     {
@@ -41,8 +41,8 @@
       "price": 120,
       "discount": 17,
       "discription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-      "category": "Bed Room",
-      "tags": "Trend",
+      "category": ["Bed Room"],
+      "tags": ["Trend"],
       "status": 70
     },
     {
@@ -74,7 +74,7 @@
       "price": 200,
       "discount": 10,
       "discription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-      "category": "Bath Room",
+      "category": ["Bath Room"],
       "tags": ["Trend", "Hot"],
       "status": 30
     },
@@ -170,7 +170,7 @@
       "price": 214.22,
       "discount": 0,
       "discription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-      "category": "Dining Room",
+      "category": ["Dining Room"],
       "tags": ["Hot", "Trend"],
       "status": 40
     },
@@ -186,7 +186,7 @@
       "price": 400,
       "discount": 13,
       "discription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-      "category": "Dining Room",
+      "category": ["Dining Room"],
       "tags": "Hot",
       "status": 60
     },
@@ -202,7 +202,7 @@
       "price": 400,
       "discount": 13,
       "discription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-      "category": "Dining Room",
+      "category": ["Dining Room"],
       "tags": ["Trend", "Hot"],
       "status": 10
     },
@@ -233,7 +233,7 @@
       "price": 200,
       "discount": 0,
       "discription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-      "category": "Dining Room",
+      "category": ["Dining Room"],
       "tags": "Trend",
       "status": 40
     },
@@ -283,7 +283,7 @@
       "price": 100,
       "discount": 20,
       "discription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-      "category": "Dining Room",
+      "category": ["Dining Room"],
       "tags": "Hot",
       "status": 60
     },
@@ -329,7 +329,7 @@
       "discount": 0,
       "discription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
       "category": ["Dining Room", "Living Room"],
-      "tags": "Hot",
+      "tags": ["Hot"],
       "status": 40
     },
     {
@@ -344,8 +344,8 @@
       "price": 190,
       "discount": 0,
       "discription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-      "category": "Dining Room",
-      "tags": "Trend",
+      "category": ["Dining Room"],
+      "tags": ["Trend"],
       "status": 40
     },
     {
@@ -361,8 +361,8 @@
       "price": 200,
       "discount": 10,
       "discription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-      "category": "Living Room",
-      "tags": "Trend",
+      "category": ["Living Room"],
+      "tags": ["Trend"],
       "status": 40
     },
     {
@@ -376,8 +376,8 @@
       "price": 150,
       "discount": 7,
       "discription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-      "category": "Living Room",
-      "tags": "Trend",
+      "category": ["Living Room"],
+      "tags": ["Trend"],
       "status": 50
     },
     {
@@ -393,8 +393,8 @@
       "price": 130,
       "discount": 4,
       "discription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-      "category": "Living Room",
-      "tags": "Hot",
+      "category": ["Living Room"],
+      "tags": ["Hot"],
       "status": 60
     },
     {
@@ -407,8 +407,8 @@
       "price": 120,
       "discount": 8,
       "discription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-      "category": "Living Room",
-      "tags": "Hot",
+      "category": ["Living Room"],
+      "tags": ["Hot"],
       "status": 20
     }
   ],
@@ -514,8 +514,8 @@
           "discription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
           "price": 350,
           "discount": 0,
-          "category": "Living Room",
-          "tags": "Hot",
+          "category": ["Living Room"],
+          "tags": ["Hot"],
           "status": 30,
           "quantity": 1
         }
@@ -547,8 +547,8 @@
           "discription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
           "price": 45,
           "discount": 12,
-          "category": "Office",
-          "tags": "Life Style",
+          "category": ["Office"],
+          "tags": ["Life Style"],
           "status": 40,
           "quantity": 3
         }
@@ -579,8 +579,8 @@
           "nameProduct": "Bend Goods Farmhouse Chair",
           "price": 45,
           "discount": 22,
-          "category": "Bath Room",
-          "tags": "Life Style",
+          "category": ["Bath Room"],
+          "tags": ["Life Style"],
           "status": 30,
           "quantity": 2
         }

@@ -1,41 +1,70 @@
-.cart-product .quantity {
-  min-width: 50px;
-  border: 1px solid #e8e8e8;
-  display: inline-block;
-}
 .cart-product {
-  width: 20%;
+  border: 1px solid rgb(224, 220, 220);
+  font-weight: 500;
 }
-
-.cart-product .change-quantity-btn {
-  font-size: 20px;
+.cart-product td {
+  padding: 15px;
+}
+.product-info {
+  padding: 15px;
+  width: 40%;
+}
+.product-price {
+  width: 10%;
+}
+.prouct-quantity {
+  width: 10%;
+}
+.product-subtotal {
+  width: 10%;
+}
+.product-remove {
+  width: 5%;
+}
+.product-img {
+  width: 30%;
+  margin-right: 15px;
+}
+.product-name {
+  width: 70%;
+  color: #868686;
+}
+.change-quantity-btn {
+  max-width: 30%;
+  min-width: 20%;
   border: 1px solid black;
-  background: transparent;
-  width: 30px;
+  background-color: white;
+  font-size: 20px;
   transition: all 0.15s;
+  height: 100%;
 }
-.cart-product .change-quantity-btn:hover {
+.change-quantity-btn:hover {
+  background-color: black;
   color: white;
-  background: black;
 }
-.cart-product .quantity-text {
-  min-width: 50px;
-  display: inline-block;
+.product-quantity {
+  display: flex;
+  width: 70%;
+}
+.product-quantity .quantity {
   text-align: center;
+  max-width: 50%;
 }
-.cart-product .product-img {
-  width: 20%;
+.product-quantity .quantity:focus {
+  outline: none;
 }
-.cart-product .remove-btn {
+.product-remove .remove-btn {
+  width: 20px;
+  height: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 25px;
+  border-radius: 50%;
   border: 1px solid black;
   background: transparent;
   transition: all 0.15s;
 }
-.cart-product .remove-btn:hover {
-  color: white;
+.product-remove .remove-btn:hover {
   background-color: black;
+  color: white;
 }

@@ -95,7 +95,7 @@ const ContextProvider = ({ children }) => {
   const setCartLocalStorage = (cartList) => {
     localStorage.setItem("cart", JSON.stringify(cartList));
   };
-  console.log(cart);
+
   const onAddToCart = (product) => {
     if (!cart.includes(product)) {
       product.quantity = 1;
@@ -108,15 +108,16 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-  // const onChangeQuantity = (value, id) => {
-  //   let index = cart.findIndex((item) => item.id === id);
-  //   let newCart = [...cart];
-  //   if (index !== -1) {
-  //     let newItem = newCart[index];
-  //     newItem.quantity = value;
-  //     setCart(newCart);
-  //   }
-  // };
+  const onChangeQuantity = (value, id) => {
+    let index = cart.findIndex((item) => item.id === id);
+    let newCart = [...cart];
+    if (index !== -1) {
+      let newItem = newCart[index];
+      newItem.quantity = value;
+      setCart(newCart);
+      setCartLocalStorage([...newCart]);
+    }
+  };
 
   const onIncreaseQuantityItem = (cartItem) => {
     cartItem.quantity++;
@@ -143,11 +144,11 @@ const ContextProvider = ({ children }) => {
   let totalCartQuantity = null;
   let totalCartPrice = null;
   cart.forEach((cartItem) => {
-    totalCartPrice += cartItem.price * (1 - cartItem.discount / 100);
     totalCartQuantity += cartItem.quantity;
+    totalCartPrice +=
+      cartItem.price * (1 - cartItem.discount / 100) * cartItem.quantity;
   });
   totalCartPrice = totalCartPrice?.toFixed(2);
-
   let isCartEmpty = true;
   cart.length === 0 ? (isCartEmpty = true) : (isCartEmpty = false);
 
@@ -240,7 +241,7 @@ const ContextProvider = ({ children }) => {
         isShowingCartPopup,
         isCartEmpty,
         onOpenCart,
-        // onChangeQuantity,
+        onChangeQuantity,
       }}
     >
       {children}

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import "../assets/style/cartTotals.css";
 import { Context } from "../contexts/ContextProvider";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const CartTotals = () => {
   const { totalCartPrice } = useContext(Context);
@@ -11,7 +11,7 @@ const CartTotals = () => {
       <div className="content">
         <div>
           <p>Subtotal</p>
-          <p>{totalCartPrice}</p>
+          <p>${totalCartPrice}</p>
         </div>
         <div>
           <p>Shipping</p>
@@ -19,13 +19,9 @@ const CartTotals = () => {
         </div>
         <div>
           <p>Total</p>
-          <p>{totalCartPrice}</p>
+          <p className="total-price">${totalCartPrice}</p>
         </div>
-      </div>
-      <div>
-        <NavLink to="/checkout">
-          <button>PROCEED TO CHECKOUT</button>
-        </NavLink>
+        <Link to="/checkout">PROCEED TO CHECKOUT</Link>
       </div>
     </div>
   );

@@ -9,11 +9,11 @@ const CartList = () => {
     <table className="cart-table">
       <thead>
         <tr>
-          <th>PRODUCT</th>
-          <th>PRICE</th>
-          <th>QUANTITY </th>
-          <th>SUBTOTAL</th>
-          <th></th>
+          <th className="product">PRODUCT</th>
+          <th className="price">PRICE</th>
+          <th className="quantity">QUANTITY </th>
+          <th className="subtotal">SUBTOTAL</th>
+          <th className="remove">&nbsp;</th>
         </tr>
       </thead>
       <tbody>

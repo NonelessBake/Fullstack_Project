@@ -4,14 +4,15 @@ import { Context } from "../contexts/ContextProvider";
 
 const CartItem = (newProps) => {
   const { carItem } = newProps;
-  const { id, price, discount, img, quantity, name } = carItem;
+  const { id, price, discount, img, quantity, name, onChangeQuantity } =
+    carItem;
   const { onIncreaseQuantityItem, onDecreaseQuantityItem, onRemoveCartItem } =
     useContext(Context);
   const newPrice = price * (1 - discount / 100);
 
   return (
     <tr className="cart-product">
-      <td className="product-name">
+      <td className="product-info">
         <img
           src={img[0]}
           style={{ maxWidth: 200 }}
@@ -20,16 +21,21 @@ const CartItem = (newProps) => {
         />
         <span className="product-name">{name}</span>
       </td>
-      <td className="product-price">{newPrice.toFixed(2)}</td>
+      <td className="product-price">${newPrice.toFixed(2)}</td>
       <td className="prouct-quantity">
-        <div className="quantity">
+        <div className="product-quantity">
           <button
             onClick={() => onDecreaseQuantityItem(carItem)}
             className="change-quantity-btn"
           >
             -
           </button>
-          <span className="quantity-text">{quantity}</span>
+          <input
+            type="number"
+            value={quantity}
+            className="quantity"
+            onChange={(e) => onChangeQuantity(e.target.value, id)}
+          />
           <button
             onClick={() => onIncreaseQuantityItem(carItem)}
             className="change-quantity-btn"
@@ -46,7 +52,7 @@ const CartItem = (newProps) => {
           className="remove-btn"
           onClick={() => onRemoveCartItem(carItem)}
         >
-          X
+          x
         </button>
       </td>
     </tr>
