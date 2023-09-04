@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 export const Context = createContext();
@@ -108,6 +108,16 @@ const ContextProvider = ({ children }) => {
     }
   };
 
+  // const onChangeQuantity = (value, id) => {
+  //   let index = cart.findIndex((item) => item.id === id);
+  //   let newCart = [...cart];
+  //   if (index !== -1) {
+  //     let newItem = newCart[index];
+  //     newItem.quantity = value;
+  //     setCart(newCart);
+  //   }
+  // };
+
   const onIncreaseQuantityItem = (cartItem) => {
     cartItem.quantity++;
     setCart((prev) => [...prev]);
@@ -132,7 +142,6 @@ const ContextProvider = ({ children }) => {
 
   let totalCartQuantity = null;
   let totalCartPrice = null;
-
   cart.forEach((cartItem) => {
     totalCartPrice += cartItem.price * (1 - cartItem.discount / 100);
     totalCartQuantity += cartItem.quantity;
@@ -203,6 +212,7 @@ const ContextProvider = ({ children }) => {
   }, []);
 
   // Footer Component
+
   return (
     <Context.Provider
       value={{
@@ -230,6 +240,7 @@ const ContextProvider = ({ children }) => {
         isShowingCartPopup,
         isCartEmpty,
         onOpenCart,
+        // onChangeQuantity,
       }}
     >
       {children}

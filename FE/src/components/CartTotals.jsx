@@ -6,16 +6,16 @@ import { NavLink } from "react-router-dom";
 const CartTotals = () => {
   const { totalCartPrice } = useContext(Context);
   return (
-    <div>
-      <div>
-        <h3>CART TOTALS</h3>
+    <div className="cart-total">
+      <p className="title">CART TOTALS</p>
+      <div className="content">
         <div>
           <p>Subtotal</p>
           <p>{totalCartPrice}</p>
         </div>
         <div>
           <p>Shipping</p>
-          <p>Shipping to: </p>
+          <p>Free shipping</p>
         </div>
         <div>
           <p>Total</p>

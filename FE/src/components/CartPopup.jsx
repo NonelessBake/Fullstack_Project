@@ -4,8 +4,16 @@ import { Link } from "react-router-dom";
 import "../assets/style/cartPopup.css";
 import { BsBagX } from "react-icons/bs";
 const CartPopup = () => {
-  const { isCartEmpty, cart, onRemoveCartItem, totalCartPrice } =
-    useContext(Context);
+  const {
+    isCartEmpty,
+    cart,
+    onRemoveCartItem,
+    totalCartPrice,
+    onOpenCart,
+    isHomePath,
+  } = useContext(Context);
+  let checked;
+  isHomePath.pathname === "/" ? (checked = true) : (checked = false);
   const CartEmpty = () => {
     return (
       <div>
@@ -61,8 +69,10 @@ const CartPopup = () => {
                 <p>${totalCartPrice}</p>
               </div>
               <div className="direct-cart-link">
-                <Link>VIEW CART</Link>
-                <Link>CHECKOUT</Link>
+                <Link to="/cart" onClick={onOpenCart}>
+                  VIEW CART
+                </Link>
+                <Link to="/checkout">CHECKOUT</Link>
               </div>
             </div>
           </div>

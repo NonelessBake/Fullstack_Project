@@ -1,0 +1,12 @@
+.cart-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  gap: 100px;
+}
+.cart-container:first-child {
+  flex: 2;
+}
+.cart-container:last-child {
+  flex: 1;
+}

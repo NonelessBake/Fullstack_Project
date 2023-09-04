@@ -11,10 +11,10 @@ function Cart() {
       {isCartEmpty ? (
         <div>Your Cart Is Currently Empty.</div>
       ) : (
-        <>
+        <div className="cart-container">
           <CartList />
           <CartTotals />
-        </>
+        </div>
       )}
     </div>
   );

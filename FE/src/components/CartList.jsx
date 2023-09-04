@@ -6,13 +6,14 @@ const CartList = () => {
   const { cart } = useContext(Context);
 
   return (
-    <table>
+    <table className="cart-table">
       <thead>
         <tr>
           <th>PRODUCT</th>
           <th>PRICE</th>
           <th>QUANTITY </th>
           <th>SUBTOTAL</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
