@@ -10,5 +10,8 @@
 .layout-nav{
     width: 4.5rem;
     background-color: #27374D;
-    height: calc(100vh - 64px);
+}
+.bi.bi-justify{
+    font-size: 2rem;
+    padding: 0.5rem;
 }

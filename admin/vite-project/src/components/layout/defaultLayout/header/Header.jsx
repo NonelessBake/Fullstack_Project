@@ -1,16 +1,17 @@
 import React from 'react'
 import './Header.css'
-
+import { useContext } from 'react'
+import { AppContext } from '../../../../context/AppContext'
 
 export default function Header() {
     let imgLogo = 'https://wpbingosite.com/wordpress/funio/wp-content/uploads/2020/12/logo2.png'
-
+    let {handleChangeButton} = useContext(AppContext)
     return (
-        <header className="p-2 shadow-header">
+        <header className="p-3 shadow-header">
             <div className="container-fluid">
                 <div className="w-100 d-flex flex-wrap align-items-center justify-content-between">
                     <div className='header-start d-flex'>
-                        <i className="bi bi-justify"></i>
+                        
                         <a href="/" className="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
                             <img src={imgLogo} alt="Funio–Funiture WooCommerce WordPress Theme" />
                         </a>

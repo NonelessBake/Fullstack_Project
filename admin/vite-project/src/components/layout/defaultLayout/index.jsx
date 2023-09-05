@@ -1,17 +1,19 @@
 import React from 'react'
 import Header from './header/Header'
 import Navigation from './navigation/Navigation'
-export function DefaultLayout({children}) {
+export function DefaultLayout({ children }) {
   return (
-    <div>
-        <Header/>
-        <div className='d-flex'>
-            <Navigation/>
-            <div className='content' style={{height:'calc(100vh - 64px)'}}>
-                {children}
-            </div>
+    <>
+      <div className='d-flex h-100'>
+        <Navigation />
+        <div className='d-flex flex-column h-100 w-100'>
+          <Header />
+          <div className='content'>
+            {children}
+          </div>
         </div>
-    </div>
+      </div>
+    </>
   )
 }
 
