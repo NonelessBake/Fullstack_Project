@@ -3,11 +3,9 @@ import { ContextUpdate, ContextValue } from "../../contexts/ContextProvider";
 import { Link } from "react-router-dom";
 import "../../assets/style/cartPopup.css";
 import { BsBagX } from "react-icons/bs";
-import { useDetectClickOutside } from "react-detect-click-outside";
 const CartPopup = () => {
   const { isCartEmpty, cart, totalCartPrice } = useContext(ContextValue);
   const { onRemoveCartItem, onOpenCart } = useContext(ContextUpdate);
-  const ref = useDetectClickOutside({});
 
   const CartEmpty = () => {
     return (
