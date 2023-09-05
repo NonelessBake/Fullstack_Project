@@ -16,14 +16,14 @@ import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
-import { ActicleContext } from '../../context/ActicleContext';
+
+import {ActicleContext} from '../../../context/ActicleContext'
 import './table.css'
-import AddDataButton from './pushData';
+import request from '../../../utils/HTTP';
+
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -40,10 +40,6 @@ function getComparator(order, orderBy) {
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-// Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
-// stableSort() brings sort stability to non-modern browsers (notably IE11). If you
-// only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
-// with exampleArray.slice().sort(exampleComparator)
 function stableSort(array, comparator) {
   const stabilizedThis = array.map((el, index) => [el, index]);
   stabilizedThis.sort((a, b) => {
@@ -152,8 +148,7 @@ EnhancedTableHead.propTypes = {
 };
 
 function EnhancedTableToolbar(props) {
-  const { numSelected } = props;
-
+  const { numSelected,handleDelete } = props;
   return (
     <Toolbar
       sx={{
@@ -186,9 +181,9 @@ function EnhancedTableToolbar(props) {
       )}
 
       {numSelected > 0 ? (
-        <Tooltip title="Delete">
+        <Tooltip title="Delete" onClick={() => handleDelete()}>
           <IconButton>
-            <DeleteIcon />
+              <DeleteIcon />
           </IconButton>
         </Tooltip>
       ) : (
@@ -204,17 +199,14 @@ function EnhancedTableToolbar(props) {
 
 EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
+  handleDelete: PropTypes.func.isRequired,
 };
 
-export default function EnhancedTable() {
-  const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('price');
-  const [selected, setSelected] = React.useState([]);
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [datarow,setRows] = React.useState([])
-  const {getData} = React.useContext(ActicleContext)
-
+export default function EnhancedTable(props) {
+  let hef = props.hef
+  const { order, setOrder,orderBy, setOrderBy,
+    selected, setSelected,page, setPage,
+    rowsPerPage, setRowsPerPage,datarow, setRows} = React.useContext(ActicleContext)
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -223,19 +215,19 @@ export default function EnhancedTable() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelected = datarow.map((n) => n.name);
+      const newSelected = datarow.map((n) => n.id);
       setSelected(newSelected);
       return;
     }
     setSelected([]);
   };
 
-  const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name);
+  const handleClick = (event, name, id) => {
+    const selectedIndex = selected.indexOf(id);
     let newSelected = [];
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
+      newSelected = newSelected.concat(selected, id);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -246,7 +238,7 @@ export default function EnhancedTable() {
         selected.slice(selectedIndex + 1),
       );
     }
-
+    console.log(newSelected)
     setSelected(newSelected);
   };
 
@@ -259,7 +251,7 @@ export default function EnhancedTable() {
     setPage(0);
   };
 
-  const isSelected = (name) => selected.indexOf(name) !== -1;
+  const isSelected = (id) => selected.indexOf(id) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -271,29 +263,43 @@ export default function EnhancedTable() {
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage,
       ),
-    [order, orderBy, page, rowsPerPage],
+    [order, orderBy, page, rowsPerPage,datarow],
   );
-  const handleData = () =>{
-    return datarow.map((item) =>{
-      return item.category.map((item) =>{
-        console.log(item)
-      })
-    })
-  }
   React.useEffect(() => {
-    getData((data) =>{
-      (setRows(data))
-    })
-  },[]);
+    request.get(hef)
+      .then((res) => {
+        setRows(res.data)
+      })
+  }, []);
+  const handleDelete = () => {
+    // Delete the selected rows from the database
+    selected.forEach((id) => {
+      deletePost(id);
+    });
+    // Filter the datarow array to remove the deleted rows
+    const filteredRows = datarow.filter((row) => {
+      return !selected.includes(row.id);
+    });
+    // Set the rows state variable to the filtered array
+    setRows(filteredRows);
+    setSelected([])
+  };
+
+  const deletePost = (id) => {
+    request.delete(`${hef}/${id}`);
+ };
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        <EnhancedTableToolbar 
+        numSelected={selected.length}
+        handleDelete = {handleDelete} 
+        />
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
             aria-labelledby="tableTitle"
-            
+
           >
             <EnhancedTableHead
               numSelected={selected.length}
@@ -305,13 +311,13 @@ export default function EnhancedTable() {
             />
             <TableBody>
               {visibleRows.map((row, index) => {
-                const isItemSelected = isSelected(row.name);
+                const isItemSelected = isSelected(row.id);
                 const labelId = `enhanced-table-checkbox-${index}`;
 
                 return (
                   <TableRow
                     hover
-                    onClick={(event) => handleClick(event, row.name)}
+                    onClick={(event) => handleClick(event, row.name,row.id)}
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
@@ -362,8 +368,6 @@ export default function EnhancedTable() {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-      <AddDataButton
-      open ={false} addData = {true}/>
     </Box>
   );
 }

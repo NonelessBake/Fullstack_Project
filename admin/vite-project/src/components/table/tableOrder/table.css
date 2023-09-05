@@ -2,6 +2,7 @@ p{ margin: 0;}
 .content{
     width: 100%;
     height: calc(100vh - 64px);
+    background-color: #364E6F;
     overflow-y:scroll; 
   }
 article{

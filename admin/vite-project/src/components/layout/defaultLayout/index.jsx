@@ -7,7 +7,7 @@ export function DefaultLayout({children}) {
         <Header/>
         <div className='d-flex'>
             <Navigation/>
-            <div className='content'>
+            <div className='content' style={{height:'calc(100vh - 64px)'}}>
                 {children}
             </div>
         </div>

@@ -48,19 +48,9 @@ export const AppProvier = ({children}) => {
             name:'Contact',
             hef:'/Contact',
             img :'/src/imgs/Contact.png'
-        },
-        {
-            name:'Voucher',
-            hef:'/Voucher',
-            img :'/src/imgs/Voucher.png'
-        },
-        {
-            name:'Comment',
-            hef:'/Comment',
-            img :'/src/imgs/SpeechBubble.png'
         }
     ]
-
+    
     return <AppContext.Provider value={
         { hefPage }}>
                 {children}
