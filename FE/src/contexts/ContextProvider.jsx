@@ -166,7 +166,6 @@ const ContextProvider = ({ children }) => {
   const onOpenCart = () => {
     setIsShowingCartPopup((prev) => !prev);
   };
-  console.log(cart);
 
   // Shoping Cart
 
