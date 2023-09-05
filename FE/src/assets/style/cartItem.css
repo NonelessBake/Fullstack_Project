@@ -32,11 +32,7 @@
   align-items: center;
 }
 .product-name {
-  width: 70%;
   color: #868686;
-}
-.product-stock {
-  display: inline-block;
 }
 .change-quantity-btn {
   max-width: 30%;

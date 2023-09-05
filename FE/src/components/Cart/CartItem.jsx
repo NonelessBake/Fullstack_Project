@@ -28,8 +28,8 @@ const CartItem = (newProps) => {
             className="product-img"
           />
           <div>
-            <span className="product-name">{name}</span>
-            <span className="product-stock">Stock: {status}</span>
+            <div className="product-name">{name}</div>
+            <div className="product-stock">Stock: {status}</div>
           </div>
         </div>
       </td>
