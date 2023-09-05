@@ -83,7 +83,6 @@
   margin: 0;
 }
 
-/* Firefox */
 .quantity[type="number"] {
   -moz-appearance: textfield;
 }
