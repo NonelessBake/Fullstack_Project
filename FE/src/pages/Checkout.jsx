@@ -1,6 +1,23 @@
 import axios from "axios";
 import { useFormik } from "formik";
+import { useContext } from "react";
+import { ContextValue } from "../contexts/ContextProvider";
+import CartItem from "../components/Cart/CartItem";
+import CheckoutCartList from "../components/Checkout/CheckoutCartList";
 const Checkout = () => {
+  const { cart } = useContext(ContextValue);
+  const cartPOST = cart.map((item) => {
+    delete item.status;
+    return {
+      id: crypto.randomUUID(),
+      item,
+      orderConfirmation: false,
+      transferToCarrier: false,
+      delivery: false,
+      receive: false,
+    };
+  });
+  console.log(cartPOST);
   const { values, handleChange, handleSubmit, resetForm } = useFormik({
     initialValues: {
       firstName: "",
@@ -15,32 +32,19 @@ const Checkout = () => {
       notes: "",
     },
     onSubmit: () => {
-      // cart.foreach() ?
       axios.post({
         method: "POST",
         url: "http://localhost:3000/orderInfos",
         data: {
           id: crypto.randomUUID(),
           infoCustomer: values,
-          infoProducts: {
-            id: crypto.randomUUID(),
-            products: {
-              product: "",
-              status: {
-                orderConfirmation: true,
-                transferToCarrier: true,
-                delivery: true,
-                receive: false,
-              },
-            },
-          },
+          infoProducts: cartPOST,
         },
       });
       resetForm();
     },
   });
-  const test = values;
-  console.log(test);
+
   return (
     <div>
       <h3>Billing details</h3>
@@ -462,7 +466,7 @@ const Checkout = () => {
           </div>
         </div>
         <div>
-          <button type="submit">SUBMIT</button>
+          <CheckoutCartList />
         </div>
       </form>
     </div>

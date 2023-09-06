@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import axios from "axios";
-import { createContext, useEffect, useRef, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 export const ContextValue = createContext();
@@ -20,9 +20,8 @@ const ContextProvider = ({ children }) => {
   };
   const [backgroundImgs, setBackGroundImg] = useState([]);
   const fetchBackground = async () => {
-    return axios.get("http://localhost:3000/headerSlide").then((res) => {
-      setBackGroundImg(res.data);
-    });
+    const res = await axios.get("http://localhost:3000/headerSlide");
+    setBackGroundImg(res.data);
   };
 
   // Header Component
@@ -30,9 +29,8 @@ const ContextProvider = ({ children }) => {
   // Bannner
   const [banner, setBanner] = useState([]);
   const fetchBanner = async () => {
-    return axios.get("http://localhost:3000/imagesBanner").then((res) => {
-      setBanner(res.data);
-    });
+    const res = await axios.get("http://localhost:3000/imagesBanner");
+    setBanner(res.data);
   };
 
   const bannerImages = banner.map((item) => item.img);
@@ -80,9 +78,8 @@ const ContextProvider = ({ children }) => {
   // Products Fetch API
   const [productList, setProductList] = useState([]);
   const fetchProducts = async () => {
-    return axios
-      .get(`http://localhost:3000/products`)
-      .then((res) => setProductList(res.data));
+    const res = await axios.get(`http://localhost:3000/products`);
+    setProductList(res.data);
   };
 
   // Products Fetch API
@@ -212,6 +209,7 @@ const ContextProvider = ({ children }) => {
     fetchBanner(), fetchProducts();
     fetchCollection();
     fetchBrand();
+
     function handleWindowResize() {
       setWindowSize(getWindowSize());
     }

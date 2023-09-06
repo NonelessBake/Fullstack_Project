@@ -60,12 +60,14 @@ const Collection = () => {
   const minIndex = 0;
 
   const onPrevSlide = () => {
-    if (activeIndex <= minIndex) setActiveIndex(maxIndex);
-    else setActiveIndex(activeIndex - 1);
+    activeIndex <= minIndex
+      ? setActiveIndex(maxIndex)
+      : setActiveIndex(activeIndex - 1);
   };
   const onNextSlide = () => {
-    if (activeIndex >= maxIndex) setActiveIndex(minIndex);
-    else setActiveIndex(activeIndex + 1);
+    activeIndex >= maxIndex
+      ? setActiveIndex(minIndex)
+      : setActiveIndex(activeIndex + 1);
   };
 
   return (
