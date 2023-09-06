@@ -171,7 +171,6 @@ const ContextProvider = ({ children }) => {
 
   // HomeProduct Component
   const [showList, setShowList] = useState("Latest Products");
-
   const homeProductList =
     showList !== "Latest Products"
       ? showList === "Best Sellers"
