@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 export const ContextValue = createContext();
@@ -162,11 +162,11 @@ const ContextProvider = ({ children }) => {
   totalCartPrice = totalCartPrice?.toFixed(2);
   let isCartEmpty = true;
   cart.length === 0 ? (isCartEmpty = true) : (isCartEmpty = false);
-  const [isShowingCartPopup, setIsShowingCartPopup] = useState(false);
-  const onOpenCart = () => {
-    setIsShowingCartPopup((prev) => !prev);
-  };
 
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   // Shoping Cart
 
   // HomeProduct Component
@@ -240,8 +240,8 @@ const ContextProvider = ({ children }) => {
         totalCartPrice,
         totalCartQuantity,
         cart,
-        isShowingCartPopup,
         isCartEmpty,
+        show,
       }}
     >
       <ContextUpdate.Provider
@@ -254,11 +254,11 @@ const ContextProvider = ({ children }) => {
           onIncreaseQuantityItem,
           onDecreaseQuantityItem,
           onRemoveCartItem,
-          onOpenCart,
           onChangeQuantityItem,
+          handleClose,
+          handleShow,
         }}
       >
-        {" "}
         {children}
       </ContextUpdate.Provider>
     </ContextValue.Provider>

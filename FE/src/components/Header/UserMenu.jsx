@@ -3,15 +3,13 @@ import { ContextUpdate, ContextValue } from "../../contexts/ContextProvider";
 import { Link, NavLink } from "react-router-dom";
 import "../../assets/style/userMenu.css";
 import CartPopup from "../Cart/CartPopup";
-
+import Modal from "react-bootstrap/Modal";
 const UserMenu = () => {
-  const { isHomePath, totalCartQuantity, isShowingCartPopup } =
-    useContext(ContextValue);
-  const { activeClass, onOpenCart } = useContext(ContextUpdate);
+  const { isHomePath, totalCartQuantity, show } = useContext(ContextValue);
+  const { activeClass, handleShow, handleClose } = useContext(ContextUpdate);
   let checked;
   isHomePath.pathname === "/" ? (checked = true) : (checked = false);
   const colorHome = checked ? "white-color-text" : null;
-  // console.log(isShowingCart);
   return (
     <section
       className={`header-container ${
@@ -112,7 +110,7 @@ const UserMenu = () => {
           </button>
           <button
             className="cart-header-btn open-cart-btn"
-            onClick={onOpenCart}
+            onClick={handleShow}
           >
             <i className="uil uil-shopping-cart">
               {totalCartQuantity && (
@@ -120,7 +118,9 @@ const UserMenu = () => {
               )}
             </i>
           </button>
-          {isShowingCartPopup ? <CartPopup /> : null}
+          <Modal show={show} onHide={handleClose}>
+            <CartPopup />
+          </Modal>
         </div>
       </div>
     </section>

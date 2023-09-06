@@ -199,3 +199,17 @@
 .white-color-text .active-item {
   border-bottom: 2px solid white;
 }
+
+.modal-content {
+  border: none;
+}
+.modal-dialog {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  max-width: none;
+}
+.modal {
+  top: 110px;
+  left: -20px;
+}

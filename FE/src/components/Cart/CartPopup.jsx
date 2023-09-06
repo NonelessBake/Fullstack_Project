@@ -3,9 +3,10 @@ import { ContextUpdate, ContextValue } from "../../contexts/ContextProvider";
 import { Link } from "react-router-dom";
 import "../../assets/style/cartPopup.css";
 import { BsBagX } from "react-icons/bs";
+
 const CartPopup = () => {
   const { isCartEmpty, cart, totalCartPrice } = useContext(ContextValue);
-  const { onRemoveCartItem, onOpenCart } = useContext(ContextUpdate);
+  const { onRemoveCartItem, handleClose } = useContext(ContextUpdate);
 
   const CartEmpty = () => {
     return (
@@ -21,7 +22,6 @@ const CartPopup = () => {
 
   return (
     <>
-      <span className="highlight-cart-popup "></span>
       <div className="cart-popup-container">
         {isCartEmpty ? (
           <CartEmpty />
@@ -64,10 +64,12 @@ const CartPopup = () => {
                   <p>${totalCartPrice}</p>
                 </div>
                 <div className="direct-cart-link">
-                  <Link to="/cart" onClick={onOpenCart}>
+                  <Link to="/cart" onClick={handleClose}>
                     VIEW CART
                   </Link>
-                  <Link to="/checkout">CHECKOUT</Link>
+                  <Link to="/checkout" onClick={handleClose}>
+                    CHECKOUT
+                  </Link>
                 </div>
               </div>
             </div>
