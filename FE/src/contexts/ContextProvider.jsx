@@ -180,12 +180,20 @@ const ContextProvider = ({ children }) => {
   };
   // HomeProduct Component
 
+  // Checkout Components
+  const [countryList, setCountryList] = useState([]);
+  const fetchCountryList = async () => {
+    const res = await axios.get("http://localhost:3000/countries");
+    setCountryList(res.data);
+  };
+  // Checkout Components
+
   // Collection Component
   const [collection, setCollection] = useState([]);
   const fetchCollection = async () => {
-    return await axios.get("http://localhost:3000/imgSlide").then((res) => {
-      setCollection(res.data);
-    });
+    const res = await axios.get("http://localhost:3000/imgSlide");
+    setCollection(res.data);
+    }
   };
 
   function getWindowSize() {
@@ -199,9 +207,9 @@ const ContextProvider = ({ children }) => {
   // Footer Component
   const [brand, setBrand] = useState([]);
   const fetchBrand = async () => {
-    return axios.get("http://localhost:3000/brand").then((res) => {
+    const res =  axios.get("http://localhost:3000/brand")
       setBrand(res.data);
-    });
+    
   };
 
   useEffect(() => {
@@ -209,7 +217,7 @@ const ContextProvider = ({ children }) => {
     fetchBanner(), fetchProducts();
     fetchCollection();
     fetchBrand();
-
+    fetchCountryList();
     function handleWindowResize() {
       setWindowSize(getWindowSize());
     }
@@ -224,6 +232,7 @@ const ContextProvider = ({ children }) => {
   return (
     <ContextValue.Provider
       value={{
+        countryList,
         productList,
         isHomePath,
         backgroundImgs,
