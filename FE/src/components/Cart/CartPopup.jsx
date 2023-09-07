@@ -3,18 +3,18 @@ import { ContextUpdate, ContextValue } from "../../contexts/ContextProvider";
 import { Link } from "react-router-dom";
 import "../../assets/style/cartPopup.css";
 import { BsBagX } from "react-icons/bs";
-
+import "../../assets/style/cartEmpty.css";
 const CartPopup = () => {
   const { isCartEmpty, cart, totalCartPrice } = useContext(ContextValue);
   const { onRemoveCartItem, handleClose } = useContext(ContextUpdate);
 
   const CartEmpty = () => {
     return (
-      <div>
-        <BsBagX />
-        <h4>No products in the cart.</h4>
-        <Link to="/shop">
-          Go to the shop <span></span>
+      <div className="cart-empty">
+        <BsBagX size={70} />
+        <h4 className="empty-cart-popup">No products in the cart.</h4>
+        <Link to="/shop" onClick={handleClose}>
+          Go to the shop
         </Link>
       </div>
     );

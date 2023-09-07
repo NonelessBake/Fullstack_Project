@@ -1,23 +1,20 @@
 import axios from "axios";
 import { useFormik } from "formik";
 import { useContext } from "react";
-import { ContextValue } from "../../contexts/ContextProvider";
+import { ContextUpdate, ContextValue } from "../../contexts/ContextProvider";
 import CheckoutCartList from "./CheckoutCartList";
 import "../../assets/style/checkoutForm.css";
+import CheckoutFormValidate from "./CheckoutFormValidate";
 const CheckoutForm = () => {
-  const { cart } = useContext(ContextValue);
+  const { cart, countryList, orderDate } = useContext(ContextValue);
+  const { onOrderSuccess } = useContext(ContextUpdate);
   const cartPOST = cart.map((item) => {
     delete item.status;
-    return {
-      id: crypto.randomUUID(),
-      item,
-      orderConfirmation: false,
-      transferToCarrier: false,
-      delivery: false,
-      receive: false,
-    };
+    return item;
   });
-  const { values, handleChange, handleSubmit, resetForm } = useFormik({
+  const OId = crypto.randomUUID();
+  console.log(OId);
+  const { values, handleChange, handleSubmit, resetForm, errors } = useFormik({
     initialValues: {
       firstName: "",
       lastName: "",
@@ -31,19 +28,31 @@ const CheckoutForm = () => {
       notes: "",
     },
     onSubmit: () => {
-      axios.post({
-        method: "POST",
-        url: "http://localhost:3000/orderInfos",
-        data: {
-          id: crypto.randomUUID(),
+      axios
+        .post("http://localhost:3000/orderInfos", {
+          date: orderDate,
+          id: OId,
           infoCustomer: values,
           infoProducts: cartPOST,
-        },
-      });
+          orderConfirmation: false,
+          transferToCarrier: false,
+          delivery: false,
+          receive: false,
+        })
+        .then(
+          (response) => {
+            console.log(response);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      alert(`Your tracking order is: ${OId}`);
+      onOrderSuccess();
       resetForm();
     },
+    validationSchema: CheckoutFormValidate,
   });
-
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -51,22 +60,28 @@ const CheckoutForm = () => {
           <div className="form-info">
             <h3>Billing details</h3>
             <div className="form-group">
-              <label htmlFor="">First name</label>
+              <label htmlFor="">
+                First name <span className="required">*</span>
+              </label>
               <input
                 value={values.firstName}
                 onChange={handleChange}
                 name="firstName"
                 type="text"
               />
+              <small className="text-muted">{errors.firstName}</small>
             </div>
             <div className="form-group">
-              <label htmlFor="">Last name</label>
+              <label htmlFor="">
+                Last name <span className="required">*</span>
+              </label>
               <input
                 value={values.lastName}
                 onChange={handleChange}
                 name="lastName"
                 type="text"
               />
+              <small className="text-muted">{errors.lastName}</small>
             </div>
             <div className="form-group">
               <label htmlFor="">Company name (optional)</label>
@@ -79,20 +94,32 @@ const CheckoutForm = () => {
             </div>
             <div className="form-group">
               <label htmlFor="exampleFormControlSelect1">
-                Country / Region
+                Country / Region <span className="required">*</span>
               </label>
-              <div className="select-wrapper">
-                <select></select>
-              </div>
+              <select
+                className="select-country"
+                name="countryOrRegion"
+                onChange={handleChange}
+                value={values.countryOrRegion}
+              >
+                {countryList.map((country, index) => (
+                  <option value={country.name} key={index}>
+                    {country.name}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="form-group">
-              <label htmlFor="">Street address</label>
+              <label htmlFor="">
+                Street address <span className="required">*</span>
+              </label>
               <input
                 value={values.streetAddress}
                 onChange={handleChange}
                 name="streetAddress"
                 type="text"
               />
+              <small className="text-muted">{errors.streetAddress}</small>
             </div>
             <div className="form-group">
               <label htmlFor="">Postcode/ Zip (optional)</label>
@@ -100,36 +127,45 @@ const CheckoutForm = () => {
                 value={values.postcodeOrZip}
                 onChange={handleChange}
                 name="postcodeOrZip"
-                type="number"
+                type="text"
               />
             </div>
             <div className="form-group">
-              <label htmlFor="">Town / City</label>
+              <label htmlFor="">
+                Town / City <span className="required">*</span>
+              </label>
               <input
                 value={values.townOrCity}
                 onChange={handleChange}
                 name="townOrCity"
                 type="text"
               />
+              <small className="text-muted">{errors.townOrCity}</small>
             </div>
             <div className="form-group">
-              <label htmlFor="">Phone</label>
+              <label htmlFor="">
+                Phone <span className="required">*</span>
+              </label>
               <input
                 value={values.phone}
                 onChange={handleChange}
                 name="phone"
-                type="number"
+                type="text"
                 id=""
               />
+              <small className="text-muted">{errors.phone}</small>
             </div>
             <div className="form-group">
-              <label htmlFor="">Email address</label>
+              <label htmlFor="">
+                Email address <span className="required">*</span>
+              </label>
               <input
                 value={values.emailAddress}
                 onChange={handleChange}
                 name="emailAddress"
                 type="email"
               />
+              <small className="text-muted">{errors.emailAddress}</small>
             </div>
             <div className="form-group">
               <label htmlFor="exampleFormControlTextarea1">

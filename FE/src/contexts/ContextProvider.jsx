@@ -23,6 +23,9 @@ const ContextProvider = ({ children }) => {
     const res = await axios.get("http://localhost:3000/headerSlide");
     setBackGroundImg(res.data);
   };
+  useEffect(() => {
+    fetchBackground();
+  }, []);
 
   // Header Component
 
@@ -32,6 +35,9 @@ const ContextProvider = ({ children }) => {
     const res = await axios.get("http://localhost:3000/imagesBanner");
     setBanner(res.data);
   };
+  useEffect(() => {
+    fetchBanner();
+  }, []);
 
   const bannerImages = banner.map((item) => item.img);
   // Banner
@@ -81,6 +87,9 @@ const ContextProvider = ({ children }) => {
     const res = await axios.get(`http://localhost:3000/products`);
     setProductList(res.data);
   };
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   // Products Fetch API
 
@@ -110,7 +119,6 @@ const ContextProvider = ({ children }) => {
     return value;
   };
   const onChangeQuantityItem = (value, carItem) => {
-    console.log({ value, carItem });
     let index = cart.findIndex((item) => item.id === carItem.id);
     let newCart = [...cart];
     if (index !== -1) {
@@ -186,6 +194,37 @@ const ContextProvider = ({ children }) => {
     const res = await axios.get("http://localhost:3000/countries");
     setCountryList(res.data);
   };
+  useEffect(() => {
+    fetchCountryList();
+  }, []);
+  const onOrderSuccess = () => {
+    setCart([]);
+    localStorage.removeItem("cart");
+  };
+  const date = new Date();
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const padTo2Digits = (num) => {
+    return num.toString().padStart(2, "0");
+  };
+  const orderDate = [
+    monthNames[date.getMonth()],
+    padTo2Digits(date.getDate()),
+    date.getFullYear(),
+  ].join("-");
+
   // Checkout Components
 
   // Collection Component
@@ -194,6 +233,10 @@ const ContextProvider = ({ children }) => {
     const res = await axios.get("http://localhost:3000/imgSlide");
     setCollection(res.data);
   };
+  useEffect(() => {
+    fetchCollection();
+  }, []);
+
   function getWindowSize() {
     const { innerWidth, innerHeight } = window;
     return { innerWidth, innerHeight };
@@ -208,13 +251,10 @@ const ContextProvider = ({ children }) => {
     const res = await axios.get("http://localhost:3000/brand");
     setBrand(res.data);
   };
-  console.log(brand);
   useEffect(() => {
     fetchBrand();
-    fetchBackground();
-    fetchBanner(), fetchProducts();
-    fetchCollection();
-    fetchCountryList();
+  }, []);
+  useEffect(() => {
     function handleWindowResize() {
       setWindowSize(getWindowSize());
     }
@@ -223,12 +263,12 @@ const ContextProvider = ({ children }) => {
       window.removeEventListener("resize", handleWindowResize);
     };
   }, []);
-
   // Footer Component
 
   return (
     <ContextValue.Provider
       value={{
+        orderDate,
         countryList,
         productList,
         isHomePath,
@@ -260,6 +300,7 @@ const ContextProvider = ({ children }) => {
           onChangeQuantityItem,
           handleClose,
           handleShow,
+          onOrderSuccess,
         }}
       >
         {children}
