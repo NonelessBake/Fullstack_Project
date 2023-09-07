@@ -4,9 +4,6 @@
   padding: 15px 15px 15px 0;
 }
 .checkout-cart-item .checkout-cart {
-  display: flex;
-}
-.checkout-cart {
   gap: 30px;
   flex: 4;
   display: flex;

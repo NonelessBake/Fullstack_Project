@@ -4,6 +4,7 @@ import { ContextUpdate } from "../../contexts/ContextProvider";
 
 const CartItem = (newProps) => {
   const { cartItem } = newProps;
+  console.log(cartItem);
   const { price, discount, img, quantity, name, status } = cartItem;
   const {
     onIncreaseQuantityItem,
@@ -16,7 +17,7 @@ const CartItem = (newProps) => {
     if (Number(newPrice) === 0 || Number(quantity) === 0) return 1;
     return (newPrice * quantity).toFixed(2);
   }, [newPrice, quantity]);
-
+  console.log(status);
   return (
     <tr className="cart-product">
       <td className="product-info">

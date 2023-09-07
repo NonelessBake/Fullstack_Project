@@ -1,9 +1,12 @@
+.checkout-form {
+  max-width: 1600px;
+  margin: 0 auto;
+  margin-bottom: 100px;
+}
 .form-container {
   display: flex;
   gap: 30px;
   padding: 15px;
-  max-width: 1600px;
-  margin: 0 auto;
 }
 .form-info {
   flex: 2;
