@@ -2,11 +2,10 @@ import axios from "axios";
 import { useFormik } from "formik";
 import { useContext } from "react";
 import { ContextUpdate, ContextValue } from "../../contexts/ContextProvider";
+import CheckoutCartItem from "./CheckoutCartItem";
 import "../../assets/style/checkoutForm.css";
 import "../../assets/style/checkoutCartList.css";
-
-import CheckoutFormValidate from "./CheckoutFormValidate";
-import CheckoutCartItem from "./CheckoutCartItem";
+import { FormValidate } from "../Validate/FormValidate";
 const CheckoutForm = () => {
   const { cart, countryList, orderDate, totalCartPrice } =
     useContext(ContextValue);
@@ -20,7 +19,6 @@ const CheckoutForm = () => {
   const OId =
     crypto.randomUUID(5) +
     Math.round(new Date().getTime() / (Math.random() * 100));
-
   const { values, handleChange, handleSubmit, resetForm, errors } = useFormik({
     initialValues: {
       firstName: "",
@@ -61,7 +59,7 @@ const CheckoutForm = () => {
       onOrderSuccess();
       resetForm();
     },
-    validationSchema: CheckoutFormValidate,
+    validationSchema: FormValidate,
   });
   return (
     <div>
