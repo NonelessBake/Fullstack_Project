@@ -20,7 +20,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 
-import {ActicleContext} from '../../../context/ActicleContext'
+import { ActicleContext } from '../../../context/ActicleContext'
 import './table.css'
 import request from '../../../utils/HTTP';
 
@@ -51,44 +51,46 @@ function stableSort(array, comparator) {
   });
   return stabilizedThis.map((el) => el[0]);
 }
-
+function createData(id, fullName, phone, infoProduct, status) {
+  return {
+    id,
+    fullName,
+    phone,
+    infoProduct,
+    status,
+  };
+}
 const headCells = [
   {
-    id: 'name',
+    id: 'id',
     numeric: false,
     disablePadding: true,
-    label: 'Name product',
+    label: 'Id order',
   },
   {
-    id: 'category',
+    id: 'fullName',
     numeric: false,
     disablePadding: false,
-    label: 'Category',
+    label: 'Name user',
   },
   {
-    id: 'tags',
+    id: 'phone',
     numeric: false,
     disablePadding: false,
-    label: 'Tags',
+    label: 'Phone number',
+  },
+  {
+    id: 'infoProduct',
+    numeric: false,
+    disablePadding: false,
+    label: 'Info product',
   },
   {
     id: 'price',
     numeric: true,
     disablePadding: false,
     label: 'Price($)',
-  },
-  {
-    id: 'discount',
-    numeric: true,
-    disablePadding: false,
-    label: 'Discount(%)',
-  },
-  {
-    id: 'status',
-    numeric: true,
-    disablePadding: false,
-    label: 'Quantity',
-  },
+  }
 ];
 
 function EnhancedTableHead(props) {
@@ -148,7 +150,7 @@ EnhancedTableHead.propTypes = {
 };
 
 function EnhancedTableToolbar(props) {
-  const { numSelected,handleDelete } = props;
+  const { numSelected, handleDelete } = props;
   return (
     <Toolbar
       sx={{
@@ -183,7 +185,7 @@ function EnhancedTableToolbar(props) {
       {numSelected > 0 ? (
         <Tooltip title="Delete" onClick={() => handleDelete()}>
           <IconButton>
-              <DeleteIcon />
+            <DeleteIcon />
           </IconButton>
         </Tooltip>
       ) : (
@@ -204,15 +206,15 @@ EnhancedTableToolbar.propTypes = {
 
 export default function EnhancedTable(props) {
   let hef = props.hef
-  const { order, setOrder,orderBy, setOrderBy,
-    selected, setSelected,page, setPage,
-    rowsPerPage, setRowsPerPage,datarow, setRows} = React.useContext(ActicleContext)
+  const { order, setOrder, orderBy, setOrderBy,
+    selected, setSelected, page, setPage,
+    rowsPerPage, setRowsPerPage, datarow, setRows } = React.useContext(ActicleContext)
+  const [dataProduct, setDataProduct] = React.useState([])
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
-
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
       const newSelected = datarow.map((n) => n.id);
@@ -263,12 +265,25 @@ export default function EnhancedTable(props) {
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage,
       ),
-    [order, orderBy, page, rowsPerPage,datarow],
+    [order, orderBy, page, rowsPerPage, datarow],
   );
   React.useEffect(() => {
+    // get api order
     request.get(hef)
       .then((res) => {
-        setRows(res.data)
+        let data = res.data
+        setRows(() => {
+          return data.map((item) => {
+            let fullName = item.contact.firstName + ' ' + item.contact.lastName
+            let idProduct = item.orderItems
+            return createData(item.id, fullName, item.contact.phoneNumber, idProduct)
+          })
+        })
+      })
+    // get api prouduct
+    request.get("products")
+      .then((res) => {
+        setDataProduct(res.data)
       })
   }, []);
   const handleDelete = () => {
@@ -284,16 +299,25 @@ export default function EnhancedTable(props) {
     setRows(filteredRows);
     setSelected([])
   };
-
   const deletePost = (id) => {
     request.delete(`${hef}/${id}`);
- };
+  };
+  const allPrice = () =>{
+    return dataProduct.map((product) =>{
+      return datarow.map((order) =>{
+        if (product.id == order.infoProduct.idProduct) {
+          console.log(product.id)
+        }
+      })
+    })
+  }
+  allPrice()
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
-        <EnhancedTableToolbar 
-        numSelected={selected.length}
-        handleDelete = {handleDelete} 
+        <EnhancedTableToolbar
+          numSelected={selected.length}
+          handleDelete={handleDelete}
         />
         <TableContainer>
           <Table
@@ -313,11 +337,10 @@ export default function EnhancedTable(props) {
               {visibleRows.map((row, index) => {
                 const isItemSelected = isSelected(row.id);
                 const labelId = `enhanced-table-checkbox-${index}`;
-
                 return (
                   <TableRow
                     hover
-                    onClick={(event) => handleClick(event, row.name,row.id)}
+                    onClick={(event) => handleClick(event, row.name, row.id)}
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
@@ -340,13 +363,18 @@ export default function EnhancedTable(props) {
                       scope="row"
                       padding="none"
                     >
-                      {row.name}
+                      {row.id}
                     </TableCell>
-                    <TableCell align="left">{row.category.toString()}</TableCell>
-                    <TableCell align="left">{row.tags.toString()}</TableCell>
-                    <TableCell align="right">{row.price}</TableCell>
-                    <TableCell align="right">{row.status}</TableCell>
-                    <TableCell align="right">{row.discount}</TableCell>
+                    <TableCell align="left">{row.fullName}</TableCell>
+                    <TableCell align="left">{row.phone}</TableCell>
+                    <TableCell align="left">
+                      {row.infoProduct.map((item) => {
+                        return <div key={item.idProduct}>
+                          {item.idProduct}
+                        </div>
+                      })}
+                    </TableCell>
+                    <TableCell align="right">{ }</TableCell>
                   </TableRow>
                 );
               })}
