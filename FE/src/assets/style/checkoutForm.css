@@ -75,6 +75,10 @@
 .form-container .text-muted {
   color: red !important;
 }
+.checkout-cart-list .cart-list {
+  max-height: 80vh;
+  overflow-y: auto;
+}
 .form-info input.quantity::-webkit-outer-spin-button,
 .form-info input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -83,4 +87,23 @@
 
 .form-info input[type="number"] {
   -moz-appearance: textfield;
+}
+
+.checkout-cart-list .cart-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.checkout-cart-list .cart-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.checkout-cart-list .cart-list::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.checkout-cart-list .cart-list::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
