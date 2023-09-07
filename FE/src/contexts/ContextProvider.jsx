@@ -227,6 +227,32 @@ const ContextProvider = ({ children }) => {
 
   // Checkout Components
 
+  // Tracking order
+  const [orderList, setOrderList] = useState([]);
+  const [orderId, setOrderId] = useState(null);
+  let isOrderExist = false;
+
+  const handleChange = (e) => setOrderId(e.target.value);
+  const fetchOrderList = async () => {
+    try {
+      const res = await axios.get("http://localhost:3000/orderInfos");
+      setOrderList(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    fetchOrderList();
+  }, []);
+  const onTrack = () => {
+    const orderProducts = orderList?.filter(
+      (product) => product.id === orderId.id
+    );
+    !orderProducts.length ? (isOrderExist = false) : (isOrderExist = true);
+    return isOrderExist;
+  };
+  // Tracking order
+
   // Collection Component
   const [collection, setCollection] = useState([]);
   const fetchCollection = async () => {
@@ -268,6 +294,8 @@ const ContextProvider = ({ children }) => {
   return (
     <ContextValue.Provider
       value={{
+        isOrderExist,
+        orderId,
         orderDate,
         countryList,
         productList,
@@ -301,6 +329,8 @@ const ContextProvider = ({ children }) => {
           handleClose,
           handleShow,
           onOrderSuccess,
+          handleChange,
+          onTrack,
         }}
       >
         {children}

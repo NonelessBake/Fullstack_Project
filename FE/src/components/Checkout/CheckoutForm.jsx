@@ -2,29 +2,37 @@ import axios from "axios";
 import { useFormik } from "formik";
 import { useContext } from "react";
 import { ContextUpdate, ContextValue } from "../../contexts/ContextProvider";
-import CheckoutCartList from "./CheckoutCartList";
 import "../../assets/style/checkoutForm.css";
+import "../../assets/style/checkoutCartList.css";
+
 import CheckoutFormValidate from "./CheckoutFormValidate";
+import CheckoutCartItem from "./CheckoutCartItem";
 const CheckoutForm = () => {
-  const { cart, countryList, orderDate } = useContext(ContextValue);
+  const { cart, countryList, orderDate, totalCartPrice } =
+    useContext(ContextValue);
+
   const { onOrderSuccess } = useContext(ContextUpdate);
   const cartPOST = cart.map((item) => {
     delete item.status;
     return item;
   });
-  const OId = crypto.randomUUID();
-  console.log(OId);
+
+  const OId =
+    crypto.randomUUID(5) +
+    Math.round(new Date().getTime() / (Math.random() * 100));
+
   const { values, handleChange, handleSubmit, resetForm, errors } = useFormik({
     initialValues: {
       firstName: "",
       lastName: "",
       companyName: "",
-      countryOrRegion: "",
+      countryOrRegion: "Afghanistan",
       streetAddress: "",
       postcodeOrZip: "",
       townOrCity: "",
       phone: "",
       emailAddress: "",
+      paymentMethod: "Pay after the delivery",
       notes: "",
     },
     onSubmit: () => {
@@ -34,10 +42,12 @@ const CheckoutForm = () => {
           id: OId,
           infoCustomer: values,
           infoProducts: cartPOST,
-          orderConfirmation: false,
-          transferToCarrier: false,
-          delivery: false,
-          receive: false,
+          status: {
+            orderConfirmation: false,
+            transferToCarrier: false,
+            delivery: false,
+            receive: false,
+          },
         })
         .then(
           (response) => {
@@ -147,7 +157,7 @@ const CheckoutForm = () => {
                 Phone <span className="required">*</span>
               </label>
               <input
-                value={values.phone}
+                value={values.phone.toString()}
                 onChange={handleChange}
                 name="phone"
                 type="text"
@@ -185,7 +195,45 @@ const CheckoutForm = () => {
             </div>
           </div>
           <div className="form-item">
-            <CheckoutCartList />
+            <div className="checkout-cart-list">
+              <h3>Product</h3>
+              <div className="cart-list">
+                {cart.map((cartItem) => (
+                  <CheckoutCartItem key={cartItem.id} cartItem={cartItem} />
+                ))}
+              </div>
+              <div className="checkout-subtotal checkout-flex">
+                <div>Subtotal</div>
+                <div>${totalCartPrice}</div>
+              </div>
+              <div className="checkout-ship checkout-flex">
+                <div>Shipping</div>
+                <div>Free shipping</div>
+              </div>
+              <div className="checkout-total-price checkout-flex">
+                <div>Total</div>
+                <div>${totalCartPrice}</div>
+              </div>
+              <div className="checkout-payment checkout-flex">
+                <div>Payment method</div>
+                <div>
+                  <select
+                    name="paymentMethod"
+                    onChange={handleChange}
+                    value={values.paymentMethod}
+                  >
+                    <option value="Pay after the delivery">
+                      Pay after the delivery
+                    </option>
+                    <option value="Bank Transfer">Bank Transfer</option>
+                    <option value="Visa">Visa</option>
+                  </select>
+                </div>
+              </div>
+              <button type="submit" className="order-btn">
+                Confirm Order
+              </button>
+            </div>
           </div>
         </div>
       </form>
