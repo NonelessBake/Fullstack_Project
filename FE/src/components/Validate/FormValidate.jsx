@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-const CheckoutFormValidate = Yup.object().shape({
+const FormValidate = Yup.object().shape({
   firstName: Yup.string().required("First name cannot be empty.").min(1),
   lastName: Yup.string().required("Last name cannot be empty.").min(1),
   companyName: Yup.string(),
@@ -18,4 +18,10 @@ const CheckoutFormValidate = Yup.object().shape({
     .required("Email cannot be empty."),
   notes: "",
 });
-export default CheckoutFormValidate;
+const OrderValidate = Yup.object().shape({
+  orderId: Yup.string().required("Please type in your order ID"),
+  emailAddress: Yup.string()
+    .email("Invalid email.")
+    .required("Email cannot be empty."),
+});
+export { OrderValidate, FormValidate };

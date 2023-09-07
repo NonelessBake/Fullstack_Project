@@ -229,27 +229,31 @@ const ContextProvider = ({ children }) => {
 
   // Tracking order
   const [orderList, setOrderList] = useState([]);
-  const [orderId, setOrderId] = useState(null);
-  let isOrderExist = false;
-
-  const handleChange = (e) => setOrderId(e.target.value);
-  const fetchOrderList = async () => {
-    try {
-      const res = await axios.get("http://localhost:3000/orderInfos");
-      setOrderList(res.data);
-    } catch (error) {
-      console.log(error);
-    }
+  const [isOrderExist, setIsOrderExist] = useState(false);
+  const [customerOrderList, setCustomerOrderList] = useState([]);
+  const fetchOrder = async () => {
+    const res = await axios.get("http://localhost:3000/orderInfos");
+    setOrderList(res.data);
   };
   useEffect(() => {
-    fetchOrderList();
+    fetchOrder();
   }, []);
-  const onTrack = () => {
-    const orderProducts = orderList?.filter(
-      (product) => product.id === orderId.id
+
+  const onTrack = (id, email) => {
+    let findId = orderList.findIndex((item) => item.id === id);
+    let findEmail = orderList.findIndex(
+      (item) => item.id === id && item.infoCustomer.emailAddress === email
     );
-    !orderProducts.length ? (isOrderExist = false) : (isOrderExist = true);
-    return isOrderExist;
+    if (!orderList.length) return;
+    if (findId !== -1 && findEmail !== -1) {
+      setIsOrderExist(true);
+      setCustomerOrderList(
+        orderList.filter(
+          (product) =>
+            product.id === id && product.infoCustomer.emailAddress === email
+        )
+      );
+    } else alert("Can not found your order");
   };
   // Tracking order
 
@@ -294,8 +298,8 @@ const ContextProvider = ({ children }) => {
   return (
     <ContextValue.Provider
       value={{
+        customerOrderList,
         isOrderExist,
-        orderId,
         orderDate,
         countryList,
         productList,
@@ -317,6 +321,7 @@ const ContextProvider = ({ children }) => {
     >
       <ContextUpdate.Provider
         value={{
+          onTrack,
           activeClass,
           onShowHomeProducts,
           formatNumber,
@@ -329,8 +334,6 @@ const ContextProvider = ({ children }) => {
           handleClose,
           handleShow,
           onOrderSuccess,
-          handleChange,
-          onTrack,
         }}
       >
         {children}
