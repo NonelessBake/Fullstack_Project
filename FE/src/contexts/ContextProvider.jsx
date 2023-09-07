@@ -198,6 +198,7 @@ const ContextProvider = ({ children }) => {
     fetchCountryList();
   }, []);
   const onOrderSuccess = () => {
+    totalCartQuantity = 0;
     setCart([]);
     localStorage.removeItem("cart");
   };

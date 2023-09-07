@@ -18,6 +18,7 @@ const CheckoutForm = () => {
   const OId =
     crypto.randomUUID(5) +
     Math.round(new Date().getTime() / (Math.random() * 100));
+
   const { values, handleChange, handleSubmit, resetForm, errors } = useFormik({
     initialValues: {
       firstName: "",
@@ -57,6 +58,8 @@ const CheckoutForm = () => {
       alert(`Your tracking order is: ${OId}`);
       onOrderSuccess();
       resetForm();
+
+      window.location.replace("/order-tracking");
     },
     validationSchema: FormValidate,
   });
