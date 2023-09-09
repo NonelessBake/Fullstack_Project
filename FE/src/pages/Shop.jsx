@@ -3,10 +3,13 @@ import ShopTools from "../components/Product/ShopTools";
 import "../assets/style/shop.css";
 const Shop = () => {
   return (
-    <div className="shop-container">
-      <ShopTools />
-      <ProductList />
-    </div>
+    <>
+      <h1 style={{ textAlign: "center", marginBottom: 50 }}>Shop</h1>
+      <div className="shop-container">
+        <ShopTools />
+        <ProductList />
+      </div>
+    </>
   );
 };
 

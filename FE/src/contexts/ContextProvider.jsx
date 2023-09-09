@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import axios from "axios";
-import { createContext, useEffect, useRef, useState } from "react";
+import { createContext, useEffect, useMemo, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 export const ContextValue = createContext();
@@ -77,10 +77,6 @@ const ContextProvider = ({ children }) => {
   ];
   // Category Component
 
-  // ButtonAddTo Component
-  /* Logic here */
-  // ButtonAddTo Component
-
   // Products Fetch API
   const [productList, setProductList] = useState([]);
   const fetchProducts = async () => {
@@ -98,8 +94,35 @@ const ContextProvider = ({ children }) => {
     .split(",")
     .forEach((name) => (counter[name] ? counter[name]++ : (counter[name] = 1)));
   const categoryList = Object.entries(counter);
-  console.log(categoryList);
 
+  const [selectedCategory, setSelectedCategory] = useState();
+  const onChooseCategory = (categoryType) => {
+    setSelectedCategory(categoryType);
+  };
+
+  const [priceFilter, setpriceFilter] = useState([0, 400]);
+  const priceRangeSelector = (e, newValue) => {
+    setpriceFilter(newValue);
+    filteredList?.filter((product) => {
+      if (priceFilter[0] < priceFilter[1]) {
+        return product.price < priceFilter[1] && product.price > priceFilter[0];
+      } else {
+        return product.price === priceFilter[1];
+      }
+    });
+  };
+  const filteredList = selectedCategory
+    ? productList.filter(
+        (product) =>
+          product.category.includes(selectedCategory) &&
+          product.price >= priceFilter[0] &&
+          product.price <= priceFilter[1]
+      )
+    : productList.filter(
+        (product) =>
+          product.price >= priceFilter[0] && product.price <= priceFilter[1]
+      );
+  // ButtonAddTo Component
   // Shoping Cart
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("cart")) || []
@@ -179,6 +202,8 @@ const ContextProvider = ({ children }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   // Shoping Cart
+
+  // ButtonAddTo Component
 
   // HomeProduct Component
   const [showList, setShowList] = useState("Latest Products");
@@ -309,7 +334,7 @@ const ContextProvider = ({ children }) => {
         isOrderExist,
         orderDate,
         countryList,
-        productList,
+        filteredList,
         isHomePath,
         backgroundImgs,
         brand,
@@ -325,10 +350,12 @@ const ContextProvider = ({ children }) => {
         isCartEmpty,
         show,
         categoryList,
+        priceFilter,
       }}
     >
       <ContextUpdate.Provider
         value={{
+          onChooseCategory,
           onTrack,
           activeClass,
           onShowHomeProducts,
@@ -342,6 +369,7 @@ const ContextProvider = ({ children }) => {
           handleClose,
           handleShow,
           onOrderSuccess,
+          priceRangeSelector,
         }}
       >
         {children}

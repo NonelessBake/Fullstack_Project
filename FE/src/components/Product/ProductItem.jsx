@@ -7,7 +7,7 @@ import ButtonAddTo from "./ButtonAddTo";
 const ProductItem = (newProps) => {
   const { formatLink, formatNumber } = useContext(ContextUpdate);
   const { product } = newProps;
-  const { discount, img, name, price, tags } = product;
+  const { discount, id, img, name, price, tags } = product;
 
   return (
     <div className="product-item-container">

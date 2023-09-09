@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import "../../assets/style/buttonAddTo.css";
 import { ContextUpdate } from "../../contexts/ContextProvider";
+import { Link } from "react-router-dom";
 const ButtonAddTo = (newProps) => {
   const { product } = newProps;
   const { onAddToCart } = useContext(ContextUpdate);
@@ -15,9 +16,9 @@ const ButtonAddTo = (newProps) => {
       <button className="btn-add btn-add-to-wishlist">
         <i className="uil uil-star"></i>
       </button>
-      <button className="btn-add btn-detail">
+      <Link to="" className="btn-add">
         <i className="uil uil-search"></i>
-      </button>
+      </Link>
     </div>
   );
 };
