@@ -11,13 +11,9 @@ const CheckoutForm = () => {
     useContext(ContextValue);
 
   const { onOrderSuccess } = useContext(ContextUpdate);
-  const cartPOST = cart.map((item) => {
-    return item;
-  });
+  const cartPOST = cart.map((product) => product);
 
-  const OId =
-    crypto.randomUUID(5) +
-    Math.round(new Date().getTime() / (Math.random() * 100));
+  const OId = crypto.randomUUID() + new Date().getTime();
 
   const { values, handleChange, handleSubmit, resetForm, errors } = useFormik({
     initialValues: {

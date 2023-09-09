@@ -1,8 +1,10 @@
 .home-products {
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 80px;
+  margin-bottom: 100px;
+  max-width: 1600px;
   padding: 10px 15px;
 }
 .show-change {
@@ -52,6 +54,5 @@
 .show-home-products {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  max-width: 1600px;
   gap: 30px;
 }

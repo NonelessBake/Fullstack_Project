@@ -1,0 +1,9 @@
+.category-btn {
+  display: flex;
+  justify-content: space-between;
+  flex: 2;
+  display: block;
+}
+.category-btn span {
+  display: inline-block;
+}

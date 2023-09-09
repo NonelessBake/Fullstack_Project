@@ -7,11 +7,8 @@ import ButtonAddTo from "./ButtonAddTo";
 const ProductItem = (newProps) => {
   const { formatLink, formatNumber } = useContext(ContextUpdate);
   const { product } = newProps;
-  const { discount, id, img, name, price, tags } = product;
-  //  Loading Image:  <img
-  //   className="img-swap-1"
-  //   src="https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg"
-  // />
+  const { discount, img, name, price, tags } = product;
+
   return (
     <div className="product-item-container">
       <div className="product-item">
@@ -20,7 +17,6 @@ const ProductItem = (newProps) => {
             <div className="btn-container">
               <ButtonAddTo product={product} />
             </div>
-
             <Link to={`/shop/${formatLink(name)}`}>
               <div className="img-container">
                 <img src={img[0]} alt={name} className="img-swap-1" />

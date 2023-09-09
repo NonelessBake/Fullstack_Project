@@ -1,0 +1,5 @@
+.shop-container {
+  display: flex;
+  gap: 50px;
+  padding: 15px;
+}

@@ -5,7 +5,7 @@ import "../../assets/style/productList.css";
 function ProductList() {
   const { productList } = useContext(ContextValue);
   return (
-    <div className="show-home-products">
+    <div className="shop-products">
       {productList.map((product) => (
         <ProductItem key={product.id} product={product} />
       ))}

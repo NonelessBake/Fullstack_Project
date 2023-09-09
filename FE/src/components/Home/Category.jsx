@@ -3,24 +3,8 @@ import "../../assets/style/category.css";
 import { Link } from "react-router-dom";
 import { ContextValue } from "../../contexts/ContextProvider";
 import Carousel from "react-multi-carousel";
-const responsive = {
-  superLargeDesktop: {
-    breakpoint: { max: 4000, min: 3000 },
-    items: 5,
-  },
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 5,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 3,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-  },
-};
+import { responsiveCategory } from "../CarouselResponsive/CarouselRes";
+
 const Category = () => {
   const { slideCategory } = useContext(ContextValue);
   return (
@@ -28,7 +12,7 @@ const Category = () => {
       <div className="category">
         <h2>Top Categories</h2>
         <Carousel
-          responsive={responsive}
+          responsive={responsiveCategory}
           infinite={true}
           itemClass="carousel-item-padding-15-px"
         >

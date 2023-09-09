@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 export const ContextValue = createContext();
@@ -91,7 +91,14 @@ const ContextProvider = ({ children }) => {
     fetchProducts();
   }, []);
 
-  // Products Fetch API
+  const productCategory = productList.map((product) => product.category);
+  let counter = {};
+  productCategory
+    ?.join()
+    .split(",")
+    .forEach((name) => (counter[name] ? counter[name]++ : (counter[name] = 1)));
+  const categoryList = Object.entries(counter);
+  console.log(categoryList);
 
   // Shoping Cart
   const [cart, setCart] = useState(
@@ -169,7 +176,6 @@ const ContextProvider = ({ children }) => {
   cart.length === 0 ? (isCartEmpty = true) : (isCartEmpty = false);
 
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   // Shoping Cart
@@ -318,6 +324,7 @@ const ContextProvider = ({ children }) => {
         cart,
         isCartEmpty,
         show,
+        categoryList,
       }}
     >
       <ContextUpdate.Provider

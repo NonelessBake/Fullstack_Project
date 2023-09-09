@@ -17,7 +17,6 @@ const CartItem = (newProps) => {
     if (Number(newPrice) === 0 || Number(quantity) === 0) return 1;
     return (newPrice * quantity).toFixed(2);
   }, [newPrice, quantity]);
-  console.log(status);
   return (
     <tr className="cart-product">
       <td className="product-info">
