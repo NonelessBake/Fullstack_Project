@@ -113,12 +113,13 @@ const ContextProvider = ({ children }) => {
     ? productList.filter(
         (product) =>
           product.category.includes(selectedCategory) &&
-          product.price >= priceFilter[0] &&
-          product.price <= priceFilter[1]
+          product.price * (1 - product.discount / 100) >= priceFilter[0] &&
+          product.price * (1 - product.discount / 100) <= priceFilter[1]
       )
     : productList.filter(
         (product) =>
-          product.price >= priceFilter[0] && product.price <= priceFilter[1]
+          product.price * (1 - product.discount / 100) >= priceFilter[0] &&
+          product.price * (1 - product.discount / 100) <= priceFilter[1]
       );
   // Products
 
