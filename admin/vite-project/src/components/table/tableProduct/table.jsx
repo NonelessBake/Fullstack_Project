@@ -19,11 +19,10 @@ import Tooltip from '@mui/material/Tooltip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
-
-import {ActicleContext} from '../../../context/ActicleContext'
+import Button from '@mui/material-next/Button';
 import './table.css'
 import request from '../../../utils/HTTP';
-
+import { ActicleContext } from '../../../context/ActicleContext';
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -148,7 +147,7 @@ EnhancedTableHead.propTypes = {
 };
 
 function EnhancedTableToolbar(props) {
-  const { numSelected,handleDelete } = props;
+  const { numSelected, handleDelete } = props;
   return (
     <Toolbar
       sx={{
@@ -183,7 +182,7 @@ function EnhancedTableToolbar(props) {
       {numSelected > 0 ? (
         <Tooltip title="Delete" onClick={() => handleDelete()}>
           <IconButton>
-              <DeleteIcon />
+            <DeleteIcon />
           </IconButton>
         </Tooltip>
       ) : (
@@ -204,9 +203,13 @@ EnhancedTableToolbar.propTypes = {
 
 export default function EnhancedTable(props) {
   let hef = props.hef
-  const { order, setOrder,orderBy, setOrderBy,
-    selected, setSelected,page, setPage,
-    rowsPerPage, setRowsPerPage,datarow, setRows} = React.useContext(ActicleContext)
+  const {setDataProduct,dataProduct} = React.useContext(ActicleContext)
+  const [datarow, setRows] = [dataProduct,setDataProduct]
+  const [order, setOrder] = React.useState('asc');
+  const [orderBy, setOrderBy] = React.useState('price');
+  const [selected, setSelected] = React.useState([]);
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -263,13 +266,16 @@ export default function EnhancedTable(props) {
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage,
       ),
-    [order, orderBy, page, rowsPerPage,datarow],
+    [order, orderBy, page, rowsPerPage, datarow],
   );
   React.useEffect(() => {
     request.get(hef)
       .then((res) => {
         setRows(res.data)
       })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
   const handleDelete = () => {
     // Delete the selected rows from the database
@@ -287,13 +293,13 @@ export default function EnhancedTable(props) {
 
   const deletePost = (id) => {
     request.delete(`${hef}/${id}`);
- };
+  };
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
-        <EnhancedTableToolbar 
-        numSelected={selected.length}
-        handleDelete = {handleDelete} 
+        <EnhancedTableToolbar
+          numSelected={selected.length}
+          handleDelete={handleDelete}
         />
         <TableContainer>
           <Table
@@ -317,7 +323,7 @@ export default function EnhancedTable(props) {
                 return (
                   <TableRow
                     hover
-                    onClick={(event) => handleClick(event, row.name,row.id)}
+                    onClick={(event) => handleClick(event, row.name, row.id)}
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
@@ -368,6 +374,14 @@ export default function EnhancedTable(props) {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
+      <Button
+        color="secondary"
+        size="large"
+        variant="filled"
+        className='Add'
+        data-bs-target="#addProduct"
+        data-bs-toggle="modal"
+      >Add Product</Button>
     </Box>
   );
 }

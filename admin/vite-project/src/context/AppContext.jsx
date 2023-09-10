@@ -70,7 +70,6 @@ export const AppProvier = ({children}) => {
             styleGr = {}
         }
     }
-    console.log(showNavi)
     return <AppContext.Provider value={
         { hefPage,setShowNavi,handleChangeButton}}>
                 {children}

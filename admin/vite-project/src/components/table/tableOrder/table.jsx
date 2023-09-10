@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { array } from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
@@ -51,12 +51,13 @@ function stableSort(array, comparator) {
   });
   return stabilizedThis.map((el) => el[0]);
 }
-function createData(id, fullName, phone, infoProduct, status) {
+function createData(id, fullName, phone, infoProduct, price, status) {
   return {
     id,
     fullName,
     phone,
     infoProduct,
+    price,
     status,
   };
 }
@@ -206,10 +207,15 @@ EnhancedTableToolbar.propTypes = {
 
 export default function EnhancedTable(props) {
   let hef = props.hef
-  const { order, setOrder, orderBy, setOrderBy,
-    selected, setSelected, page, setPage,
-    rowsPerPage, setRowsPerPage, datarow, setRows } = React.useContext(ActicleContext)
+  const [datarow, setRows] = React.useState([])
+  const [order, setOrder] = React.useState('asc');
+  const [orderBy, setOrderBy] = React.useState('price');
+  const [selected, setSelected] = React.useState([]);
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const { sum } = React.useContext(ActicleContext)
   const [dataProduct, setDataProduct] = React.useState([])
+
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -268,23 +274,37 @@ export default function EnhancedTable(props) {
     [order, orderBy, page, rowsPerPage, datarow],
   );
   React.useEffect(() => {
+    let mouted = true;
     // get api order
     request.get(hef)
       .then((res) => {
-        let data = res.data
-        setRows(() => {
-          return data.map((item) => {
-            let fullName = item.contact.firstName + ' ' + item.contact.lastName
-            let idProduct = item.orderItems
-            return createData(item.id, fullName, item.contact.phoneNumber, idProduct)
+        if (mouted) {
+          let data = res.data
+          setRows(() => {
+            return data.map((item) => {
+              let fullName = item.contact.firstName + ' ' + item.contact.lastName
+              let idProduct = item.orderItems
+              return createData(item.id, fullName,
+                item.contact.phoneNumber, idProduct
+              )
+            })
           })
-        })
+        }
       })
+      .catch((error) => {
+        console.log(error);
+      });
     // get api prouduct
     request.get("products")
       .then((res) => {
-        setDataProduct(res.data)
+        if (mouted) {
+          setDataProduct(res.data)
+        }
       })
+      .catch((error) => {
+        console.log(error);
+      });
+    return () => mouted = false;
   }, []);
   const handleDelete = () => {
     // Delete the selected rows from the database
@@ -302,16 +322,16 @@ export default function EnhancedTable(props) {
   const deletePost = (id) => {
     request.delete(`${hef}/${id}`);
   };
-  const allPrice = () =>{
-    return dataProduct.map((product) =>{
-      return datarow.map((order) =>{
-        if (product.id == order.infoProduct.idProduct) {
-          console.log(product.id)
-        }
-      })
+  const allPrice = (id, quantity) => {
+    let price;
+    dataProduct.map((product) => {
+      if (id === product.id) {
+        price = (product.price) * quantity
+      }
+
     })
+    return price
   }
-  allPrice()
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
@@ -374,7 +394,9 @@ export default function EnhancedTable(props) {
                         </div>
                       })}
                     </TableCell>
-                    <TableCell align="right">{ }</TableCell>
+                    <TableCell align="right">
+                      {sum(row.infoProduct.map((product) => allPrice(product.idProduct, product.quantity)))}
+                    </TableCell>
                   </TableRow>
                 );
               })}

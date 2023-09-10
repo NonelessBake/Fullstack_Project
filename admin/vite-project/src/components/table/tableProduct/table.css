@@ -17,3 +17,9 @@ article{
 ::-webkit-scrollbar-track {
     background-color: red;
   }
+.Add{
+  width: 200px;
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+}
