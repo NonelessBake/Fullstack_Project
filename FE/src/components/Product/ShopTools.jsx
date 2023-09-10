@@ -3,15 +3,18 @@ import { ContextUpdate, ContextValue } from "../../contexts/ContextProvider";
 import Slider from "@mui/material/Slider";
 import "../../assets/style/shopTools.css";
 const ShopTools = () => {
-  const { categoryList, priceFilter } = useContext(ContextValue);
+  const { categoryList, priceFilter, selectedCategory } =
+    useContext(ContextValue);
   const { onChooseCategory, priceRangeSelector } = useContext(ContextUpdate);
+  console.log(categoryList);
   return (
     <div className="filter-tool">
       <div className="filter-category">
         <div className="category-title">CATEGORIES</div>
         {categoryList.map((category, index) => (
           <button
-            className="category-btn"
+            className={`category-btn
+             ${selectedCategory === category[0] && "actived-filter"}`}
             key={index}
             onClick={() => onChooseCategory(category[0])}
           >

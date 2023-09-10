@@ -278,6 +278,7 @@ const ContextProvider = ({ children }) => {
         show,
         categoryList,
         priceFilter,
+        selectedCategory,
       }}
     >
       <ContextUpdate.Provider
