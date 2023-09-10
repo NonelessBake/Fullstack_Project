@@ -28,7 +28,7 @@ const OrderInfo = () => {
           </div>
         ))}
       </div>
-      <h2 style={{ marginTop: 50 }}>Subtotal: ${totalPrice?.toFixed(2)}</h2>
+      <h3 style={{ marginTop: 50 }}>Subtotal: ${totalPrice?.toFixed(2)}</h3>
     </div>
   );
 };
