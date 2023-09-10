@@ -35,6 +35,10 @@
   color: black;
   border: 1px solid black;
 }
+.order-tracking button:active {
+  color: white;
+  background-color: black;
+}
 .order-tracking .text-muted {
   color: red !important;
 }

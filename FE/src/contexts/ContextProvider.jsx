@@ -9,31 +9,31 @@ const ContextProvider = ({ children }) => {
   // Fetch API
   const baseURL = "http://localhost:3000/";
   // Home slide
-  const headerSlideImgs = useFetch("http://localhost:3000/headerSlide");
+  const headerSlideImgs = useFetch(`${baseURL + "headerSlide"}`);
   // Home Slide
 
   // Bannner
-  const bannerImgs = useFetch("http://localhost:3000/imagesBanner");
+  const bannerImgs = useFetch(`${baseURL + "imagesBanner"}`);
   // Bannner
 
   // Products
-  const productList = useFetch("http://localhost:3000/products");
+  const productList = useFetch(`${baseURL + "products"}`);
   // Products
 
   // Country List
-  const countryList = useFetch("http://localhost:3000/countries");
+  const countryList = useFetch(`${baseURL + "countries"}`);
   // Country List
 
   // Order List
-  const orderList = useFetch("http://localhost:3000/orderInfos");
+  const orderList = useFetch(`${baseURL + "orderInfos"}`);
   // Order List
 
   // Collection
-  const collection = useFetch("http://localhost:3000/imgSlide");
+  const collection = useFetch(`${baseURL + "imgSlide"}`);
   // Collection
 
   // Brand
-  const brand = useFetch("http://localhost:3000/brand");
+  const brand = useFetch(`${baseURL + "brand"}`);
   // Brand
 
   // Fetch API
@@ -46,7 +46,7 @@ const ContextProvider = ({ children }) => {
   // Format Function
 
   // Header Component
-  const isHomePath = useLocation();
+  const getPath = useLocation();
   const activeClass = (params) => {
     return params.isActive ? "active-item" : "";
   };
@@ -214,6 +214,7 @@ const ContextProvider = ({ children }) => {
   // Checkout Components
 
   // Tracking order
+  const [orderSuccess, setOrderSuccess] = useState(false);
   const [isOrderExist, setIsOrderExist] = useState(false);
   const [customerOrderList, setCustomerOrderList] = useState([]);
   const onTrack = (id, email) => {
@@ -257,7 +258,6 @@ const ContextProvider = ({ children }) => {
   }, []);
 
   // Footer Component
-
   return (
     <ContextValue.Provider
       value={{
@@ -266,7 +266,7 @@ const ContextProvider = ({ children }) => {
         orderDate,
         countryList,
         filteredList,
-        isHomePath,
+        getPath,
         headerSlideImgs,
         brand,
         bannerImgs,
@@ -281,10 +281,12 @@ const ContextProvider = ({ children }) => {
         show,
         categoryList,
         priceFilter,
+        orderSuccess,
       }}
     >
       <ContextUpdate.Provider
         value={{
+          setOrderSuccess,
           onChooseCategory,
           onTrack,
           activeClass,

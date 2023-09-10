@@ -5,10 +5,10 @@ import "../../assets/style/userMenu.css";
 import CartPopup from "../Cart/CartPopup";
 import Modal from "react-bootstrap/Modal";
 const UserMenu = () => {
-  const { isHomePath, totalCartQuantity, show } = useContext(ContextValue);
+  const { getPath, totalCartQuantity, show } = useContext(ContextValue);
   const { activeClass, handleShow, handleClose } = useContext(ContextUpdate);
   let checked;
-  isHomePath.pathname === "/" ? (checked = true) : (checked = false);
+  getPath.pathname === "/" ? (checked = true) : (checked = false);
   const colorHome = checked ? "white-color-text" : null;
   return (
     <section

@@ -45,7 +45,7 @@ const OrderTrackingForm = () => {
           />
           <small className="text-muted">{errors.emailAddress}</small>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit">TRACK</button>
       </form>
     </>
   );
