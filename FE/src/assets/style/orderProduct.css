@@ -1,0 +1,21 @@
+.order-tracking-product {
+  display: flex;
+  width: 600px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  font-size: 18px;
+}
+.order-tracking-product .info {
+  display: flex;
+  flex: 1;
+  gap: 20px;
+}
+.order-tracking-product .name-quantity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.order-tracking-product img {
+  width: 100px;
+}

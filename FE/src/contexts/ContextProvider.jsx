@@ -2,40 +2,19 @@
 import { createContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
+import axios from "axios";
 
 export const ContextValue = createContext();
 export const ContextUpdate = createContext();
 const ContextProvider = ({ children }) => {
   // Fetch API
   const baseURL = "http://localhost:3000/";
-  // Home slide
   const headerSlideImgs = useFetch(`${baseURL + "headerSlide"}`);
-  // Home Slide
-
-  // Bannner
   const bannerImgs = useFetch(`${baseURL + "imagesBanner"}`);
-  // Bannner
-
-  // Products
   const productList = useFetch(`${baseURL + "products"}`);
-  // Products
-
-  // Country List
   const countryList = useFetch(`${baseURL + "countries"}`);
-  // Country List
-
-  // Order List
-  const orderList = useFetch(`${baseURL + "orderInfos"}`);
-  // Order List
-
-  // Collection
   const collection = useFetch(`${baseURL + "imgSlide"}`);
-  // Collection
-
-  // Brand
   const brand = useFetch(`${baseURL + "brand"}`);
-  // Brand
-
   // Fetch API
 
   // Format Function
@@ -182,7 +161,21 @@ const ContextProvider = ({ children }) => {
   // HomeProduct Component
 
   // Checkout Components
+  const [orderList, setOrderList] = useState([]);
+  const fetchOrderList = async () => {
+    try {
+      await axios
+        .get(`${baseURL + "orderInfos"}`)
+        .then((res) => setOrderList(res.data));
+    } catch (err) {
+      console.log("fetchOrderList", err);
+    }
+  };
+  useEffect(() => {
+    fetchOrderList();
+  }, []);
   const onOrderSuccess = () => {
+    fetchOrderList();
     totalCartQuantity = 0;
     setCart([]);
     localStorage.removeItem("cart");
@@ -214,10 +207,10 @@ const ContextProvider = ({ children }) => {
   // Checkout Components
 
   // Tracking order
-  const [orderSuccess, setOrderSuccess] = useState(false);
+
   const [isOrderExist, setIsOrderExist] = useState(false);
   const [customerOrderList, setCustomerOrderList] = useState([]);
-  const onTrack = (id, email) => {
+  const onTrack = async (id, email) => {
     let findId = orderList.findIndex((item) => item.id === id);
     let findEmail = orderList.findIndex(
       (item) => item.id === id && item.infoCustomer.emailAddress === email
@@ -231,18 +224,22 @@ const ContextProvider = ({ children }) => {
             product.id === id && product.infoCustomer.emailAddress === email
         )
       );
-    } else alert("Can not found your order");
+    } else {
+      alert("Can not found your order");
+      setIsOrderExist(false);
+    }
+  };
+  const backToTrackingPage = () => {
+    setCustomerOrderList([]);
   };
   // Tracking order
 
   // Collection Component
-
   function getWindowSize() {
     const { innerWidth, innerHeight } = window;
     return { innerWidth, innerHeight };
   }
   const [windowSize, setWindowSize] = useState(getWindowSize());
-
   // Collection Component
 
   // Footer Component
@@ -281,12 +278,11 @@ const ContextProvider = ({ children }) => {
         show,
         categoryList,
         priceFilter,
-        orderSuccess,
       }}
     >
       <ContextUpdate.Provider
         value={{
-          setOrderSuccess,
+          backToTrackingPage,
           onChooseCategory,
           onTrack,
           activeClass,

@@ -18,10 +18,10 @@ const FormValidate = Yup.object().shape({
     .required("Email cannot be empty."),
   notes: "",
 });
-const OrderValidate = Yup.object().shape({
+const OrderTrackingValidate = Yup.object().shape({
   orderId: Yup.string().required("Please type in your order ID"),
   emailAddress: Yup.string()
     .email("Invalid email.")
     .required("Email cannot be empty."),
 });
-export { OrderValidate, FormValidate };
+export { OrderTrackingValidate, FormValidate };

@@ -1,19 +1,24 @@
 import "../assets/style/orderTracking.css";
 import { useContext } from "react";
-import { ContextValue } from "../contexts/ContextProvider";
+import { ContextUpdate, ContextValue } from "../contexts/ContextProvider";
 import OrderStatus from "../components/OrderTracking/OrderStatus";
 import OrderInfo from "../components/OrderTracking/OrderInfo";
 import OrderTrackingForm from "../components/OrderTracking/OrderTrackingForm";
+import { BsArrowLeft } from "react-icons/bs";
 
 const OrderTracking = () => {
-  const { isOrderExist } = useContext(ContextValue);
-
+  const { customerOrderList } = useContext(ContextValue);
+  const { backToTrackingPage } = useContext(ContextUpdate);
   return (
     <>
-      {!isOrderExist ? (
+      {!customerOrderList?.length > 0 ? (
         <OrderTrackingForm />
       ) : (
         <div>
+          <div className="back-to-tracking" onClick={backToTrackingPage}>
+            <BsArrowLeft />
+            Back to Tracking Order
+          </div>
           <OrderStatus />
           <OrderInfo />
         </div>

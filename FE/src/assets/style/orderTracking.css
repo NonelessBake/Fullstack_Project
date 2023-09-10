@@ -42,3 +42,24 @@
 .order-tracking .text-muted {
   color: red !important;
 }
+
+.back-to-tracking {
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+  width: fit-content;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  padding: 5px 10px;
+  margin: 0 auto;
+  border-radius: 20px;
+  margin-bottom: 70px;
+  transition: all 0.15s;
+}
+.back-to-tracking:hover {
+  background-color: white;
+  color: black;
+}

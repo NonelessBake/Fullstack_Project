@@ -10,7 +10,7 @@ import { FormValidate } from "../Validate/FormValidate";
 const CheckoutForm = () => {
   const { cart, countryList, orderDate, totalCartPrice } =
     useContext(ContextValue);
-
+  const oID = crypto.randomUUID();
   const navigate = useNavigate();
   const { onOrderSuccess } = useContext(ContextUpdate);
   const cartPOST = cart.map((product) => product);
@@ -28,12 +28,11 @@ const CheckoutForm = () => {
       paymentMethod: "Pay after the delivery",
       notes: "",
     },
-    onSubmit: async () => {
-      const oID = Math.round(new Date().getTime() / (Math.random() * 100));
-      try {
-        await axios.post("http://localhost:3000/orderInfos", {
+    onSubmit: () => {
+      axios
+        .post("http://localhost:3000/orderInfos", {
           date: orderDate,
-          id: oID.toString(),
+          id: oID,
           infoCustomer: values,
           infoProducts: cartPOST,
           status: {
@@ -42,11 +41,8 @@ const CheckoutForm = () => {
             delivery: false,
             receive: false,
           },
-        });
-      } catch (err) {
-        console.log(err);
-      }
-
+        })
+        .then((res) => console.log(res.data));
       alert(`Your tracking order is: ${oID}`);
       onOrderSuccess();
       resetForm();

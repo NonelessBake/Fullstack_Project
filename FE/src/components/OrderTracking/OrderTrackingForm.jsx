@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import { useContext } from "react";
 import { ContextUpdate } from "../../contexts/ContextProvider";
-import { OrderValidate } from "../Validate/FormValidate";
+import { OrderTrackingValidate } from "../Validate/FormValidate";
 
 const OrderTrackingForm = () => {
   const { onTrack } = useContext(ContextUpdate);
@@ -14,15 +14,15 @@ const OrderTrackingForm = () => {
       onTrack(values.orderId, values.emailAddress);
       resetForm();
     },
-    validationSchema: OrderValidate,
+    validationSchema: OrderTrackingValidate,
   });
   return (
     <>
       <form className="order-tracking" onSubmit={handleSubmit}>
         <p>
-          To track your order please enter your Order ID in the box below and
+          {`To track your order please enter your Order ID in the box below and
           press the "Track" button. This was given to you on your receipt and in
-          the confirmation email you should have received.
+          the confirmation email you should have received.`}
         </p>
         <div className="order-id">
           <label>Order ID</label>
