@@ -6,7 +6,8 @@ import { BsBagX } from "react-icons/bs";
 import "../../assets/style/cartEmpty.css";
 const CartPopup = () => {
   const { isCartEmpty, cart, totalCartPrice } = useContext(ContextValue);
-  const { onRemoveCartItem, handleClose } = useContext(ContextUpdate);
+  const { onRemoveCartItem, handleClose, formatNumber } =
+    useContext(ContextUpdate);
 
   const CartEmpty = () => {
     return (
@@ -42,7 +43,7 @@ const CartPopup = () => {
                       <div>{cartItem.name}</div>
                       <div>Quantity: {cartItem.quantity} </div>
                       <div>
-                        ${(cartItem.price * cartItem.quantity).toFixed(2)}
+                        ${formatNumber(cartItem.price * cartItem.quantity)}
                       </div>
                     </div>
                   </div>

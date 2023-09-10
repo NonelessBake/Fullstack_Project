@@ -3,11 +3,11 @@ import { ContextValue } from "../../contexts/ContextProvider";
 import { Link, NavLink } from "react-router-dom";
 import "../../assets/style/banner.css";
 const Banner = () => {
-  const { bannerImages } = useContext(ContextValue);
+  const { bannerImgs } = useContext(ContextValue);
   return (
     <section className="banner-direct">
       <div className="banner-direct-container">
-        {bannerImages.map((item, index) => (
+        {bannerImgs.map((item, index) => (
           <div key={index} className="banner-container-home">
             <div className="banner-highlight">
               <div className="content-banner ">
@@ -23,7 +23,7 @@ const Banner = () => {
               </div>
               <div className="banner-img">
                 <Link>
-                  <img src={item} alt={item} />
+                  <img src={item.img} alt={index} />
                 </Link>
               </div>
             </div>

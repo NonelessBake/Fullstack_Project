@@ -15,9 +15,9 @@ function App() {
       <ContextProvider>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route path="shop" element={<Shop />} />
             <Route index element={<Home />} />
-            <Route path="product/:productId" element={<ProductDetail />} />
+            <Route path="shop" element={<Shop />} />
+            <Route path="product/:productName" element={<ProductDetail />} />
             <Route path="cart" element={<Cart />} />
             <Route path="checkout" element={<Checkout />} />
             <Route path="order-tracking" element={<OrderTracking />} />

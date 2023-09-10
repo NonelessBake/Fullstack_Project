@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import "../../assets/style/checkoutCartItem.css";
+import { ContextUpdate } from "../../contexts/ContextProvider";
 
 const CheckoutCartItem = (newProps) => {
   const { cartItem } = newProps;
+  const { formatNumber } = useContext(ContextUpdate);
   const { price, discount, img, quantity, name } = cartItem;
   const newPrice = price * (1 - discount / 100);
   return (
@@ -16,7 +19,7 @@ const CheckoutCartItem = (newProps) => {
         </div>
       </div>
       <div className="checkout-cart-price">
-        ${(newPrice * quantity).toFixed(2)}
+        ${formatNumber(newPrice * quantity)}
       </div>
     </div>
   );

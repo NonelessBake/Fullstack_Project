@@ -7,13 +7,13 @@ export const ContextValue = createContext();
 export const ContextUpdate = createContext();
 const ContextProvider = ({ children }) => {
   // Fetch API
-
+  const baseURL = "http://localhost:3000/";
   // Home slide
-  const backgroundImgs = useFetch("http://localhost:3000/headerSlide");
+  const headerSlideImgs = useFetch("http://localhost:3000/headerSlide");
   // Home Slide
 
   // Bannner
-  const banner = useFetch("http://localhost:3000/imagesBanner");
+  const bannerImgs = useFetch("http://localhost:3000/imagesBanner");
   // Bannner
 
   // Products
@@ -51,45 +51,6 @@ const ContextProvider = ({ children }) => {
     return params.isActive ? "active-item" : "";
   };
   // Header Component
-
-  // Bannner
-  const bannerImages = banner.map((item) => item.img);
-  // Banner
-
-  // Category Component
-  const slideCategory = [
-    {
-      link: "bath-room",
-      alt: "Bath Room",
-      src: "https://wpbingosite.com/wordpress/funio/wp-content/webp-express/webp-images/uploads/2020/12/cate-img-2.jpg.webp",
-    },
-    {
-      link: "lightning",
-      alt: "Lightning",
-      src: "https://wpbingosite.com/wordpress/funio/wp-content/webp-express/webp-images/uploads/2020/12/Image-116.jpg.webp",
-    },
-    {
-      link: "living-room",
-      alt: "Living Room",
-      src: "https://wpbingosite.com/wordpress/funio/wp-content/webp-express/webp-images/uploads/2020/12/cate-img-1.jpg.webp",
-    },
-    {
-      link: "office",
-      alt: "Office",
-      src: "https://wpbingosite.com/wordpress/funio/wp-content/webp-express/webp-images/uploads/2020/12/cate-img-5.jpg.webp",
-    },
-    {
-      link: "table",
-      alt: "Table",
-      src: "https://wpbingosite.com/wordpress/funio/wp-content/webp-express/webp-images/uploads/2020/12/cate-img-3.jpg.webp",
-    },
-    {
-      link: "seating",
-      alt: "Seating",
-      src: "https://wpbingosite.com/wordpress/funio/wp-content/webp-express/webp-images/uploads/2020/12/cate-img-4.jpg.webp",
-    },
-  ];
-  // Category Component
 
   // Products
   const productCategory = productList.map((product) => product.category);
@@ -306,12 +267,11 @@ const ContextProvider = ({ children }) => {
         countryList,
         filteredList,
         isHomePath,
-        backgroundImgs,
+        headerSlideImgs,
         brand,
-        bannerImages,
+        bannerImgs,
         showList,
         homeProductList,
-        slideCategory,
         collection,
         windowSize,
         totalCartPrice,

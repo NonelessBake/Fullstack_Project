@@ -1,11 +1,7 @@
-import React from 'react'
+const OrderItem = (newProps) => {
+  const { product } = newProps;
+  console.log(product);
+  return <div></div>;
+};
 
-const OrderItem = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
-
-export default OrderItem
+export default OrderItem;

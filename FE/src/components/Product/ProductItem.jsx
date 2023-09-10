@@ -40,7 +40,7 @@ const ProductItem = (newProps) => {
             <Link to={`/shop/${formatLink(name)}`}>{name}</Link>
           </h5>
           <p>
-            <span className="price-before">${price.toFixed(2)}</span>
+            <span className="price-before">${formatNumber(price)}</span>
             <span className="new-price">
               ${formatNumber(price * (1 - discount / 100))}
             </span>

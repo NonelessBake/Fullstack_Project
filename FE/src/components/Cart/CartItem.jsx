@@ -4,19 +4,19 @@ import { ContextUpdate } from "../../contexts/ContextProvider";
 
 const CartItem = (newProps) => {
   const { cartItem } = newProps;
-  console.log(cartItem);
   const { price, discount, img, quantity, name, status } = cartItem;
   const {
     onIncreaseQuantityItem,
     onDecreaseQuantityItem,
     onRemoveCartItem,
     onChangeQuantityItem,
+    formatNumber,
   } = useContext(ContextUpdate);
   const newPrice = price * (1 - discount / 100);
   const total = useMemo(() => {
     if (Number(newPrice) === 0 || Number(quantity) === 0) return 1;
-    return (newPrice * quantity).toFixed(2);
-  }, [newPrice, quantity]);
+    return formatNumber(newPrice * quantity);
+  }, [formatNumber, newPrice, quantity]);
   return (
     <tr className="cart-product">
       <td className="product-info">
@@ -33,7 +33,7 @@ const CartItem = (newProps) => {
           </div>
         </div>
       </td>
-      <td className="product-price">${newPrice.toFixed(2)}</td>
+      <td className="product-price">${formatNumber(newPrice)}</td>
       <td className="prouct-quantity">
         <div className="product-quantity">
           <button

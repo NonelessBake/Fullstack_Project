@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { useContext } from "react";
 import { ContextUpdate, ContextValue } from "../../contexts/ContextProvider";
@@ -9,12 +10,9 @@ import { FormValidate } from "../Validate/FormValidate";
 const CheckoutForm = () => {
   const { cart, countryList, orderDate, totalCartPrice } =
     useContext(ContextValue);
-
+  const navigate = useNavigate();
   const { onOrderSuccess } = useContext(ContextUpdate);
   const cartPOST = cart.map((product) => product);
-
-  const OId = crypto.randomUUID() + new Date().getTime();
-
   const { values, handleChange, handleSubmit, resetForm, errors } = useFormik({
     initialValues: {
       firstName: "",
@@ -29,11 +27,12 @@ const CheckoutForm = () => {
       paymentMethod: "Pay after the delivery",
       notes: "",
     },
-    onSubmit: () => {
-      axios
-        .post("http://localhost:3000/orderInfos", {
+    onSubmit: async () => {
+      const oID = Math.round(new Date().getTime() / (Math.random() * 100));
+      try {
+        await axios.post("http://localhost:3000/orderInfos", {
           date: orderDate,
-          id: OId,
+          id: oID,
           infoCustomer: values,
           infoProducts: cartPOST,
           status: {
@@ -42,20 +41,15 @@ const CheckoutForm = () => {
             delivery: false,
             receive: false,
           },
-        })
-        .then(
-          (response) => {
-            console.log(response);
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
-      alert(`Your tracking order is: ${OId}`);
+        });
+      } catch (err) {
+        console.log(err);
+      }
+
+      alert(`Your tracking order is: ${oID}`);
       onOrderSuccess();
       resetForm();
-
-      window.location.replace("/order-tracking");
+      navigate("/order-tracking");
     },
     validationSchema: FormValidate,
   });

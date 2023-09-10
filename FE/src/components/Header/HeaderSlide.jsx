@@ -6,7 +6,7 @@ import "react-multi-carousel/lib/styles.css";
 import { responsiveHomeSlide } from "../CarouselResponsive/CarouselRes";
 
 const HeaderSlide = () => {
-  const { backgroundImgs } = useContext(ContextValue);
+  const { headerSlideImgs, windowSize } = useContext(ContextValue);
 
   return (
     <span className="z-index-home">
@@ -15,9 +15,13 @@ const HeaderSlide = () => {
         responsive={responsiveHomeSlide}
         autoPlaySpeed={4000}
         autoPlay={true}
+        draggable={windowSize.innerWidth < 1024 ? true : false}
+        ssr={true}
+        swipeable={true}
+        removeArrowOnDeviceType={["tablet", "mobile"]}
       >
-        {backgroundImgs.length > 0 &&
-          backgroundImgs.map((item, index) => (
+        {headerSlideImgs.length > 0 &&
+          headerSlideImgs.map((item, index) => (
             <div key={index}>
               <img src={item.img} alt={index} className="image-header-slide" />
             </div>
