@@ -5,6 +5,7 @@ const OrderProduct = (newProps) => {
   const { product } = newProps;
   const { formatNumber } = useContext(ContextUpdate);
   const { img, name, quantity, price, discount } = product[0];
+  console.log(product);
   const newPrice = formatNumber(price * (1 - discount / 100));
   return (
     <div className="order-tracking-product">

@@ -1,10 +1,9 @@
 import { useContext } from "react";
-import { ContextUpdate, ContextValue } from "../../contexts/ContextProvider";
+import { ContextValue } from "../../contexts/ContextProvider";
 import OrderProduct from "./OrderProduct";
 import "../../assets/style/orderInfo.css";
 const OrderInfo = () => {
   const { customerOrderList } = useContext(ContextValue);
-  const { formatNumber } = useContext(ContextUpdate);
   let totalPrice = null;
   customerOrderList[0]?.infoProducts?.forEach((product) => {
     totalPrice +=
