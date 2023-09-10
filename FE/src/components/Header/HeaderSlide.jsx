@@ -3,7 +3,7 @@ import { ContextValue } from "../../contexts/ContextProvider";
 import "../../assets/style/headerSlide.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { responsiveHomeSlide } from "../CarouselResponsive/CarouselRes";
+import { responsiveHomeSlide } from "../../CarouselResponsive/CarouselRes";
 
 const HeaderSlide = () => {
   const { headerSlideImgs, windowSize } = useContext(ContextValue);

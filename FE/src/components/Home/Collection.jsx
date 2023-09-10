@@ -6,7 +6,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Link } from "react-router-dom";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
-import { responsiveCollection } from "../CarouselResponsive/CarouselRes";
+import { responsiveCollection } from "../../CarouselResponsive/CarouselRes";
 
 const ButtonGroup = ({ next, previous, onPrevSlide, onNextSlide }) => {
   return (

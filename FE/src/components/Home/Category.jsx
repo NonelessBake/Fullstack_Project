@@ -2,7 +2,7 @@ import { useContext } from "react";
 import "../../assets/style/category.css";
 import { Link } from "react-router-dom";
 import Carousel from "react-multi-carousel";
-import { responsiveCategory } from "../CarouselResponsive/CarouselRes";
+import { responsiveCategory } from "../../CarouselResponsive/CarouselRes";
 
 const Category = () => {
   const slideCategory = [
