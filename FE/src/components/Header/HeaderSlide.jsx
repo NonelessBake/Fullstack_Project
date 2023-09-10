@@ -16,11 +16,12 @@ const HeaderSlide = () => {
         autoPlaySpeed={4000}
         autoPlay={true}
       >
-        {backgroundImgs.map((item, index) => (
-          <div key={index}>
-            <img src={item.img} alt={index} className="image-header-slide" />
-          </div>
-        ))}
+        {backgroundImgs.length > 0 &&
+          backgroundImgs.map((item, index) => (
+            <div key={index}>
+              <img src={item.img} alt={index} className="image-header-slide" />
+            </div>
+          ))}
       </Carousel>
     </span>
   );

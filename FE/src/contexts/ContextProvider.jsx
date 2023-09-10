@@ -1,11 +1,43 @@
 /* eslint-disable react/prop-types */
-import axios from "axios";
-import { createContext, useEffect, useMemo, useRef, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import useFetch from "../hooks/useFetch";
 
 export const ContextValue = createContext();
 export const ContextUpdate = createContext();
 const ContextProvider = ({ children }) => {
+  // Fetch API
+
+  // Home slide
+  const backgroundImgs = useFetch("http://localhost:3000/headerSlide");
+  // Home Slide
+
+  // Bannner
+  const banner = useFetch("http://localhost:3000/imagesBanner");
+  // Bannner
+
+  // Products
+  const productList = useFetch("http://localhost:3000/products");
+  // Products
+
+  // Country List
+  const countryList = useFetch("http://localhost:3000/countries");
+  // Country List
+
+  // Order List
+  const orderList = useFetch("http://localhost:3000/orderInfos");
+  // Order List
+
+  // Collection
+  const collection = useFetch("http://localhost:3000/imgSlide");
+  // Collection
+
+  // Brand
+  const brand = useFetch("http://localhost:3000/brand");
+  // Brand
+
+  // Fetch API
+
   // Format Function
   const formatLink = (string) => {
     return string.toLowerCase().replaceAll(" ", "-");
@@ -18,27 +50,9 @@ const ContextProvider = ({ children }) => {
   const activeClass = (params) => {
     return params.isActive ? "active-item" : "";
   };
-  const [backgroundImgs, setBackGroundImg] = useState([]);
-  const fetchBackground = async () => {
-    const res = await axios.get("http://localhost:3000/headerSlide");
-    setBackGroundImg(res.data);
-  };
-  useEffect(() => {
-    fetchBackground();
-  }, []);
-
   // Header Component
 
   // Bannner
-  const [banner, setBanner] = useState([]);
-  const fetchBanner = async () => {
-    const res = await axios.get("http://localhost:3000/imagesBanner");
-    setBanner(res.data);
-  };
-  useEffect(() => {
-    fetchBanner();
-  }, []);
-
   const bannerImages = banner.map((item) => item.img);
   // Banner
 
@@ -77,17 +91,9 @@ const ContextProvider = ({ children }) => {
   ];
   // Category Component
 
-  // Products Fetch API
-  const [productList, setProductList] = useState([]);
-  const fetchProducts = async () => {
-    const res = await axios.get(`http://localhost:3000/products`);
-    setProductList(res.data);
-  };
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
+  // Products
   const productCategory = productList.map((product) => product.category);
+
   let counter = {};
   productCategory
     ?.join()
@@ -99,17 +105,9 @@ const ContextProvider = ({ children }) => {
   const onChooseCategory = (categoryType) => {
     setSelectedCategory(categoryType);
   };
-
   const [priceFilter, setpriceFilter] = useState([0, 400]);
   const priceRangeSelector = (e, newValue) => {
     setpriceFilter(newValue);
-    filteredList?.filter((product) => {
-      if (priceFilter[0] < priceFilter[1]) {
-        return product.price < priceFilter[1] && product.price > priceFilter[0];
-      } else {
-        return product.price === priceFilter[1];
-      }
-    });
   };
   const filteredList = selectedCategory
     ? productList.filter(
@@ -122,6 +120,8 @@ const ContextProvider = ({ children }) => {
         (product) =>
           product.price >= priceFilter[0] && product.price <= priceFilter[1]
       );
+  // Products
+
   // ButtonAddTo Component
   // Shoping Cart
   const [cart, setCart] = useState(
@@ -220,14 +220,6 @@ const ContextProvider = ({ children }) => {
   // HomeProduct Component
 
   // Checkout Components
-  const [countryList, setCountryList] = useState([]);
-  const fetchCountryList = async () => {
-    const res = await axios.get("http://localhost:3000/countries");
-    setCountryList(res.data);
-  };
-  useEffect(() => {
-    fetchCountryList();
-  }, []);
   const onOrderSuccess = () => {
     totalCartQuantity = 0;
     setCart([]);
@@ -260,17 +252,8 @@ const ContextProvider = ({ children }) => {
   // Checkout Components
 
   // Tracking order
-  const [orderList, setOrderList] = useState([]);
   const [isOrderExist, setIsOrderExist] = useState(false);
   const [customerOrderList, setCustomerOrderList] = useState([]);
-  const fetchOrder = async () => {
-    const res = await axios.get("http://localhost:3000/orderInfos");
-    setOrderList(res.data);
-  };
-  useEffect(() => {
-    fetchOrder();
-  }, []);
-
   const onTrack = (id, email) => {
     let findId = orderList.findIndex((item) => item.id === id);
     let findEmail = orderList.findIndex(
@@ -290,14 +273,6 @@ const ContextProvider = ({ children }) => {
   // Tracking order
 
   // Collection Component
-  const [collection, setCollection] = useState([]);
-  const fetchCollection = async () => {
-    const res = await axios.get("http://localhost:3000/imgSlide");
-    setCollection(res.data);
-  };
-  useEffect(() => {
-    fetchCollection();
-  }, []);
 
   function getWindowSize() {
     const { innerWidth, innerHeight } = window;
@@ -308,14 +283,7 @@ const ContextProvider = ({ children }) => {
   // Collection Component
 
   // Footer Component
-  const [brand, setBrand] = useState([]);
-  const fetchBrand = async () => {
-    const res = await axios.get("http://localhost:3000/brand");
-    setBrand(res.data);
-  };
-  useEffect(() => {
-    fetchBrand();
-  }, []);
+
   useEffect(() => {
     function handleWindowResize() {
       setWindowSize(getWindowSize());
@@ -325,6 +293,7 @@ const ContextProvider = ({ children }) => {
       window.removeEventListener("resize", handleWindowResize);
     };
   }, []);
+
   // Footer Component
 
   return (
