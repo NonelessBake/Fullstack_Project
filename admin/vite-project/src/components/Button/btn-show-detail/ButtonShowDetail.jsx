@@ -1,6 +1,7 @@
-import React from 'react'
+import React from "react";
 
 export default function ButtonShowDetail(props) {
+<<<<<<< HEAD
     let ShowBoxModalDetail = (e) => {
        
     }
@@ -12,4 +13,19 @@ export default function ButtonShowDetail(props) {
             Detail
         </button>
     )
+=======
+  let ShowBoxModalDetail = (e) => {
+    console.log(props.name);
+  };
+  return (
+    <button
+      type="button"
+      onClick={ShowBoxModalDetail}
+      data-bs-toggle={"modal"}
+      data-bs-target={"#staticBackdrop" + props.name}
+    >
+      Detail
+    </button>
+  );
+>>>>>>> FE
 }

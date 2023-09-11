@@ -1,0 +1,20 @@
+.cart-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+.cart-empty h4 {
+  margin-top: 35px;
+}
+.cart-empty a {
+  display: block;
+  margin-top: 15px;
+  padding: 15px;
+  border: 1px solid black;
+  transition: all 0.15s;
+}
+.cart-empty a:hover {
+  background-color: black;
+  color: white;
+}

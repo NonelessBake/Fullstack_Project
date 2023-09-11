@@ -1,10 +1,14 @@
-.product-section {
+.home-products {
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 100px;
+  max-width: 1600px;
+  padding: 10px 15px;
 }
 .show-change {
-  margin-bottom: 50px;
+  margin-bottom: 60px;
   display: flex;
   gap: 30px;
   position: relative;
@@ -13,7 +17,7 @@
   display: block;
   border: none;
   background: transparent;
-  font-size: 23px;
+  font-size: 21px;
   position: relative;
 }
 .show-btn:hover {
@@ -50,101 +54,5 @@
 .show-home-products {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  max-width: 1600px;
   gap: 30px;
-}
-.product-home {
-  position: relative;
-  text-align: center;
-  font-size: 15px;
-  color: #868686;
-}
-.product-home h5 a {
-  color: #868686;
-  font-size: 16px;
-}
-.product-home a:hover {
-  color: black;
-}
-.product-home-container {
-  width: 240px;
-}
-.product-home-img {
-  width: 100%;
-  margin-bottom: 20px;
-  position: relative;
-}
-
-.price-before {
-  margin-right: 10px;
-  font-size: 12px;
-  text-decoration: line-through;
-}
-.new-price {
-  color: red;
-  font-size: 16px;
-}
-.on-sale {
-  position: absolute;
-  color: red;
-  background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  box-shadow: 0 0 4px 1px rgb(131, 127, 127);
-  border-radius: 20px;
-  pad: 50px 25px;
-  width: 50px;
-  height: 25px;
-  top: 10px;
-  left: 20px;
-  opacity: 1;
-  z-index: 10;
-}
-.tags {
-  position: absolute;
-  color: #d26c12;
-  background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  box-shadow: 0 0 4px 1px rgb(131, 127, 127);
-  border-radius: 20px;
-  pad: 50px 25px;
-  width: 50px;
-  height: 22px;
-  top: 10px;
-  right: 20px;
-  opacity: 1;
-  z-index: 10;
-}
-
-/*  */
-
-.img-swap-1 {
-  opacity: 1;
-  width: 100%;
-}
-.img-swap-2 {
-  display: none;
-  opacity: 0;
-  width: 100%;
-}
-.img-swap-container:hover .img-swap-1 {
-  z-index: 0;
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-.img-swap-container:hover .img-swap-2 {
-  display: block;
-  opacity: 1;
-}
-
-.img-swap-1,
-.img-swap-2 {
-  transition: opacity 0.5s;
 }

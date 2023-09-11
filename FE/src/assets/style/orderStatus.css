@@ -1,0 +1,20 @@
+.order-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.flexing-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+.active-status {
+  color: green;
+}
+.waiting-status {
+  color: #868686;
+}

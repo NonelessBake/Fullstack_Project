@@ -1,15 +1,23 @@
 import { useContext } from "react";
-import { Context } from "../contexts/ContextProvider";
+import { ContextUpdate, ContextValue } from "../../contexts/ContextProvider";
 import { Link, NavLink } from "react-router-dom";
-import "../assets/style/userMenu.css";
+import "../../assets/style/userMenu.css";
+import CartPopup from "../Cart/CartPopup";
+import Modal from "react-bootstrap/Modal";
 const UserMenu = () => {
-  const { activeClass, isHomePath } = useContext(Context);
+  const { getPath, totalCartQuantity, show } = useContext(ContextValue);
+  const { activeClass, handleShow, handleClose } = useContext(ContextUpdate);
   let checked;
-  isHomePath.pathname === "/" ? (checked = true) : (checked = false);
+  getPath.pathname === "/" ? (checked = true) : (checked = false);
+  const colorHome = checked ? "white-color-text" : null;
   return (
-    <section className={`header-container ${checked ? "header-home" : null}`}>
+    <section
+      className={`header-container ${
+        checked ? "header-home" : null
+      } ${colorHome}`}
+    >
       <div className="top-bar-container">
-        <div className="top-bar-left">
+        <div className={`top-bar-left `}>
           <div className="store-location">
             <Link to="/contact">
               <i className="uil uil-location-point"></i>
@@ -91,20 +99,28 @@ const UserMenu = () => {
           </ul>
         </div>
         <div className="nav-bar-right">
-          <button>
+          <button className="search-btn">
             <i className="uil uil-search"></i>
           </button>
-          <button>
+          <button className="user-btn">
             <i className="uil uil-user"></i>
           </button>
-          <button>
+          <button className="wishlist-btn">
             <i className="uil uil-star"></i>
           </button>
-          <button className="cart-header-btn">
+          <button
+            className="cart-header-btn open-cart-btn"
+            onClick={handleShow}
+          >
             <i className="uil uil-shopping-cart">
-              <span className="cart-quantity">{/* quantity here */}10</span>
+              {totalCartQuantity && (
+                <span className="cart-quantity">{totalCartQuantity}</span>
+              )}
             </i>
           </button>
+          <Modal show={show} onHide={handleClose}>
+            <CartPopup />
+          </Modal>
         </div>
       </div>
     </section>

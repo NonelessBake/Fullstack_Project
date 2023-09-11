@@ -1,34 +1,34 @@
-.scale-hover img {
+.category {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 80px;
+}
+.category .scale-hover img {
   border-radius: 0.5rem;
   width: 100%;
   transition: 0.5s all ease-in-out;
 }
-.scale-hover:hover img {
+.category .scale-hover:hover img {
   transform: scale3d(1.1, 1.1, 1.1);
 }
-.scale-container {
+.category .scale-container {
   overflow: hidden;
 }
 
-h6 {
+.category h6 {
   text-align: center;
   margin-top: 17px;
   font-weight: 500;
   opacity: 0.8;
 }
-h6 a:hover {
+.category h6 a:hover {
   font-weight: 700;
   opacity: 1;
   color: black;
   border-bottom: 1px solid black;
 }
 
-.category {
-  width: 100%;
-  margin-bottom: 50px;
-}
-
-.react-multi-carousel-track {
+.category .react-multi-carousel-track {
   justify-content: center;
 }
 .category .react-multiple-carousel__arrow--left {
@@ -46,13 +46,13 @@ h6 a:hover {
 .category:hover .react-multiple-carousel__arrow {
   opacity: 1;
 }
-.slide-category-container {
+.category .slide-category-container {
   overflow: hidden;
 }
-.slide-image {
+.category .slide-image {
   overflow: hidden;
 }
 
-.carousel-item-padding-15-px {
+.category .carousel-item-padding-15-px {
   padding: 15px;
 }

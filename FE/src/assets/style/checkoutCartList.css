@@ -1,0 +1,28 @@
+.checkout-cart-list {
+  display: flex;
+  flex-direction: column;
+}
+.checkout-cart-list .cart-list {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.checkout-flex {
+  display: flex;
+  padding: 30px 0px;
+  justify-content: space-between;
+  border-top: 1px solid #c4c2c2;
+}
+.order-btn {
+  padding: 15px 0;
+  border: 1px solid black;
+  background: transparent;
+  transition: all ease-in 0.15s;
+}
+.order-btn:hover {
+  color: white;
+  background-color: black;
+}
+.order-btn:active {
+  background-color: yellow;
+}

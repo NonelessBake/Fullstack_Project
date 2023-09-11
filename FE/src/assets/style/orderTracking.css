@@ -1,0 +1,65 @@
+.order-tracking {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 40%;
+  margin-bottom: 120px;
+}
+.order-tracking p {
+  margin-bottom: 30px;
+}
+.order-tracking label {
+  margin-bottom: 10px;
+}
+.order-tracking input {
+  display: block;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+.order-tracking .order-id {
+  margin-bottom: 20px;
+}
+.order-tracking .order-email {
+  margin-bottom: 20px;
+}
+.order-tracking button {
+  padding: 10px;
+  color: white;
+  background-color: black;
+  border: 1px solid transparent;
+  transition: all 0.15s ease-in-out;
+}
+.order-tracking button:hover {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+.order-tracking button:active {
+  color: white;
+  background-color: black;
+}
+.order-tracking .text-muted {
+  color: red !important;
+}
+
+.back-to-tracking {
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+  width: fit-content;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  padding: 5px 10px;
+  margin: 0 auto;
+  border-radius: 20px;
+  margin-bottom: 70px;
+  transition: all 0.15s;
+}
+.back-to-tracking:hover {
+  background-color: white;
+  color: black;
+}

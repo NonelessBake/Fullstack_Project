@@ -4,19 +4,24 @@
   flex-direction: column;
   max-width: 1600px;
   margin: 0 auto;
-  z-index: 100;
   color: black;
   background-color: rgb(0, 0, 0);
   background-color: rgba(247, 247, 247, 0.4);
+  position: relative;
+}
+.white-color-text {
+  color: white;
 }
 .header-container a {
   color: black;
 }
 .header-home {
+  z-index: 100;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
+  background: transparent;
 }
 /* top-bar */
 
@@ -97,25 +102,24 @@
 .direct-link {
   position: relative;
 }
-
 .dropdown-direct-link {
   display: none;
   position: absolute;
   background-color: white;
   padding: 5px 15px;
-  min-width: 150px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  z-index: 1000;
 }
 .dropdown-direct-link a {
   font-size: 14px;
-  color: #868686;
+  color: #868686 !important;
   display: block;
   transition: color 0.3s ease;
   line-height: 2rem;
+  width: 80px;
 }
 .dropdown-direct-link a:hover {
-  color: black;
+  color: black !important;
 }
 .direct-link:hover .dropdown-direct-link {
   display: block;
@@ -142,6 +146,7 @@
 .nav-bar-right {
   display: flex;
   justify-content: flex-end;
+  position: relative;
   gap: 30px;
 }
 .nav-bar-right i {
@@ -154,23 +159,58 @@
 .nav-bar-right i:hover {
   transform: translate(0, -5px);
 }
-
+.cart-header-btn {
+  position: relative;
+}
 .cart-header-btn .uil-shopping-cart {
   position: relative;
 }
 .cart-quantity {
   font-style: normal;
   text-align: center;
-  top: -2px;
+  top: -3px;
+  right: -15px;
   position: absolute;
   width: 18px;
   height: 18px;
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
-  font-size: 10px;
+  font-size: 13px;
   border-radius: 50%;
 }
-.nav-bar-right button {
+.nav-bar-right .search-btn,
+.nav-bar-right .user-btn,
+.nav-bar-right .wishlist-btn,
+.nav-bar-right .open-cart-btn {
   background: transparent;
   border: none;
+}
+/* custom color home page */
+.white-color-text i,
+.white-color-text span,
+.white-color-text a {
+  color: white;
+}
+.white-color-text .cart-quantity {
+  color: black;
+}
+.white-color-text .highlight::after {
+  background-color: white;
+}
+.white-color-text .active-item {
+  border-bottom: 2px solid white;
+}
+
+.modal-content {
+  border: none;
+}
+.modal-dialog {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  max-width: none;
+}
+.modal {
+  top: 110px;
+  left: -20px;
 }

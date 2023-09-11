@@ -11,13 +11,30 @@
     "start": "npx json-server db.json"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.8",
+    "@nextui-org/react": "^2.1.10",
     "axios": "^1.4.0",
     "bootstrap": "^5.3.1",
+    "formik": "^2.4.3",
+    "framer-motion": "^10.16.4",
+    "order-id": "^2.1.2",
+    "order-id-generator": "^0.0.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.8.0",
+    "react-detect-click-outside": "^1.1.7",
+    "react-device-detect": "^2.2.3",
     "react-dom": "^18.2.0",
+<<<<<<< HEAD
     "react-multi-carousel": "^2.8.4",
     "react-router-dom": "^6.15.0"
+=======
+    "react-icons": "^4.10.1",
+    "react-multi-carousel": "^2.8.4",
+    "react-router-dom": "^6.15.0",
+    "yup": "^1.2.0"
+>>>>>>> FE
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

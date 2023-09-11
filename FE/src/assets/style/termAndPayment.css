@@ -1,0 +1,41 @@
+.privacy-payment {
+  border-top: 1px solid rgb(219, 219, 219);
+  font-size: 14px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  padding: 15px;
+  max-width: 1600px;
+}
+.privacy {
+  display: flex;
+  justify-content: space-between;
+}
+.name {
+  color: #868686;
+}
+.privacy-link {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.privacy-link li a {
+  text-decoration-color: transparent;
+  transition: 0.4s;
+}
+.privacy-link li a:hover {
+  text-decoration: underline;
+}
+.privacy-link li a:hover {
+  color: black;
+}
+.privacy-link li {
+  font-size: 12px;
+}
+.payment {
+  display: flex;
+  justify-content: flex-end;
+}
+.payment img {
+  width: 100%;
+}

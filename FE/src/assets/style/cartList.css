@@ -1,0 +1,11 @@
+.cart-table {
+  width: 70%;
+  border: 1px solid rgb(224, 220, 220);
+}
+.cart-table th {
+  padding: 15px;
+}
+thead tr {
+  font-size: 14px;
+  font-weight: 300;
+}

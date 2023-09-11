@@ -1,0 +1,18 @@
+.cart-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  gap: 100px;
+  max-width: 1600px;
+  margin: 0 auto;
+  margin-bottom: 100px;
+}
+.cart {
+  margin: 0 auto;
+}
+.cart-container:first-child {
+  flex: 2;
+}
+.cart-container:last-child {
+  flex: 1;
+}

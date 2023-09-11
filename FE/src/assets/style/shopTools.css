@@ -1,0 +1,39 @@
+.category-btn {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 0;
+  border: none;
+  background: transparent;
+  color: #868686;
+  transition: 0.15s all;
+}
+.category-btn:hover {
+  color: black;
+}
+.actived-filter {
+  color: black;
+}
+.category-title {
+  padding: 15px 0;
+  border-bottom: 1px solid #868686;
+  margin-bottom: 20px;
+}
+.filter-category {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.filter-tool {
+  width: 100%;
+  flex: 1.6;
+}
+.number-product-by-category {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  background-color: #f1f1f1;
+}

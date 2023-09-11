@@ -1,0 +1,39 @@
+.cart-total .title {
+  background-color: #e9e9e9;
+  padding: 15px 30px;
+}
+.cart-total {
+  background-color: #f6f6f6;
+  width: 30%;
+  height: fit-content;
+}
+.cart-total .content {
+  padding: 15px 20px;
+  line-height: 2rem;
+  font-weight: 500;
+  font-size: 16px;
+}
+.content div {
+  padding: 15px 30px;
+  display: flex;
+}
+.content div p {
+  flex: 1;
+}
+.content a {
+  margin-top: 40px;
+  font-size: 12px;
+  display: block;
+  padding: 15px 30px;
+  border: 1px solid black;
+  text-align: center;
+  width: 100%;
+  color: white;
+  background-color: black;
+}
+.cart-total .total-price {
+  font-size: 25px;
+  font-weight: 400;
+  display: flex;
+  justify-content: flex-end;
+}

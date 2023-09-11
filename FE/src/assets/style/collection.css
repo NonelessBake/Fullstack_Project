@@ -1,0 +1,101 @@
+.collection {
+  width: 100%;
+  margin-bottom: 120px;
+  background-color: #272727;
+  background-image: url("https://wpbingosite.com/wordpress/funio/wp-content/uploads/2021/01/img5-9.jpg");
+  color: white;
+  vertical-align: center;
+  padding: 15vh 0;
+}
+.collection {
+  text-align: center;
+}
+.collection h2 {
+  text-align: center;
+  font-size: 45px;
+  margin-bottom: 50px;
+}
+.collection .collection-container {
+  width: 100%;
+}
+
+.collection .collection-image-container img {
+  position: relative;
+  width: 100%;
+  filter: brightness(100%);
+  transition: all 0.3s ease;
+}
+.collection .collection-image-container img:hover {
+  filter: brightness(70%);
+}
+.collection .collection-image {
+  width: 100%;
+}
+.collection .carousel-item-padding-20-px {
+  padding: 0 15px;
+}
+.collection .collection-item {
+  position: relative;
+}
+.collection .collection-title-container {
+  width: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  bottom: -70px;
+  transition: all 1s;
+}
+.collection .collection-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 85%;
+  padding: 20px;
+}
+
+.collection .prev-button {
+  position: absolute;
+  left: 13%;
+  top: 40%;
+}
+.collection .next-button {
+  position: absolute;
+  right: 13%;
+  top: 40%;
+}
+.collection .shop-collection-btn {
+  font-size: 13px;
+  padding: 6px 15px;
+  background: transparent;
+  border: 2px solid black;
+  transition: all 0.15s;
+  position: relative;
+}
+
+.collection .shop-collection-btn:hover {
+  background-color: black;
+  color: white;
+}
+.collection .change-slide-btn {
+  font-size: 25px;
+  padding: 6px 20px;
+  background: rgb(255, 255, 255);
+  border: none;
+  border-radius: 15px;
+  transition: all 0.2s;
+  box-shadow: 0 0 1px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.change-slide-btn:hover {
+  background-color: black;
+  color: white;
+}
+.carousel-container {
+  width: 100%;
+  padding: 0 0 100px 0;
+}

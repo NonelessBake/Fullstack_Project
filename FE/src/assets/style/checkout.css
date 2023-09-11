@@ -1,0 +1,19 @@
+.checkout-empty a {
+  border: 1px solid black;
+  position: relative;
+  padding: 15px;
+  display: block;
+  width: fit-content;
+  margin-bottom: 100px;
+  transition: all 0.15s ease-out;
+}
+.checkout-empty {
+  padding: 15px;
+}
+.empty-content {
+  margin-bottom: 20px;
+}
+.checkout-empty a:hover {
+  background-color: black;
+  color: white;
+}
