@@ -8,9 +8,9 @@ import { AppContext } from "../context/AppContext"
 
 
 export const publicRoutes = [
-    { path:'/', component:HomePage},
-    { path:'/Order', component:Order},
-    { path:'/User', component:User},
-    { path:'/Product', component:Product},
-    { path:'/Banner', component:Banner,layout: null},
+    { path:'/admin/', component:HomePage},
+    { path:'/admin/Order', component:Order},
+    { path:'/admin/User', component:User},
+    { path:'/admin/Product', component:Product},
+    { path:'/admin/Banner', component:Banner,layout: null},
 ]

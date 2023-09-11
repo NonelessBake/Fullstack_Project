@@ -23,3 +23,7 @@ article{
   left: 50%;
   translate: -50%;
 }
+.Danger{
+  color: red;
+  size: 12px;
+}

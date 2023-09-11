@@ -201,7 +201,7 @@ EnhancedTableToolbar.propTypes = {
   handleDelete: PropTypes.func.isRequired,
 };
 
-export default function EnhancedTable(props) {
+export default function EnhancedTableProduct(props) {
   let hef = props.hef
   const {setDataProduct,dataProduct} = React.useContext(ActicleContext)
   const [datarow, setRows] = [dataProduct,setDataProduct]

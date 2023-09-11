@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './Navigation.css'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { useContext } from 'react'
 import { AppContext } from '../../../../context/AppContext'
 export default function Navigation() {
@@ -38,9 +38,9 @@ export default function Navigation() {
       }
       return (
         <li className='nav-item' key={item.name} style={styleGr} onClick={() => onHandlerChange(item.name)}>
-          <Link to={item.hef} className="nav-link py-3" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Customers">
+          <NavLink to={item.hef} className="nav-link py-3" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Customers">
             <img src={item.img} alt="" className='icon-nav' />
-          </Link>
+          </NavLink>
         </li>
       )
     })
@@ -59,10 +59,10 @@ export default function Navigation() {
       }
       return (
         <li className='nav-item d-flex' key={item.name} style={styleGr} onClick={() => onHandlerChange(item.name)}>
-          <Link to={item.hef} className="nav-link py-3" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Customers">
+          <NavLink to={item.hef} className="nav-link py-3" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Customers">
             <img src={item.img} alt="" className='icon-nav' />
             <span className='ms-3' style={{color:'white'}}>{item.name}</span>
-          </Link>
+          </NavLink>
         </li>
       )
     })

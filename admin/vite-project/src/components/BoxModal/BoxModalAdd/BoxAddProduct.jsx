@@ -1,8 +1,6 @@
 import React, { useContext } from 'react'
 import Reservation from '../../inputGr/inputGrProduct/inputGrProduct'
-import { ActicleContext } from '../../../context/ActicleContext'
 export default function BoxAddProduct() {
-    const { onSubmitData } = useContext(ActicleContext)
     return (
         <>
             <div className="modal fade" id="addProduct" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabIndex={-1}>
@@ -14,15 +12,6 @@ export default function BoxAddProduct() {
                         </div>
                         <div className="modal-body">
                             <Reservation />
-                        </div>
-                        <div className="modal-footer">
-                            <button
-                                className="btn btn-primary"
-                                data-bs-target="#exampleModalToggle2"
-                                data-bs-toggle="modal"
-                                onClick={onSubmitData}
-                            >Open second modal
-                            </button>
                         </div>
                     </div>
                 </div>

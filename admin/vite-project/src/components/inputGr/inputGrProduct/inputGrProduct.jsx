@@ -1,102 +1,105 @@
-import React, { useState,useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import request from '../../../utils/HTTP';
+import * as Yup from "yup"
+import { useFormik } from 'formik';
 import { ActicleContext } from '../../../context/ActicleContext';
 const Reservation = () => {
-    const [image, setImage] = useState([]);
-    const [category, setCategory] = useState([]);
-    const [tags, setTags] = useState([]);
-    const [name, setName] = useState('');
-    const [prices, setPrices] = useState(0);
-    const [discount, setDiscount] = useState(0);
-    const [status, setStatus] = useState(0);
-    const [discription, setDiscription] = useState('');
-    const [posts, setPosts] = useState([]);
-    const listtags = []
-    const handleInputChange = (event) => {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-        console.log(`The value of ${name} has changed to ${value}`);
-        if (name === 'name') {
-            setName(value);
-        } else if (name === 'price') {
-            setPrices(value);
-        } else if (name === 'discount') {
-            setDiscount(value);
-        } else if (name === 'status') {
-            setStatus(value);
-        } else if (name === 'image') {
-            setImage(value);
-        } else if (name === 'tag' || value === true) {
-            let arr = value.split(",")
-            setTags(arr);
-        } else if (name === 'category') {
-            let arr = value.split(",")
-            setCategory(arr);
-        } else if (name === 'discription') {
-            setDiscription(value);
+    const { setDataProduct, dataProduct } = useContext(ActicleContext)
+    const formik = useFormik({
+        initialValues: {
+            img: '',
+            name: '',
+            price: '',
+            discount: '',
+            category: '',
+            tags: '',
+            status: '',
+            discription: ''
+        },
+        validationSchema: Yup.object({
+            name: Yup.string().required('*Please enter the product name!'),
+            price: Yup.number().required('*Please enter the product price!'),
+            status: Yup.number().required('*Please enter the product quantity!'),
+            discount: Yup.number().required('*Please enter the discount number! '),
+            img: Yup.string().matches(/((https?:\/\/)|(\/)|(..\/))(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+            ,"Please enter your vanity URL "),
+            category: Yup.string().matches(/^([^0-9]*)$/,"Category no number").required("*Please enter the Category"),
+            tags: Yup.string().matches(/^([^0-9]*)$/,"tag no number").required("*Please enter the tags")
+        }),
+        onSubmit: (values) => {
+            let category = values.category.split(',')
+            let tags = values.tags.split(',')
+            let obj = {
+                id: 'PD-' + crypto.randomUUID(),
+                img: values.img,
+                name: values.name,
+                price: values.price,
+                discount: values.discount,
+                category: category,
+                tags: tags,
+                status: values.status,
+                discription: values.discription
+            }
+            // let id = values.id
+            // let img = values.img.split(',')
+            // let name = values.name
+            // let discription =values.discription
+
+            // let tag = values.tags.split(',')
+            // let price = values.price
+            // let status = values.status
+            // let discount = values.discount
+            // let obj =  {id,name,price,status,discount,category,tag,img,discription}
+            addPosts(obj)
         }
-    };
-    const setDefault = () => {
-        setName('');
-        setDiscription('');
-        setPrices(0);
-        setStatus(0);
-        setDiscount('');
-        setTags([]);
-        setCategory([]);
-        setImage([]);
-    }
-    const onSubmitData = (e) => {
-        const reservationData = {
-            id: 'PD-' + crypto.randomUUID(),
-            img: image,
-            name: name,
-            price: prices,
-            discount: discount,
-            category: category,
-            tags: tags,
-            status: status,
-            discription: discription,
-        };
-        console.log(reservationData)
-        e.preventDefault();
-        addPosts(reservationData)
-        setDefault()
-        console.log('ok')
-    }
+    })
+
     const addPosts = (body) => {
         request
-            .post('products', {body})
+            .post('products', body)
             .then((response) => {
-                setPosts([response.data, ...posts]);
+                setDataProduct([response.data, ...dataProduct]);
             });
     };
     return (
-        <form>
+        <form onSubmit={formik.handleSubmit}>
+            {formik.errors.name && (
+                <p className='Danger'>{formik.errors.name}</p>
+            )}
             <div className="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">@</span>
+                <span className="input-group-text" id="basic-addon1">@</span>
                 <input
                     type="text"
                     className="form-control"
                     name='name'
                     placeholder="Username"
-                    value={name}
-                    onChange={handleInputChange}
+                    value={formik.values.name}
+                    onChange={formik.handleChange}
                     aria-label="Username"
                     aria-describedby="basic-addon1" />
             </div>
+            {formik.errors.price && (
+                <p className='Danger'>{formik.errors.price}</p>
+            )}
             <div className="input-group mb-3">
                 <span className="input-group-text">$</span>
                 <input
                     type="number"
                     className="form-control"
                     name='price'
-                    value={prices}
+                    value={formik.values.price}
                     min={0}
-                    onChange={handleInputChange}
+                    onChange={formik.handleChange}
                     aria-label="price" />
                 <span className="input-group-text">.00</span>
+            </div>
+            <div className='d-flex justify-content-between'>
+                {formik.errors.status && (
+                    <span className='Danger'>{formik.errors.status}</span>
+                )}
+                {formik.errors.discount && (
+                    <span className='Danger'>{formik.errors.discount}</span>
+                )}
             </div>
             <div className="input-group mb-3">
                 <span className="input-group-text">Quantity</span>
@@ -105,32 +108,43 @@ const Reservation = () => {
                     className="form-control"
                     min={0}
                     name='status'
-                    value={status}
-                    onChange={handleInputChange}
+                    value={formik.values.status}
+                    onChange={formik.handleChange}
                     placeholder="status"
                     aria-label="status" />
                 <span className="input-group-text">@</span>
                 <input type="number"
                     className="form-control"
                     name='discount'
-                    value={discount}
+                    value={formik.values.discount}
                     min={0}
                     max={100}
-                    onChange={handleInputChange}
+                    onChange={formik.handleChange}
                     aria-label="discount" />
                 <span className="input-group-text">Discount</span>
             </div>
+            {formik.errors.img && (
+                <p className='Danger'>{formik.errors.img}</p>
+            )}
             <label htmlFor="basic-url" className="form-label">Your vanity URL</label>
             <div className="input-group mb-3">
                 <span className="input-group-text" id="basic-addon3">https://example.com/users/</span>
-                <input 
-                type="text" 
-                className="form-control"
-                name='image' 
-                onChange={handleInputChange}
-                value={image}
-                id="basic-url" 
-                aria-describedby="basic-addon3" />
+                <input
+                    type="text"
+                    className="form-control"
+                    name='img'
+                    onChange={formik.handleChange}
+                    value={formik.values.img}
+                    id="basic-url"
+                    aria-describedby="basic-addon3" />
+            </div>
+            <div className='d-flex justify-content-between'>
+                {formik.errors.category && (
+                    <span className='Danger'>{formik.errors.category}</span>
+                )}
+                {formik.errors.tags && (
+                    <span className='Danger'>{formik.errors.tags}</span>
+                )}
             </div>
             <div className="input-group mb-3">
                 <span className="input-group-text">Category</span>
@@ -138,16 +152,16 @@ const Reservation = () => {
                     type="text"
                     className="form-control"
                     name='category'
-                    onChange={handleInputChange}
-                    value={category}
+                    onChange={formik.handleChange}
+                    value={formik.values.category}
                     placeholder="ex: bedroom,bed"
                     aria-label="category" />
                 <span className="input-group-text">@</span>
                 <input type="text"
                     className="form-control"
-                    name='tag'
-                    value={tags}
-                    onChange={handleInputChange}
+                    name='tags'
+                    value={formik.values.tags}
+                    onChange={formik.handleChange}
                     placeholder="ex: Hot,Trend"
                     aria-label="tag" />
                 <span className="input-group-text">Tags</span>
@@ -158,11 +172,17 @@ const Reservation = () => {
                     className="form-control"
                     aria-label="With textarea"
                     name='discription'
-                    value={discription}
-                    onChange={handleInputChange}></textarea>
+                    value={formik.values.discription}
+                    onChange={formik.handleChange}></textarea>
             </div>
-            <input type="submit" value="Submit" onClick={onSubmitData} />
-        </form>
+            <div className='w-100 mt-3 d-flex justify-content-end'>
+                <input
+                    type="submit"
+                    value="Submit"
+                    className='btn btn-primary'
+                />
+            </div>
+        </form >
     );
 }
 export default Reservation;

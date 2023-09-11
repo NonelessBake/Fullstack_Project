@@ -7,56 +7,26 @@ export const AppProvier = ({children}) => {
     const hefPage = [
         {
             name:'Home',
-            hef:'/',
+            hef:'/admin',
             img:'/src/imgs/Billboard.png',
-            status:false
+            status:true
         },
         {
             name:'Order',
-            hef:'/Order',
+            hef:'/admin/Order',
             img:'/src/imgs/PurchaseOrder.png',
             status:true
         },
         {
             name:'User',
-            hef:'/User',
+            hef:'/admin/User',
             img:'/src/imgs/Name.png',
             status:true
         },
         {
             name:'Product',
-            hef:'/Product',
+            hef:'/admin/Product',
             img:'/src/imgs/Product.png',
-            status:true
-        },
-        {
-            name:'Banner',
-            hef:'/Banner',
-            img :'/src/imgs/Billboard.png',
-            status:true
-        },
-        {
-            name:'Slider',
-            hef:'/Slider',
-            img :'/src/imgs/Slider.png',
-            status:true
-        },
-        {
-            name:'Brand',
-            hef:'/Brand',
-            img :'/src/imgs/PriceTag.png',
-            status:true
-        },
-        {
-            name:'Blog',
-            hef:'/Blog',
-            img :'/src/imgs/Blogger.png',
-            status:true
-        },
-        {
-            name:'Contact',
-            hef:'/Contact',
-            img :'/src/imgs/Contact.png',
             status:true
         }
     ]
