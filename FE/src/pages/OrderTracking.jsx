@@ -17,7 +17,7 @@ const OrderTracking = () => {
         <div>
           <div className="back-to-tracking" onClick={backToTrackingPage}>
             <BsArrowLeft />
-            Back to Tracking Order
+            Tracking Another Order
           </div>
           <OrderStatus />
           <OrderInfo />

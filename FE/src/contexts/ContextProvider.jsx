@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import axios from "axios";
 
@@ -32,8 +32,13 @@ const ContextProvider = ({ children }) => {
   // Header Component
 
   // Products
-  const productCategory = productList.map((product) => product.category);
+  const [searchParams, setSearchParams] = useSearchParams();
 
+  const handleSortChange = (event) => {
+    setSearchParams({ sort: event.target.value });
+  };
+
+  const productCategory = productList.map((product) => product.category);
   let counter = {};
   productCategory
     ?.join()
@@ -49,18 +54,23 @@ const ContextProvider = ({ children }) => {
   const priceRangeSelector = (e, newValue) => {
     setpriceFilter(newValue);
   };
+  const [searchKeyWords, setSearchKeyWords] = useState(null);
+  const handleSearch = (e) => setSearchKeyWords(e.target.value);
+
+  const withSelectedCategory = productList.filter(
+    (product) =>
+      product.category.includes(selectedCategory) &&
+      product.price * (1 - product.discount / 100) >= priceFilter[0] &&
+      product.price * (1 - product.discount / 100) <= priceFilter[1]
+  );
+  const noSelectedCategory = productList.filter(
+    (product) =>
+      product.price * (1 - product.discount / 100) >= priceFilter[0] &&
+      product.price * (1 - product.discount / 100) <= priceFilter[1]
+  );
   const filteredList = selectedCategory
-    ? productList.filter(
-        (product) =>
-          product.category.includes(selectedCategory) &&
-          product.price * (1 - product.discount / 100) >= priceFilter[0] &&
-          product.price * (1 - product.discount / 100) <= priceFilter[1]
-      )
-    : productList.filter(
-        (product) =>
-          product.price * (1 - product.discount / 100) >= priceFilter[0] &&
-          product.price * (1 - product.discount / 100) <= priceFilter[1]
-      );
+    ? withSelectedCategory
+    : noSelectedCategory;
   // Products
 
   // ButtonAddTo Component
@@ -279,6 +289,7 @@ const ContextProvider = ({ children }) => {
         categoryList,
         priceFilter,
         selectedCategory,
+        searchParams,
       }}
     >
       <ContextUpdate.Provider
@@ -299,6 +310,7 @@ const ContextProvider = ({ children }) => {
           handleShow,
           onOrderSuccess,
           priceRangeSelector,
+          handleSortChange,
         }}
       >
         {children}

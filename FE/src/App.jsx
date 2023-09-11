@@ -8,12 +8,14 @@ import OrderTracking from "./pages/OrderTracking";
 import Cart from "./pages/Cart";
 import Layout from "./layout/Layout";
 import ProductDetail from "./components/Product/ProductDetail";
+import Error404 from "./pages/Error404";
 
 function App() {
   return (
     <Router>
       <ContextProvider>
         <Routes>
+          <Route path="*" element={<Error404 />} />
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="shop" element={<Shop />} />

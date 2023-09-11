@@ -1,6 +1,7 @@
 import { ProductList } from "../components";
 import ShopTools from "../components/Product/ShopTools";
 import "../assets/style/shop.css";
+
 const Shop = () => {
   return (
     <>

@@ -6,7 +6,6 @@ const ShopTools = () => {
   const { categoryList, priceFilter, selectedCategory } =
     useContext(ContextValue);
   const { onChooseCategory, priceRangeSelector } = useContext(ContextUpdate);
-  console.log(categoryList);
   return (
     <div className="filter-tool">
       <div className="filter-category">
