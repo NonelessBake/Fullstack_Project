@@ -618,12 +618,49 @@
       "img": "https://wpbingosite.com/wordpress/funio/wp-content/uploads/2020/12/49.png"
     }
   ],
-  "user": {
-    "userName": "admin",
-    "password": "admin",
-    "admin": true,
-    "idUser": "admin"
-  },
+  "user": [
+    {
+      "userName": "admin",
+      "password": "admin",
+      "email": "",
+      "phone": "",
+      "admin": true,
+      "id": "ad-f7997b58-50d7-11ee-be56-0242ac120002"
+    },
+    {
+      "userName": "Palles123",
+      "password": "Palles123",
+      "email": "Palles123@gmail.com",
+      "phone": "0240320051",
+      "admin": false,
+      "id": "f7998012-50d7-11ee-be56-0242ac120002"
+    },
+    {
+      "userName": "Molachesse001",
+      "password": "Molachesse001",
+      "email": "Molachesse001@gmail.com",
+      "phone": "",
+      "admin": false,
+      "id": "f79981ac-50d7-11ee-be56-0242ac120002"
+    },
+    {
+      "userName": "MeoNauy001",
+      "password": "MeoNauy001",
+      "email": "",
+      "phone": "0240321453",
+      "admin": false,
+      "id": "f799842c-50d7-11ee-be56-0242ac120002"
+    },
+    {
+      "id": "59245a5f-467d-4099-adb8-7367ed25de69",
+      "img": "đâsdasdasd",
+      "userName": "HOANGNGUYENTUAN",
+      "password": "12345678",
+      "email": "testopenai001@gmail.com",
+      "phone": "08671090161",
+      "admin": true
+    }
+  ],
   "countries": [
     {
       "name": "Afghanistan",

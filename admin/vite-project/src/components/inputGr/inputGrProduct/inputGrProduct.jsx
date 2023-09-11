@@ -50,7 +50,7 @@ const Reservation = () => {
             // let status = values.status
             // let discount = values.discount
             // let obj =  {id,name,price,status,discount,category,tag,img,discription}
-            addPosts(obj)
+            add(obj)
         }
     })
 

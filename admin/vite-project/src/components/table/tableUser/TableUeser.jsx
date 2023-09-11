@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PropTypes, { array } from 'prop-types';
+import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
@@ -19,11 +19,9 @@ import Tooltip from '@mui/material/Tooltip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
-
-import { ActicleContext } from '../../../context/ActicleContext'
-import './table.css'
+import Button from '@mui/material-next/Button';
 import request from '../../../utils/HTTP';
-
+import { ActicleContext } from '../../../context/ActicleContext';
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -51,54 +49,32 @@ function stableSort(array, comparator) {
   });
   return stabilizedThis.map((el) => el[0]);
 }
-function createData(id, fullName, phone, infoProduct, price, status,date) {
-  return {
-    id,
-    fullName,
-    phone,
-    infoProduct,
-    price,
-    status,
-    date,
-  };
-}
+
 const headCells = [
   {
-    id: 'id',
+    id: 'userName',
     numeric: false,
     disablePadding: true,
-    label: 'Id order',
-  },
-  {
-    id: 'date',
-    numeric: false,
-    disablePadding: false,
-    label: 'Date',
-  },
-  {
-    id: 'fullName',
-    numeric: false,
-    disablePadding: false,
     label: 'Name user',
+  },
+  {
+    id: 'password',
+    numeric: false,
+    disablePadding: false,
+    label: 'Password',
+  },
+  {
+    id: 'email',
+    numeric: false,
+    disablePadding: false,
+    label: 'Email',
   },
   {
     id: 'phone',
     numeric: false,
     disablePadding: false,
-    label: 'Phone number',
+    label: 'Phone',
   },
-  {
-    id: 'infoProduct',
-    numeric: false,
-    disablePadding: false,
-    label: 'Info product',
-  },
-  {
-    id: 'price',
-    numeric: true,
-    disablePadding: false,
-    label: 'Price($)',
-  }
 ];
 
 function EnhancedTableHead(props) {
@@ -186,7 +162,7 @@ function EnhancedTableToolbar(props) {
           id="tableTitle"
           component="div"
         >
-          PRODUCT
+          Users
         </Typography>
       )}
 
@@ -212,22 +188,21 @@ EnhancedTableToolbar.propTypes = {
   handleDelete: PropTypes.func.isRequired,
 };
 
-export default function EnhancedTable(props) {
+export default function EnhancedTableUser(props) {
   let hef = props.hef
-  const [datarow, setRows] = React.useState([])
+  const {dataUser,setDataUser} = React.useContext(ActicleContext)
+  const [datarow, setRows] = [dataUser,setDataUser]
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('price');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const { sum } = React.useContext(ActicleContext)
-  const [dataProduct, setDataProduct] = React.useState([])
-
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
+
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
       const newSelected = datarow.map((n) => n.id);
@@ -281,37 +256,13 @@ export default function EnhancedTable(props) {
     [order, orderBy, page, rowsPerPage, datarow],
   );
   React.useEffect(() => {
-    let mouted = true;
-    // get api order
     request.get(hef)
       .then((res) => {
-        if (mouted) {
-          let data = res.data
-          setRows(() => {
-            return data.map((item) => {
-              let fullName = item.infoCustomer.firstName + ' ' + item.infoCustomer.lastName
-              let infoProducts = item.infoProducts
-              return createData(item.id, fullName,
-                item.infoCustomer.phone,infoProducts,'','',item.date
-              )
-            })
-          })
-        }
+        setRows(res.data)
       })
       .catch((error) => {
         console.log(error);
       });
-    // get api prouduct
-    request.get("products")
-      .then((res) => {
-        if (mouted) {
-          setDataProduct(res.data)
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    return () => mouted = false;
   }, []);
   const handleDelete = () => {
     // Delete the selected rows from the database
@@ -326,20 +277,10 @@ export default function EnhancedTable(props) {
     setRows(filteredRows);
     setSelected([])
   };
+
   const deletePost = (id) => {
     request.delete(`${hef}/${id}`);
   };
-  const allPrice = (id, quantity) => {
-    let price;
-    dataProduct.map((product) => {
-      if (id === product.id) {
-        price = (product.price) * quantity
-      }
-
-    })
-    return price
-  }
-  console.log(visibleRows)
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
@@ -365,6 +306,7 @@ export default function EnhancedTable(props) {
               {visibleRows.map((row, index) => {
                 const isItemSelected = isSelected(row.id);
                 const labelId = `enhanced-table-checkbox-${index}`;
+
                 return (
                   <TableRow
                     hover
@@ -372,7 +314,7 @@ export default function EnhancedTable(props) {
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
-                    key={row.id}
+                    key={row.name}
                     selected={isItemSelected}
                     sx={{ cursor: 'pointer' }}
                   >
@@ -391,21 +333,11 @@ export default function EnhancedTable(props) {
                       scope="row"
                       padding="none"
                     >
-                      {row.id}
+                      {row.userName}
                     </TableCell>
-                    <TableCell align="left">{row.date}</TableCell>
-                    <TableCell align="left">{row.fullName}</TableCell>
+                    <TableCell align="left">{row.password}</TableCell>
+                    <TableCell align="left">{row.email}</TableCell>
                     <TableCell align="left">{row.phone}</TableCell>
-                    <TableCell align="left">
-                      {row.infoProduct.map((item) => {
-                        return <div key={item.id}>
-                          {item.id}
-                        </div>
-                      })}
-                    </TableCell>
-                    <TableCell align="right">
-                      {sum(row.infoProduct.map((product) => allPrice(product.id, product.quantity)))}
-                    </TableCell>
                   </TableRow>
                 );
               })}
@@ -427,6 +359,14 @@ export default function EnhancedTable(props) {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
+      <Button
+        color="secondary"
+        size="large"
+        variant="filled"
+        className='Add'
+        data-bs-target="#addUser"
+        data-bs-toggle="modal"
+      >Add User</Button>
     </Box>
   );
 }

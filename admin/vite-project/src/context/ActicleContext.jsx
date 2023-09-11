@@ -4,6 +4,7 @@ export const ActicleContext = createContext({})
 
 export const ActicleProvier = ({ children }) => {
   const [dataProduct,setDataProduct] = useState([])
+  const [dataUser,setDataUser] = useState([])
   const sum = (prices) => {
     let total = 0;
     prices.forEach((price) => {
@@ -13,7 +14,7 @@ export const ActicleProvier = ({ children }) => {
   };
   // boxModal
   return <ActicleContext.Provider value={
-    {sum,setDataProduct,dataProduct
+    {sum,setDataProduct,dataProduct,dataUser,setDataUser
     }
   }>
     {children}
