@@ -16,9 +16,9 @@ const HeaderSlide = () => {
         autoPlaySpeed={4000}
         autoPlay={true}
         draggable={windowSize.innerWidth < 1024 ? true : false}
+        removeArrowOnDeviceType={["tablet", "mobile"]}
         ssr={true}
         swipeable={true}
-        removeArrowOnDeviceType={["tablet", "mobile"]}
       >
         {headerSlideImgs.length > 0 &&
           headerSlideImgs.map((item, index) => (

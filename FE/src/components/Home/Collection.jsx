@@ -59,9 +59,15 @@ const Collection = () => {
           containerClass="carousel-container"
           arrows={false}
           customButtonGroup={
-            <ButtonGroup onPrevSlide={onPrevSlide} onNextSlide={onNextSlide} />
+            windowSize.innerWidth < 1024 ? null : (
+              <ButtonGroup
+                onPrevSlide={onPrevSlide}
+                onNextSlide={onNextSlide}
+              />
+            )
           }
-          draggable={false}
+          draggable={windowSize.innerWidth < 1024 ? true : false}
+          removeArrowOnDeviceType={["tablet", "mobile"]}
           centerMode={windowSize.innerWidth < 1024 ? false : true}
           responsive={responsiveCollection}
           itemClass="carousel-item-padding-20-px"

@@ -33,8 +33,14 @@ const ShopTools = () => {
             valueLabelDisplay="auto"
             max={400}
             min={0}
-            color="secondary"
             disableSwap
+            sx={{
+              color: "black",
+              background: "transparent",
+              "& .MuiSlider-thumb": {
+                borderRadius: "1px",
+              },
+            }}
           />
           <div>
             <span className="range-selected">Rage</span>: {priceFilter[0]} -{" "}
