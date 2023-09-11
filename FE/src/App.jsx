@@ -15,8 +15,8 @@ function App() {
     <Router>
       <ContextProvider>
         <Routes>
-          <Route path="*" element={<Error404 />} />
           <Route path="/" element={<Layout />}>
+            <Route path="*" element={<Error404 />} />
             <Route index element={<Home />} />
             <Route path="shop" element={<Shop />} />
             <Route path="product/:productName" element={<ProductDetail />} />

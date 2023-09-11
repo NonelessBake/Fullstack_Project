@@ -1,0 +1,47 @@
+.page-404 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 100px;
+}
+.page-404 .title {
+  font-size: 300px;
+  line-height: 1;
+  margin-bottom: -40px;
+  font-family: Josefin Sans, sans-serif;
+  color: #000;
+}
+.page-404 .content {
+  font-size: 50px;
+  color: #000;
+  font-weight: 500;
+  margin-bottom: 25px;
+  font-family: Josefin Sans, sans-serif;
+  position: relative;
+  padding-bottom: 10px;
+}
+.page-404 .content::before {
+  position: absolute;
+  content: "";
+  width: 140px;
+  height: 2px;
+  bottom: 0;
+  left: calc(50% - 70px);
+  background: #e1e1e1;
+}
+.page-404 .sub-title {
+  color: #868686;
+  max-width: 325px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.page-404 a {
+  width: fit-content;
+  padding: 10px 20px;
+  border-radius: 2px;
+  border: 1px solid black;
+  background-color: black;
+  color: white;
+}

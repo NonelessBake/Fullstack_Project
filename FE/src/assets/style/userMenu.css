@@ -8,6 +8,7 @@
   background-color: rgb(0, 0, 0);
   background-color: rgba(247, 247, 247, 0.4);
   z-index: 10000;
+  position: relative;
 }
 .white-color-text {
   color: white;
