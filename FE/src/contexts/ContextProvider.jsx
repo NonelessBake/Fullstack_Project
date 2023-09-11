@@ -32,11 +32,6 @@ const ContextProvider = ({ children }) => {
   // Header Component
 
   // Products
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const handleSortChange = (event) => {
-    setSearchParams({ sort: event.target.value });
-  };
 
   const productCategory = productList.map((product) => product.category);
   let counter = {};
@@ -54,8 +49,6 @@ const ContextProvider = ({ children }) => {
   const priceRangeSelector = (e, newValue) => {
     setpriceFilter(newValue);
   };
-  const [searchKeyWords, setSearchKeyWords] = useState(null);
-  const handleSearch = (e) => setSearchKeyWords(e.target.value);
 
   const withSelectedCategory = productList.filter(
     (product) =>
@@ -71,6 +64,23 @@ const ContextProvider = ({ children }) => {
   const filteredList = selectedCategory
     ? withSelectedCategory
     : noSelectedCategory;
+
+  const [filterParams, setfilterParams] = useSearchParams();
+  const handleSortChange = (event) => {
+    setfilterParams({ sort: event.target.value });
+  };
+  filterParams.get("sort") === "asc"
+    ? filteredList.sort((a, b) => {
+        return (
+          a.price * (1 - a.discount / 100) - b.price * (1 - b.discount / 100)
+        );
+      })
+    : filteredList.sort((a, b) => {
+        return (
+          b.price * (1 - b.discount / 100) - a.price * (1 - a.discount / 100)
+        );
+      });
+
   // Products
 
   // ButtonAddTo Component
@@ -289,7 +299,7 @@ const ContextProvider = ({ children }) => {
         categoryList,
         priceFilter,
         selectedCategory,
-        searchParams,
+        filterParams,
       }}
     >
       <ContextUpdate.Provider

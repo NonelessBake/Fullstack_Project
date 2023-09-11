@@ -125,6 +125,7 @@ const CheckoutForm = () => {
               name="postcodeOrZip"
               type="text"
             />
+            <small className="text-muted">{errors.postcodeOrZip}</small>
           </div>
           <div className="form-group">
             <label htmlFor="">
