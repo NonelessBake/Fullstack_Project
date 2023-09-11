@@ -8,8 +8,12 @@ function ProductList() {
 
   return (
     <div className="product-list-container">
-      <div style={{ padding: 15 }}>
-        <select value={filterParams.get("sort")} onChange={handleSortChange}>
+      <div style={{ padding: "15px 0" }}>
+        <select
+          value={filterParams.get("sort")}
+          onChange={handleSortChange}
+          style={{ padding: "5px 10px", cursor: "pointer" }}
+        >
           <option hidden disabled selected value>
             Short Price
           </option>

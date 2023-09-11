@@ -13,7 +13,9 @@ const CheckoutForm = () => {
   const oID = crypto.randomUUID();
   const navigate = useNavigate();
   const { onOrderSuccess } = useContext(ContextUpdate);
-  const cartPOST = cart.map((product) => product);
+  const cartPOST = cart.map((product) => {
+    return { id: product.id, quantity: product.quantity };
+  });
   const { values, handleChange, handleSubmit, resetForm, errors } = useFormik({
     initialValues: {
       firstName: "",
@@ -42,7 +44,7 @@ const CheckoutForm = () => {
             receive: false,
           },
         })
-        .then((res) => console.log(res.data));
+        .catch((err) => console.log(err));
       alert(`Your tracking order is: ${oID}`);
       onOrderSuccess();
       resetForm();

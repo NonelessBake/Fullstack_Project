@@ -3,9 +3,10 @@ import { ContextValue } from "../../contexts/ContextProvider";
 import OrderProduct from "./OrderProduct";
 import "../../assets/style/orderInfo.css";
 const OrderInfo = () => {
-  const { customerOrderList } = useContext(ContextValue);
+  const { showOrderList } = useContext(ContextValue);
+  console.log(showOrderList);
   let totalPrice = null;
-  customerOrderList[0]?.infoProducts?.forEach((product) => {
+  showOrderList.forEach((product) => {
     totalPrice +=
       product.price * (1 - product.discount / 100) * product.quantity;
   });
@@ -22,13 +23,24 @@ const OrderInfo = () => {
         Your Order
       </h3>
       <div>
-        {customerOrderList?.map((product) => (
+        {showOrderList?.map((product) => (
           <div key={product.id}>
-            <OrderProduct product={product?.infoProducts} />
+            <OrderProduct product={product} />
           </div>
         ))}
       </div>
-      <h3 style={{ marginTop: 50 }}>Subtotal: ${totalPrice?.toFixed(2)}</h3>
+      <h3
+        style={{
+          padding: 20,
+          display: "flex",
+          alignItems: "center",
+          borderTop: "1px solid black",
+          width: "100%",
+          justifyContent: "center",
+        }}
+      >
+        Subtotal: ${totalPrice?.toFixed(2)}
+      </h3>
     </div>
   );
 };

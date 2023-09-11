@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useMemo, useState } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import axios from "axios";
@@ -260,8 +260,9 @@ const ContextProvider = ({ children }) => {
       setIsOrderExist(true);
       setCustomerOrderList(
         orderList.filter(
-          (product) =>
-            product.id === id && product.infoCustomer.emailAddress === email
+          (orderProduct) =>
+            orderProduct.id === id &&
+            orderProduct.infoCustomer.emailAddress === email
         )
       );
     } else {
@@ -272,6 +273,13 @@ const ContextProvider = ({ children }) => {
   const backToTrackingPage = () => {
     setCustomerOrderList([]);
   };
+
+  const showOrderList = customerOrderList
+    ? customerOrderList[0]?.infoProducts?.map((item) => ({
+        ...item,
+        ...productList.find((el) => el.id === item.id),
+      }))
+    : [];
   // Tracking order
 
   // Collection Component
@@ -294,7 +302,6 @@ const ContextProvider = ({ children }) => {
     };
   }, []);
 
-  // Footer Component
   return (
     <ContextValue.Provider
       value={{
@@ -321,6 +328,7 @@ const ContextProvider = ({ children }) => {
         selectedCategory,
         filterParams,
         activeIndex,
+        showOrderList,
       }}
     >
       <ContextUpdate.Provider
