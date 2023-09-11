@@ -36,7 +36,7 @@ const OrderStatus = () => {
       <div className="flexing-status">
         <span
           className={`${
-            customerOrderList?.status?.orderConfirmation
+            customerOrderList?.status?.transferToCarrier
               ? "active-status"
               : "waiting-status"
           }`}
@@ -46,7 +46,7 @@ const OrderStatus = () => {
         <span
           style={{ background: "transparent" }}
           className={
-            customerOrderList?.status?.orderConfirmation
+            customerOrderList?.status?.transferToCarrier
               ? " active-status"
               : "waiting-status"
           }
@@ -57,13 +57,13 @@ const OrderStatus = () => {
       <BsArrowRight
         size={30}
         color={`${
-          customerOrderList?.status?.orderConfirmation ? "green" : "868686"
+          customerOrderList?.status?.transferToCarrier ? "green" : "868686"
         }`}
       />
       <div className="flexing-status">
         <span
           className={`${
-            customerOrderList?.status?.orderConfirmation
+            customerOrderList?.status?.delivery
               ? "active-status"
               : "waiting-status"
           }`}
@@ -73,7 +73,7 @@ const OrderStatus = () => {
         <span
           style={{ background: "transparent" }}
           className={
-            customerOrderList?.status?.orderConfirmation
+            customerOrderList?.status?.delivery
               ? " active-status"
               : "waiting-status"
           }
@@ -83,14 +83,12 @@ const OrderStatus = () => {
       </div>
       <BsArrowRight
         size={30}
-        color={`${
-          customerOrderList?.status?.orderConfirmation ? "green" : "868686"
-        }`}
+        color={`${customerOrderList?.status?.delivery ? "green" : "868686"}`}
       />
       <div className="flexing-status">
         <span
           className={`${
-            customerOrderList?.status?.orderConfirmation
+            customerOrderList?.status?.receive
               ? "active-status"
               : "waiting-status"
           }`}
@@ -100,7 +98,7 @@ const OrderStatus = () => {
         <span
           style={{ background: "transparent" }}
           className={
-            customerOrderList?.status?.orderConfirmation
+            customerOrderList?.status?.receive
               ? " active-status"
               : "waiting-status"
           }
