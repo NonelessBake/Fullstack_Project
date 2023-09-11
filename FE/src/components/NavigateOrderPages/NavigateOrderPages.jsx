@@ -7,7 +7,7 @@ const NavigateOrderPages = () => {
   const navigate = useNavigate();
   return (
     <div
-      style={{ display: "flex", justifyContent: "center", marginBottom: 50 }}
+      style={{ display: "flex", justifyContent: "center", marginBottom: 20 }}
     >
       <div className="show-change">
         <button

@@ -14,7 +14,7 @@ const CartItem = (newProps) => {
   } = useContext(ContextUpdate);
   const newPrice = price * (1 - discount / 100);
   const total = useMemo(() => {
-    if (Number(newPrice) === 0 || Number(quantity) === 0) return 1;
+    if (Number(newPrice) === 0 || Number(quantity) === 0) return 0;
     return formatNumber(newPrice * quantity);
   }, [formatNumber, newPrice, quantity]);
   return (

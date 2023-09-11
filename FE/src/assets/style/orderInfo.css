@@ -7,3 +7,27 @@
   margin: 0 auto;
   margin-bottom: 100px;
 }
+.order-product-info {
+  height: 60vh;
+  overflow-y: scroll;
+}
+
+/* width */
+.order-product-info::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.order-product-info::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.order-product-info::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.order-product-info::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

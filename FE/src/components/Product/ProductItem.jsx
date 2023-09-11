@@ -40,10 +40,14 @@ const ProductItem = (newProps) => {
             <Link to={`/shop/${formatLink(name)}`}>{name}</Link>
           </h5>
           <p>
-            <span className="price-before">${formatNumber(price)}</span>
-            <span className="new-price">
-              ${formatNumber(price * (1 - discount / 100))}
+            <span className={discount !== 0 ? "price-before" : "base-price"}>
+              ${formatNumber(price)}
             </span>
+            {discount !== 0 && (
+              <span className="new-price">
+                ${formatNumber(price * (1 - discount / 100))}
+              </span>
+            )}
           </p>
         </div>
       </div>

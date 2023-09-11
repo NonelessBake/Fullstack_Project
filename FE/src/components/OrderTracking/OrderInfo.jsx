@@ -12,17 +12,17 @@ const OrderInfo = () => {
   });
   return (
     <div className="order-tracking-info">
-      <h3
+      <h4
         style={{
           textAlign: "center",
           borderBottom: "1px solid black",
           width: "100%",
-          padding: "15px",
+          padding: "10px 15px",
         }}
       >
         Your Order
-      </h3>
-      <div>
+      </h4>
+      <div className="order-product-info">
         {showOrderList?.map((product) => (
           <div key={product.id}>
             <OrderProduct product={product} />

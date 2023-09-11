@@ -43,7 +43,12 @@ const CartPopup = () => {
                       <div>{cartItem.name}</div>
                       <div>Quantity: {cartItem.quantity} </div>
                       <div>
-                        ${formatNumber(cartItem.price * cartItem.quantity)}
+                        $
+                        {formatNumber(
+                          cartItem.price *
+                            (1 - cartItem.discount / 100) *
+                            cartItem.quantity
+                        )}
                       </div>
                     </div>
                   </div>

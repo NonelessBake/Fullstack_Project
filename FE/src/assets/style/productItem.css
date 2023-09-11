@@ -70,7 +70,10 @@
   opacity: 0;
   width: 100%;
 }
-
+.base-price {
+  color: black;
+  font-size: 16px;
+}
 .img-swap-container:hover .img-swap-1 {
   z-index: 0;
   opacity: 0;
