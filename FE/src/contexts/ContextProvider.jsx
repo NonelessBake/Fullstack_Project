@@ -17,21 +17,7 @@ const ContextProvider = ({ children }) => {
   const brand = useFetch(`${baseURL + "brand"}`);
   // Fetch API
 
-<<<<<<< HEAD
-  const url = "http://localhost:3000/products";
-  const [productItem, setProductItem] = useState([]);
-  const fetchProductItem = async () => {
-    return axios.get(url).then((res) => {
-      setProductItem(res.data);
-    });
-  };
-  useEffect(() => {
-    fetchProductItem();
-  }, []);
-
-=======
   // Format Function
->>>>>>> FE
   const formatLink = (string) => {
     return string.toLowerCase().replaceAll(" ", "-");
   };
@@ -329,17 +315,6 @@ const ContextProvider = ({ children }) => {
         brand,
         bannerImgs,
         showList,
-<<<<<<< HEAD
-        onShowHomeProducts,
-        newList,
-        productItem,
-        formatLink,
-        formatNumber,
-        onHover,
-        imgShow,
-        isHovered,
-        slideCategory,
-=======
         homeProductList,
         collection,
         windowSize,
@@ -354,7 +329,6 @@ const ContextProvider = ({ children }) => {
         filterParams,
         activeIndex,
         showOrderList,
->>>>>>> FE
       }}
     >
       <ContextUpdate.Provider
