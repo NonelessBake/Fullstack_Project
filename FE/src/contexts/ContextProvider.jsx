@@ -32,7 +32,6 @@ const ContextProvider = ({ children }) => {
   // Header Component
 
   // Products
-
   const productCategory = productList.map((product) => product.category);
   let counter = {};
   productCategory
@@ -180,6 +179,27 @@ const ContextProvider = ({ children }) => {
   };
   // HomeProduct Component
 
+  // Collection Home
+  const [activeIndex, setactiveIndex] = useState(1);
+
+  const maxIndex = collection.length;
+  const minIndex = 1;
+
+  const onPrevSlide = () => {
+    setactiveIndex(activeIndex + 1);
+    activeIndex <= minIndex
+      ? setactiveIndex(maxIndex)
+      : setactiveIndex(activeIndex - 1);
+  };
+  const onNextSlide = () => {
+    setactiveIndex(activeIndex + 1);
+
+    activeIndex >= maxIndex
+      ? setactiveIndex(minIndex)
+      : setactiveIndex(activeIndex + 1);
+  };
+  // Collection Home
+
   // Checkout Components
   const [orderList, setOrderList] = useState([]);
   const fetchOrderList = async () => {
@@ -300,10 +320,13 @@ const ContextProvider = ({ children }) => {
         priceFilter,
         selectedCategory,
         filterParams,
+        activeIndex,
       }}
     >
       <ContextUpdate.Provider
         value={{
+          onNextSlide,
+          onPrevSlide,
           backToTrackingPage,
           onChooseCategory,
           onTrack,

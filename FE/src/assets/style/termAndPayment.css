@@ -5,6 +5,7 @@
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
   padding: 15px;
+  max-width: 1600px;
 }
 .privacy {
   display: flex;
@@ -34,4 +35,7 @@
 .payment {
   display: flex;
   justify-content: flex-end;
+}
+.payment img {
+  width: 100%;
 }

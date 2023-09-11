@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import { useContext, useState } from "react";
-import { ContextValue } from "../../contexts/ContextProvider";
+import { useContext } from "react";
+import { ContextUpdate, ContextValue } from "../../contexts/ContextProvider";
 import "../../assets/style/collection.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -14,16 +14,16 @@ const ButtonGroup = ({ next, previous, onPrevSlide, onNextSlide }) => {
       <button
         className="change-slide-btn prev-button"
         onClick={() => {
-          onPrevSlide();
           previous();
+          onPrevSlide();
         }}
       >
         <BsArrowLeft />
       </button>
       <button
         onClick={() => {
-          onNextSlide();
           next();
+          onNextSlide();
         }}
         className="change-slide-btn next-button"
       >
@@ -33,31 +33,15 @@ const ButtonGroup = ({ next, previous, onPrevSlide, onNextSlide }) => {
   );
 };
 const Collection = () => {
-  const { collection, windowSize } = useContext(ContextValue);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const maxIndex = collection.length - 1;
-  const minIndex = 0;
-
-  const onPrevSlide = () => {
-    activeIndex <= minIndex
-      ? setActiveIndex(maxIndex)
-      : setActiveIndex(activeIndex - 1);
-  };
-  const onNextSlide = () => {
-    activeIndex >= maxIndex
-      ? setActiveIndex(minIndex)
-      : setActiveIndex(activeIndex + 1);
-  };
-
+  const { collection, windowSize, activeIndex } = useContext(ContextValue);
+  const { onPrevSlide, onNextSlide } = useContext(ContextUpdate);
   return (
     <section className="collection">
       <h2>Collection</h2>
       <div className="collection-container">
         <Carousel
-          ssr={true}
-          containerClass="carousel-container"
           arrows={false}
+          containerClass="carousel-container"
           customButtonGroup={
             windowSize.innerWidth < 1024 ? null : (
               <ButtonGroup
@@ -73,7 +57,7 @@ const Collection = () => {
           itemClass="carousel-item-padding-20-px"
           infinite={true}
         >
-          {collection.map((item, index) => (
+          {collection.map((item) => (
             <div key={item.id} className="collection-item">
               <div className="collection-image-container">
                 <Link>
@@ -83,8 +67,8 @@ const Collection = () => {
                     className="collection-image"
                   />
                 </Link>
-                {index === activeIndex ? (
-                  <div className="collection-title-container  ">
+                {item.id === activeIndex && (
+                  <div className="collection-title-container">
                     <div className="collection-title">
                       <h3>{item.title}</h3>
                       <Link>
@@ -94,7 +78,7 @@ const Collection = () => {
                       </Link>
                     </div>
                   </div>
-                ) : null}
+                )}
               </div>
             </div>
           ))}
