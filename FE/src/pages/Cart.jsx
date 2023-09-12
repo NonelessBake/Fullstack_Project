@@ -9,7 +9,7 @@ function Cart() {
   return (
     <div className="cart">
       {isCartEmpty ? (
-        <div>Your Cart Is Currently Empty.</div>
+        <div style={{ marginBottom: 100 }}>Your Cart Is Currently Empty.</div>
       ) : (
         <div className="cart-container">
           <CartList />

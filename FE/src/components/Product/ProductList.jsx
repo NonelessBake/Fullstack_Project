@@ -14,7 +14,7 @@ function ProductList() {
           onChange={handleSortChange}
           style={{ padding: "5px 10px", cursor: "pointer" }}
         >
-          <option hidden disabled selected value>
+          <option hidden disabled selected>
             Short Price
           </option>
           <option value="asc">Ascending</option>

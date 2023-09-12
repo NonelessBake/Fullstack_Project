@@ -7,9 +7,9 @@ import Checkout from "./pages/Checkout";
 import OrderTracking from "./pages/OrderTracking";
 import Cart from "./pages/Cart";
 import Layout from "./layout/Layout";
-import ProductDetail from "./components/Product/ProductDetail";
 import Error404 from "./pages/Error404";
-import Login from "./components/Login/Login";
+import ProductDetail from "./pages/ProductDetail";
+import Login from "./pages/Login";
 
 function App() {
   return (
