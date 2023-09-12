@@ -210,12 +210,13 @@ const ContextProvider = ({ children }) => {
       product.quantity = quantityAdd;
       setCart((prev) => [...prev, product]);
       setCartLocalStorage([...cart, product]);
+      setQuantityAdd(1);
     } else {
       cart[index].quantity += quantityAdd;
       setCart((prev) => [...prev]);
       setCartLocalStorage([...cart]);
+      setQuantityAdd(1);
     }
-    console.log(product);
   };
   // Product Detail
 
