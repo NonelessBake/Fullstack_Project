@@ -1,4 +1,4 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { Footer, Header } from "../components";
 import { useContext } from "react";
 import { ContextValue } from "../contexts/ContextProvider";
@@ -8,7 +8,6 @@ const Layout = () => {
   let checked = false;
   const orderPages = ["/checkout", "/order-tracking", "/cart"];
   orderPages.includes(getPath.pathname) ? (checked = true) : (checked = false);
-  const navigate = useNavigate();
   return (
     <>
       <Header />

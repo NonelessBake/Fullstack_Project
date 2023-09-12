@@ -9,12 +9,14 @@ import Cart from "./pages/Cart";
 import Layout from "./layout/Layout";
 import ProductDetail from "./components/Product/ProductDetail";
 import Error404 from "./pages/Error404";
+import Login from "./components/Login/Login";
 
 function App() {
   return (
     <Router>
       <ContextProvider>
         <Routes>
+          <Route path="/login" element={<Login />} />
           <Route path="/" element={<Layout />}>
             <Route path="*" element={<Error404 />} />
             <Route index element={<Home />} />

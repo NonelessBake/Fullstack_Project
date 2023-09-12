@@ -1,5 +1,4 @@
-/* eslint-disable react/prop-types */
-import { createContext, useEffect, useMemo, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import axios from "axios";
@@ -15,7 +14,18 @@ const ContextProvider = ({ children }) => {
   const countryList = useFetch(`${baseURL + "countries"}`);
   const collection = useFetch(`${baseURL + "imgSlide"}`);
   const brand = useFetch(`${baseURL + "brand"}`);
+  const userLogin = useFetch(`${baseURL + "user"}`);
   // Fetch API
+
+  // Login
+  const [isAdmin, setIsAdmin] = useState(false);
+  const onAdminLogin = (username, password) => {
+    if (username === userLogin.userName && password === userLogin.password)
+      return setIsAdmin(true);
+    else setIsAdmin(false);
+  };
+  console.log(isAdmin);
+  // Login
 
   // Format Function
   const formatLink = (string) => {
@@ -292,6 +302,7 @@ const ContextProvider = ({ children }) => {
 
   // Footer Component
 
+  // Handle resize window
   useEffect(() => {
     function handleWindowResize() {
       setWindowSize(getWindowSize());
@@ -301,10 +312,12 @@ const ContextProvider = ({ children }) => {
       window.removeEventListener("resize", handleWindowResize);
     };
   }, []);
+  // Handle resize window
 
   return (
     <ContextValue.Provider
       value={{
+        isAdmin,
         customerOrderList,
         isOrderExist,
         orderDate,
@@ -333,6 +346,7 @@ const ContextProvider = ({ children }) => {
     >
       <ContextUpdate.Provider
         value={{
+          onAdminLogin,
           onNextSlide,
           onPrevSlide,
           backToTrackingPage,
