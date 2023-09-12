@@ -19,10 +19,19 @@ const ContextProvider = ({ children }) => {
 
   // Login
   const [isAdmin, setIsAdmin] = useState(false);
+  const [loginSuccess, setLoginSuccess] = useState(false);
   const onAdminLogin = (username, password) => {
-    if (username === userLogin.userName && password === userLogin.password)
-      return setIsAdmin(true);
-    else setIsAdmin(false);
+    const getIndexUser = userLogin.findIndex(
+      (info) => info.userName === username && info.password === password
+    );
+    if (getIndexUser === -1) {
+      setIsAdmin(false);
+      setLoginSuccess(false);
+    } else {
+      userLogin[getIndexUser].admin === true
+        ? (setIsAdmin(true), setLoginSuccess(true))
+        : (setIsAdmin(false), setLoginSuccess(true));
+    }
   };
   // Login
 
@@ -346,6 +355,7 @@ const ContextProvider = ({ children }) => {
   return (
     <ContextValue.Provider
       value={{
+        loginSuccess,
         productList,
         isAdmin,
         customerOrderList,

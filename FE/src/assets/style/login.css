@@ -46,3 +46,17 @@
   min-width: 300px;
   max-width: 400px;
 }
+.direct {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 10px 15px;
+  background-color: white;
+  cursor: pointer;
+  transition: 0.15s all;
+}
+.direct:hover {
+  background-color: yellow;
+}

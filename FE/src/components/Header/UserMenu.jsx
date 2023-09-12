@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { ContextUpdate, ContextValue } from "../../contexts/ContextProvider";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import "../../assets/style/userMenu.css";
 import CartPopup from "../Cart/CartPopup";
 import Modal from "react-bootstrap/Modal";
@@ -10,6 +10,7 @@ const UserMenu = () => {
   let checked;
   getPath.pathname === "/" ? (checked = true) : (checked = false);
   const colorHome = checked ? "white-color-text" : null;
+  const navigate = useNavigate();
   return (
     <section
       className={`header-container ${
@@ -102,7 +103,7 @@ const UserMenu = () => {
           <button className="search-btn">
             <i className="uil uil-search"></i>
           </button>
-          <button className="user-btn">
+          <button onClick={() => navigate("/login")} className="user-btn">
             <i className="uil uil-user"></i>
           </button>
           <button className="wishlist-btn">
