@@ -26,10 +26,14 @@
 }
 .detail-images .image-show {
   height: 100vh;
+  overflow: hidden;
 }
-
+.detail-images .image-show:hover img {
+  transform: scale3d(1.1, 1.1, 1.1);
+}
 .detail-images .image-show img {
   height: 100vh;
+  transition: all 1s ease;
 }
 .detail-images img {
   width: 100%;

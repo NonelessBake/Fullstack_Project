@@ -39,7 +39,9 @@ function ProductDetail() {
                         currentImageDetail === index && "current"
                       }`}
                       key={index}
-                      onClick={() => onChangeImageDetail(index)}
+                      onClick={() => (
+                        window.scrollTo(0, 200), onChangeImageDetail(index)
+                      )}
                     >
                       <img src={image} alt="" />
                     </div>
