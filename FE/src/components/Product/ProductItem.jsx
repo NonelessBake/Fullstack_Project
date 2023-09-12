@@ -8,7 +8,6 @@ const ProductItem = (newProps) => {
   const { formatLink, formatNumber } = useContext(ContextUpdate);
   const { product } = newProps;
   const { discount, id, img, name, price, tags } = product;
-
   return (
     <div className="product-item-container">
       <div className="product-item">
@@ -17,7 +16,7 @@ const ProductItem = (newProps) => {
             <div className="btn-container">
               <ButtonAddTo product={product} />
             </div>
-            <Link to={`/shop/${formatLink(name)}`}>
+            <Link to={`/product/${formatLink(name)}`}>
               <div className="img-container">
                 <img src={img[0]} alt={name} className="img-swap-1" />
                 <img src={img[1]} alt={name} className="img-swap-2" />
@@ -37,7 +36,7 @@ const ProductItem = (newProps) => {
         </div>
         <div className="product-item-detail">
           <h5>
-            <Link to={`/shop/${formatLink(name)}`}>{name}</Link>
+            <Link to={`/product/${formatLink(name)}`}>{name}</Link>
           </h5>
           <p>
             <span className={discount !== 0 ? "price-before" : "base-price"}>

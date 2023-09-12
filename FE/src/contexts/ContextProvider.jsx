@@ -24,7 +24,6 @@ const ContextProvider = ({ children }) => {
       return setIsAdmin(true);
     else setIsAdmin(false);
   };
-  console.log(isAdmin);
   // Login
 
   // Format Function
@@ -40,7 +39,6 @@ const ContextProvider = ({ children }) => {
     return params.isActive ? "active-item" : "";
   };
   // Header Component
-
   // Products
   const productCategory = productList.map((product) => product.category);
   let counter = {};
@@ -103,12 +101,13 @@ const ContextProvider = ({ children }) => {
   };
 
   const onAddToCart = (product) => {
-    if (!cart.includes(product)) {
+    const index = cart.findIndex((cartItem) => product.id === cartItem.id);
+    if (index === -1) {
       product.quantity = 1;
       setCart((prev) => [...prev, product]);
       setCartLocalStorage([...cart, product]);
     } else {
-      product.quantity++;
+      cart[index].quantity++;
       setCart((prev) => [...prev]);
       setCartLocalStorage([...cart]);
     }
@@ -189,6 +188,34 @@ const ContextProvider = ({ children }) => {
   };
   // HomeProduct Component
 
+  // Product Detail
+  const [currentImageDetail, setCurrentImageDetail] = useState(0);
+  const [quantityAdd, setQuantityAdd] = useState(1);
+  const handleChangeQuantityAdd = (e) => setQuantityAdd(Number(e.target.value));
+  const onIncreaseQuantityAdd = () => {
+    setQuantityAdd(quantityAdd + 1);
+  };
+  const onDecreaseQuantityAdd = () => {
+    if (quantityAdd <= 1) return;
+    setQuantityAdd(quantityAdd - 1);
+  };
+
+  const onChangeImageDetail = (index) => setCurrentImageDetail(index);
+  const onAddDetailItem = (product) => {
+    const index = cart.findIndex((cartItem) => product.id === cartItem.id);
+    if (index === -1) {
+      product.quantity = quantityAdd;
+      setCart((prev) => [...prev, product]);
+      setCartLocalStorage([...cart, product]);
+    } else {
+      cart[index].quantity += quantityAdd;
+      setCart((prev) => [...prev]);
+      setCartLocalStorage([...cart]);
+    }
+    console.log(product);
+  };
+  // Product Detail
+
   // Collection Home
   const [activeIndex, setactiveIndex] = useState(1);
 
@@ -253,11 +280,9 @@ const ContextProvider = ({ children }) => {
     padTo2Digits(date.getDate()),
     date.getFullYear(),
   ].join("-");
-
   // Checkout Components
 
   // Tracking order
-
   const [isOrderExist, setIsOrderExist] = useState(false);
   const [customerOrderList, setCustomerOrderList] = useState([]);
   const onTrack = async (id, email) => {
@@ -317,6 +342,7 @@ const ContextProvider = ({ children }) => {
   return (
     <ContextValue.Provider
       value={{
+        productList,
         isAdmin,
         customerOrderList,
         isOrderExist,
@@ -342,10 +368,15 @@ const ContextProvider = ({ children }) => {
         filterParams,
         activeIndex,
         showOrderList,
+        currentImageDetail,
+        quantityAdd,
       }}
     >
       <ContextUpdate.Provider
         value={{
+          onIncreaseQuantityAdd,
+          onDecreaseQuantityAdd,
+          onChangeImageDetail,
           onAdminLogin,
           onNextSlide,
           onPrevSlide,
@@ -366,6 +397,8 @@ const ContextProvider = ({ children }) => {
           onOrderSuccess,
           priceRangeSelector,
           handleSortChange,
+          handleChangeQuantityAdd,
+          onAddDetailItem,
         }}
       >
         {children}

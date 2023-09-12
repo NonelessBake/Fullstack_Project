@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import "../../assets/style/login.css";
+import "../assets/style/login.css";
 import { useFormik } from "formik";
-import { ContextUpdate, ContextValue } from "../../contexts/ContextProvider";
 import { useNavigate } from "react-router-dom";
+import { ContextUpdate, ContextValue } from "../contexts/ContextProvider";
 
 const Login = () => {
   const { isAdmin } = useContext(ContextValue);
