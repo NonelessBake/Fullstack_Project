@@ -18,6 +18,7 @@ function ProductDetail() {
   const productDetailItem = productList?.filter(
     (product) => formatLink(product.name) === productName
   );
+
   return (
     <>
       {productDetailItem[0] ? (

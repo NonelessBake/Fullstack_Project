@@ -1,6 +1,7 @@
 import { useContext, useMemo } from "react";
 import "../../assets/style/cartItem.css";
 import { ContextUpdate } from "../../contexts/ContextProvider";
+import { Link } from "react-router-dom";
 
 const CartItem = (newProps) => {
   const { cartItem } = newProps;
@@ -11,6 +12,7 @@ const CartItem = (newProps) => {
     onRemoveCartItem,
     onChangeQuantityItem,
     formatNumber,
+    formatLink,
   } = useContext(ContextUpdate);
   const newPrice = price * (1 - discount / 100);
   const total = useMemo(() => {
@@ -28,7 +30,14 @@ const CartItem = (newProps) => {
             className="product-img"
           />
           <div>
-            <div className="product-name">{name}</div>
+            <div className="product-name">
+              <Link
+                to={`/product/${formatLink(name)}`}
+                onClick={() => window.scrollTo(0, 0)}
+              >
+                {name}
+              </Link>
+            </div>
             <div className="product-stock">Stock: {status}</div>
           </div>
         </div>

@@ -16,7 +16,10 @@ const ProductItem = (newProps) => {
             <div className="btn-container">
               <ButtonAddTo product={product} />
             </div>
-            <Link to={`/product/${formatLink(name)}`}>
+            <Link
+              onClick={() => window.scrollTo(0, 0)}
+              to={`/product/${formatLink(name)}`}
+            >
               <div className="img-container">
                 <img src={img[0]} alt={name} className="img-swap-1" />
                 <img src={img[1]} alt={name} className="img-swap-2" />
@@ -36,7 +39,12 @@ const ProductItem = (newProps) => {
         </div>
         <div className="product-item-detail">
           <h5>
-            <Link to={`/product/${formatLink(name)}`}>{name}</Link>
+            <Link
+              onClick={() => window.scrollTo(0, 0)}
+              to={`/product/${formatLink(name)}`}
+            >
+              {name}
+            </Link>
           </h5>
           <p>
             <span className={discount !== 0 ? "price-before" : "base-price"}>
