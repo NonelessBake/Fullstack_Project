@@ -20,6 +20,7 @@ const ContextProvider = ({ children }) => {
   // Login
   const [isAdmin, setIsAdmin] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
+  const [loginFail, setLoginFail] = useState(false);
   const onAdminLogin = (username, password) => {
     const getIndexUser = userLogin.findIndex(
       (info) => info.userName === username && info.password === password
@@ -27,10 +28,11 @@ const ContextProvider = ({ children }) => {
     if (getIndexUser === -1) {
       setIsAdmin(false);
       setLoginSuccess(false);
+      setLoginFail(true);
     } else {
       userLogin[getIndexUser].admin === true
-        ? (setIsAdmin(true), setLoginSuccess(true))
-        : (setIsAdmin(false), setLoginSuccess(true));
+        ? (setIsAdmin(true), setLoginSuccess(true), setLoginFail(false))
+        : (setIsAdmin(false), setLoginSuccess(true), setLoginFail(false));
     }
   };
   // Login
@@ -384,6 +386,7 @@ const ContextProvider = ({ children }) => {
         showOrderList,
         currentImageDetail,
         quantityAdd,
+        loginFail,
       }}
     >
       <ContextUpdate.Provider

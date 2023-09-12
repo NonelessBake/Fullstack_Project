@@ -6,7 +6,7 @@ import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const { isAdmin, loginSuccess } = useContext(ContextValue);
+  const { isAdmin, loginSuccess, loginFail } = useContext(ContextValue);
   const { onAdminLogin } = useContext(ContextUpdate);
   const navigate = useNavigate();
   const { values, handleChange, handleSubmit, resetForm } = useFormik({
@@ -50,9 +50,15 @@ const Login = () => {
               style={{
                 display: "flex",
                 justifyContent: "center",
+                flexDirection: "column",
                 marginTop: 15,
               }}
             >
+              {loginFail && (
+                <div style={{ color: "red", width: "100%" }}>
+                  Incorrect username or password
+                </div>
+              )}
               <button type="submit">Login</button>
             </div>
           </form>
