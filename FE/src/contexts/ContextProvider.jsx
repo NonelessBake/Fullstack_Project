@@ -123,9 +123,7 @@ const ContextProvider = ({ children }) => {
     if (index !== -1) {
       let newItem = newCart[index];
       newItem.quantity =
-        value?.length > 0
-          ? checkMaxValue(Number(value), Number(carItem.status))
-          : 1;
+        value?.length > 0 ? checkMaxValue(Number(value), Number(1000)) : 1;
       setCart([...newCart]);
       setCartLocalStorage([...newCart]);
     }
@@ -191,9 +189,14 @@ const ContextProvider = ({ children }) => {
   // Product Detail
   const [currentImageDetail, setCurrentImageDetail] = useState(0);
   const [quantityAdd, setQuantityAdd] = useState(1);
-  const handleChangeQuantityAdd = (e) => setQuantityAdd(Number(e.target.value));
+  const handleChangeQuantityAdd = (e) => {
+    if (e.target.value > 1000) setQuantityAdd(1000);
+    else setQuantityAdd(Number(e.target.value));
+  };
+
   const onIncreaseQuantityAdd = () => {
-    setQuantityAdd(quantityAdd + 1);
+    if (quantityAdd > 1000) setQuantityAdd(1000);
+    else setQuantityAdd(quantityAdd + 1);
   };
   const onDecreaseQuantityAdd = () => {
     if (quantityAdd <= 1) return;
